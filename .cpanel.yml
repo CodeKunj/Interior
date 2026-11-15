@@ -1,0 +1,35 @@
+---
+# ==============================================================================
+# cPanel Git Versioning Auto-Deployment Configuration
+# Docs: https://docs.cpanel.net/cpanel/git-versioning/guide-to-git-cpanel-yml/
+# ==============================================================================
+deployment:
+  tasks:
+    # 1. Set target destination directory on cPanel
+    # Default is the primary website folder: public_html/
+    # If deploying to an Addon Domain or Subdomain, change to: /home/$USER/your-domain.com/
+    - export DEPLOYPATH=/home/$USER/public_html/
+
+    # 2. Ensure deployment destination and media folders exist
+    - /bin/mkdir -p $DEPLOYPATH
+    - /bin/mkdir -p $DEPLOYPATH/uploads/projects
+    - /bin/mkdir -p $DEPLOYPATH/uploads/gallery
+    - /bin/mkdir -p $DEPLOYPATH/uploads/before-after
+
+    # 3. Deploy React production build (index.html & assets/)
+    - /bin/cp -R dist/* $DEPLOYPATH
+
+    # 4. Deploy PHP 8+ REST API backend & Studio CMS (/api)
+    - /bin/cp -R api $DEPLOYPATH
+
+    # 5. Deploy root Apache rewrite & security rules (.htaccess)
+    - /bin/cp public/.htaccess $DEPLOYPATH.htaccess
+
+    # 6. Deploy upload security shield (.htaccess inside uploads/)
+    - /bin/cp uploads/.htaccess $DEPLOYPATH/uploads/.htaccess
+
+    # 7. Preserve .env if not yet created on server
+    - if [ ! -f $DEPLOYPATH/.env ] && [ -f .env.example ]; then /bin/cp .env.example $DEPLOYPATH/.env; fi
+
+    # 8. Set correct directory permissions (chmod 755 for uploads)
+    - /bin/chmod -R 755 $DEPLOYPATH/uploads

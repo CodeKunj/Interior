@@ -1,0 +1,26 @@
+# ==============================================================================
+# Security Hardening for /api Directory
+# Block direct access to database schemas, markdown files, and hidden configs
+# ==============================================================================
+
+Options -Indexes
+
+# Block sensitive extensions
+<FilesMatch "\.(sql|env.*|md|log|json|lock|bak|config)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Explicitly protect schema.sql
+<Files "schema.sql">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Ensure PHP headers
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>

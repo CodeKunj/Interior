@@ -1,0 +1,18 @@
+# ==============================================================================
+# Security: Block All Script Execution in Uploads Directory
+# Prevents execution of PHP, Perl, Python, or shell scripts
+# ==============================================================================
+
+<FilesMatch "\.(php|phtml|php3|php4|php5|php7|php8|phps|pl|py|cgi|sh|bash)$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+Options -ExecCGI -Indexes
+php_flag engine off
+
+# Allow only image file viewing
+<FilesMatch "\.(jpg|jpeg|png|webp|avif|gif|svg|ico)$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>

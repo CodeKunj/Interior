@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #FAF9F5;
+    color: #1C1B19;
+  }
+
+  body {
+    background-color: #FAF9F5;
+    color: #1C1B19;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Bodoni Moda', Georgia, serif;
+    letter-spacing: -0.018em;
+    font-weight: 500;
+  }
+
+  ::selection {
+    background-color: #8C6D53;
+    color: #FFFFFF;
+  }
+}
+
+/* Lenis smooth scrolling rules */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Custom Slender Marble Luxury Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF9F5;
+}
+::-webkit-scrollbar-thumb {
+  background: #D5CFC5;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8C6D53;
+}
+
+/* Marble Interior UI Utility Components */
+.card-marble {
+  background-color: #FFFFFF;
+  border: 1px solid #E5E0D8;
+  border-radius: 1.25rem;
+}
+
+.card-marble:hover {
+  border-color: #C8BFB3;
+}
+
+.pill-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.3rem 0.95rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #8C6D53;
+  background-color: rgba(140, 109, 83, 0.08);
+  border: 1px solid rgba(140, 109, 83, 0.22);
+  border-radius: 9999px;
+  font-weight: 500;
+}
+
+/* Split-text roll animation utility */
+.roll-text {
+  display: inline-flex;
+  overflow: hidden;
+}
+.roll-text span {
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.group:hover .roll-text span {
+  transform: translateY(-100%);
+}
+
+/* Draggable slider cursor */
+.cursor-ew-resize {
+  cursor: ew-resize;
+}
