@@ -1,6 +1,7 @@
 # ==============================================================================
 # AURION • Atelier Vérité — Apache Root Configuration
 # Automatically routes all visitors to the compiled production React app in /dist/
+# Direct Admin Access via /admin or /admin/
 # Preserves direct access to PHP REST API (/api/) and uploads (/uploads/)
 # ==============================================================================
 
@@ -11,23 +12,28 @@
   # Pass Authorization header to PHP
   RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
-  # 1. Allow direct access to PHP REST API and uploaded media
+  # 1. Direct Admin Panel Access: /admin and /admin/* map directly to /api/admin/*
+  RewriteRule ^admin$ /admin/ [R=301,L]
+  RewriteRule ^admin/$ api/admin/index.php [L]
+  RewriteRule ^admin/(.*)$ api/admin/$1 [L]
+
+  # 2. Allow direct access to PHP REST API and uploaded media
   RewriteCond %{REQUEST_URI} ^/api/ [NC,OR]
   RewriteCond %{REQUEST_URI} ^/uploads/ [NC]
   RewriteRule ^ - [L]
 
-  # 2. Route /assets/* directly to dist/assets/*
+  # 3. Route /assets/* directly to dist/assets/*
   RewriteRule ^assets/(.*)$ dist/assets/$1 [L]
 
-  # 3. Serve dist/index.html for root requests
+  # 4. Serve dist/index.html for root requests
   RewriteRule ^$ dist/index.html [L]
 
-  # 4. If requested resource is an existing file or directory, serve it directly
+  # 5. If requested resource is an existing file or directory, serve it directly
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
-  # 5. Route all React Router multipage paths (/work, /services, /contact, etc.) to dist/index.html
+  # 6. Route all React Router multipage paths (/work, /services, /contact, etc.) to dist/index.html
   RewriteCond %{DOCUMENT_ROOT}/dist/index.html -f
   RewriteRule ^.*$ dist/index.html [L]
 

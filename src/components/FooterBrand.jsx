@@ -26,7 +26,7 @@ const FOOTER_COLUMNS = [
     items: [
       { label: 'Book Private Consultation', href: '/contact' },
       { label: 'WhatsApp Private Client Desk', href: 'https://wa.me/12125550198', external: true },
-      { label: 'Studio CMS Portal', href: '/api/admin/', external: true },
+      { label: 'Studio CMS Portal', href: '/admin/', external: true },
       { label: 'New York &bull; Paris &bull; Kyoto', href: '/contact' }
     ]
   }
@@ -92,7 +92,7 @@ export default function FooterBrand({ brand = 'AURION' }) {
           <div className="flex items-center space-x-6">
             <span className="text-stone-light">Shared cPanel / PHP 8+ PDO API</span>
             <a
-              href="/api/admin/"
+              href="/admin/"
               target="_blank"
               rel="noreferrer"
               className="text-stone hover:text-accent transition-colors underline underline-offset-4 font-medium"

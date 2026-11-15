@@ -1,5 +1,6 @@
 # ==============================================================================
 # Apache Configuration for cPanel Single Page Application & PHP REST API
+# Direct Admin Access via /admin or /admin/
 # ==============================================================================
 
 <IfModule mod_rewrite.c>
@@ -9,17 +10,22 @@
   # Pass Authorization header to PHP (Bearer tokens / Basic Auth)
   RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
-  # Do NOT rewrite requests to /api/ or /uploads/
+  # 1. Direct Admin Panel Access: /admin and /admin/* map directly to /api/admin/*
+  RewriteRule ^admin$ /admin/ [R=301,L]
+  RewriteRule ^admin/$ api/admin/index.php [L]
+  RewriteRule ^admin/(.*)$ api/admin/$1 [L]
+
+  # 2. Do NOT rewrite requests to /api/ or /uploads/
   RewriteCond %{REQUEST_URI} ^/api/ [NC,OR]
   RewriteCond %{REQUEST_URI} ^/uploads/ [NC]
   RewriteRule ^ - [L]
 
-  # If requested resource is an existing file or directory, serve it directly
+  # 3. If requested resource is an existing file or directory, serve it directly
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
-  # Route all React Router single-page navigation to index.html
+  # 4. Route all React Router single-page navigation to index.html
   RewriteRule ^ index.html [L]
 </IfModule>
 
