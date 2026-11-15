@@ -15,12 +15,21 @@ use Atelier\Models\BeforeAfter;
 
 require_admin_auth();
 
-$projectModel = new Project();
-$galleryModel = new ProjectGallery();
-$beforeAfterModel = new BeforeAfter();
+$projectModel = null;
+$galleryModel = null;
+$beforeAfterModel = null;
+$dbError = null;
 
-$feedback = '';
-$feedbackType = 'success';
+try {
+    $projectModel = new Project();
+    $galleryModel = new ProjectGallery();
+    $beforeAfterModel = new BeforeAfter();
+} catch (\Throwable $e) {
+    $dbError = $e->getMessage();
+}
+
+$feedback = $dbError ? "Database Setup Required: {$dbError}. Import api/schema.sql and update .env." : '';
+$feedbackType = $dbError ? 'error' : 'success';
 $action = $_GET['action'] ?? 'list';
 $projectId = intval($_GET['id'] ?? 0);
 
@@ -223,16 +232,16 @@ $galleryPhotos = [];
 $beforeAfterPairs = [];
 $subtab = $_GET['subtab'] ?? 'details';
 
-if ($action === 'list') {
+if ($action === 'list' && $projectModel) {
     $filterCategory = trim($_GET['category'] ?? '');
     $search = trim($_GET['search'] ?? '');
     $allProjects = $projectModel->getAll([
         'category' => $filterCategory,
         'search'   => $search
     ]);
-} elseif ($action === 'edit' && $projectId > 0) {
+} elseif ($action === 'edit' && $projectId > 0 && $projectModel) {
     $currentProject = $projectModel->findById($projectId);
-    if ($currentProject) {
+    if ($currentProject && $galleryModel && $beforeAfterModel) {
         $galleryPhotos = $galleryModel->getByProjectId($projectId);
         $beforeAfterPairs = $beforeAfterModel->getByProjectId($projectId);
     }

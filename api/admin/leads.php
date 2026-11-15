@@ -12,9 +12,17 @@ use Atelier\Models\Inquiry;
 
 require_admin_auth();
 
-$inquiryModel = new Inquiry();
-$feedback = '';
-$feedbackType = 'success';
+$inquiryModel = null;
+$dbError = null;
+
+try {
+    $inquiryModel = new Inquiry();
+} catch (\Throwable $e) {
+    $dbError = $e->getMessage();
+}
+
+$feedback = $dbError ? "Database Setup Required: {$dbError}. Import api/schema.sql and configure .env." : '';
+$feedbackType = $dbError ? 'error' : 'success';
 
 // -------------------------------------------------------------
 // CSV EXPORT HANDLER (?export=csv)
@@ -114,11 +122,18 @@ $activeStatus = trim($_GET['status'] ?? '');
 $searchQuery = trim($_GET['search'] ?? '');
 $viewId = intval($_GET['view'] ?? 0);
 
-$counts = $inquiryModel->getCountsByStatus();
-$inquiries = $inquiryModel->getAll($activeStatus, 200);
+$counts = ['total' => 0, 'new' => 0, 'contacted' => 0, 'scheduled' => 0, 'archived' => 0];
+$inquiries = [];
+
+if ($inquiryModel) {
+    try {
+        $counts = $inquiryModel->getCountsByStatus();
+        $inquiries = $inquiryModel->getAll($activeStatus, 200);
+    } catch (\Throwable $e) {}
+}
 
 // Client search filtering
-if ($searchQuery !== '') {
+if ($searchQuery !== '' && !empty($inquiries)) {
     $q = mb_strtolower($searchQuery);
     $inquiries = array_filter($inquiries, function ($item) use ($q) {
         return (strpos(mb_strtolower($item['name']), $q) !== false) ||
@@ -131,8 +146,10 @@ if ($searchQuery !== '') {
 
 // Detailed view dossier
 $viewItem = null;
-if ($viewId > 0) {
-    $viewItem = $inquiryModel->findById($viewId);
+if ($viewId > 0 && $inquiryModel) {
+    try {
+        $viewItem = $inquiryModel->findById($viewId);
+    } catch (\Throwable $e) {}
 }
 
 render_admin_head('Client Consultation Inquiries', 'leads');

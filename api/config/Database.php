@@ -14,12 +14,23 @@ use RuntimeException;
 
 class Database {
     private static ?PDO $instance = null;
+    private static ?self $singleton = null;
     private static array $config = [];
 
     /**
      * Prevent direct instantiation
      */
     private function __construct() {}
+
+    /**
+     * Singleton instance accessor
+     */
+    public static function getInstance(): self {
+        if (self::$singleton === null) {
+            self::$singleton = new self();
+        }
+        return self::$singleton;
+    }
 
     /**
      * Initialize connection settings

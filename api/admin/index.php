@@ -18,7 +18,7 @@ $projectModel = null;
 $inquiryModel = null;
 
 try {
-    $pdo = Database::getInstance()->getConnection();
+    $pdo = Database::getConnection();
     $projectModel = new Project();
     $inquiryModel = new Inquiry();
 } catch (\Throwable $e) {
