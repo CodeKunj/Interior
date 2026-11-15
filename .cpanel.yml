@@ -5,25 +5,30 @@
 # ==============================================================================
 deployment:
   tasks:
-    # 1. Set target destination directory on cPanel
-    # Default is the primary website folder: public_html/
-    # If deploying to an Addon Domain or Subdomain, change to: /home/$USER/your-domain.com/
-    - export DEPLOYPATH=/home/$USER/public_html/
+    # 1. Determine target directory for interior.ritiverse.in or primary domain
+    - |
+      if [ -d "/home/$USER/interior.ritiverse.in" ]; then
+        export DEPLOYPATH="/home/$USER/interior.ritiverse.in"
+      elif [ -d "/home/$USER/public_html/interior" ]; then
+        export DEPLOYPATH="/home/$USER/public_html/interior"
+      else
+        export DEPLOYPATH="/home/$USER/public_html"
+      fi
+      echo "Deploying to: $DEPLOYPATH"
 
-    # 2. Ensure deployment destination and media folders exist
-    - /bin/mkdir -p $DEPLOYPATH
+    # 2. Ensure media and destination folders exist
     - /bin/mkdir -p $DEPLOYPATH/uploads/projects
     - /bin/mkdir -p $DEPLOYPATH/uploads/gallery
     - /bin/mkdir -p $DEPLOYPATH/uploads/before-after
 
     # 3. Deploy React production build (index.html & assets/)
-    - /bin/cp -R dist/* $DEPLOYPATH
+    - /bin/cp -R dist/* $DEPLOYPATH/
 
     # 4. Deploy PHP 8+ REST API backend & Studio CMS (/api)
-    - /bin/cp -R api $DEPLOYPATH
+    - /bin/cp -R api $DEPLOYPATH/
 
     # 5. Deploy root Apache rewrite & security rules (.htaccess)
-    - /bin/cp public/.htaccess $DEPLOYPATH.htaccess
+    - /bin/cp .htaccess $DEPLOYPATH/.htaccess
 
     # 6. Deploy upload security shield (.htaccess inside uploads/)
     - /bin/cp uploads/.htaccess $DEPLOYPATH/uploads/.htaccess
