@@ -5,36 +5,48 @@
 # ==============================================================================
 deployment:
   tasks:
-    # 1. Determine target directory for interior.ritiverse.in or primary domain
     - |
+      set -e
+      TARGET=""
       if [ -d "/home/$USER/interior.ritiverse.in" ]; then
-        export DEPLOYPATH="/home/$USER/interior.ritiverse.in"
+        TARGET="/home/$USER/interior.ritiverse.in"
       elif [ -d "/home/$USER/public_html/interior" ]; then
-        export DEPLOYPATH="/home/$USER/public_html/interior"
+        TARGET="/home/$USER/public_html/interior"
+      elif [ -d "/home/$USER/public_html" ]; then
+        TARGET="/home/$USER/public_html"
       else
-        export DEPLOYPATH="/home/$USER/public_html"
+        TARGET="."
       fi
-      echo "Deploying to: $DEPLOYPATH"
+      echo "=== Deploying Atelier Vérité to: $TARGET ==="
 
-    # 2. Ensure media and destination folders exist
-    - /bin/mkdir -p $DEPLOYPATH/uploads/projects
-    - /bin/mkdir -p $DEPLOYPATH/uploads/gallery
-    - /bin/mkdir -p $DEPLOYPATH/uploads/before-after
+      # 1. Ensure required directories exist
+      /bin/mkdir -p "$TARGET/uploads/projects" "$TARGET/uploads/gallery" "$TARGET/uploads/before-after" "$TARGET/uploads/brand" "$TARGET/uploads/press"
 
-    # 3. Deploy React production build (index.html & assets/)
-    - /bin/cp -R dist/* $DEPLOYPATH/
+      # 2. Deploy React compiled production files directly to web root
+      if [ -d "dist" ]; then
+        echo "Copying compiled production assets from dist/ to $TARGET/..."
+        /bin/cp -Rf dist/* "$TARGET/"
+      fi
 
-    # 4. Deploy PHP 8+ REST API backend & Studio CMS (/api)
-    - /bin/cp -R api $DEPLOYPATH/
+      # 3. Deploy PHP REST API and Admin CMS
+      if [ -d "api" ]; then
+        echo "Deploying /api backend..."
+        /bin/cp -Rf api "$TARGET/"
+      fi
 
-    # 5. Deploy root Apache rewrite & security rules (.htaccess)
-    - /bin/cp .htaccess $DEPLOYPATH/.htaccess
+      # 4. Deploy Apache configurations
+      if [ -f ".htaccess" ]; then
+        /bin/cp -f .htaccess "$TARGET/.htaccess"
+      fi
+      if [ -f "uploads/.htaccess" ]; then
+        /bin/cp -f uploads/.htaccess "$TARGET/uploads/.htaccess"
+      fi
 
-    # 6. Deploy upload security shield (.htaccess inside uploads/)
-    - /bin/cp uploads/.htaccess $DEPLOYPATH/uploads/.htaccess
+      # 5. Preserve production .env if not yet created on server
+      if [ ! -f "$TARGET/.env" ] && [ -f ".env.example" ]; then
+        /bin/cp .env.example "$TARGET/.env"
+      fi
 
-    # 7. Preserve .env if not yet created on server
-    - if [ ! -f $DEPLOYPATH/.env ] && [ -f .env.example ]; then /bin/cp .env.example $DEPLOYPATH/.env; fi
-
-    # 8. Set correct directory permissions (chmod 755 for uploads)
-    - /bin/chmod -R 755 $DEPLOYPATH/uploads
+      # 6. Set secure file and directory permissions
+      /bin/chmod -R 755 "$TARGET/uploads"
+      echo "=== Deployment completed successfully ==="

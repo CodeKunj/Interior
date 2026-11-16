@@ -247,11 +247,15 @@ if ($action === 'list' && $projectModel) {
     }
 }
 
-render_admin_head('Projects & 3D Tours', 'projects');
-render_admin_nav('projects');
+render_admin_layout_start(
+    'Projects & 3D Tours',
+    'projects',
+    '',
+    [['label' => 'Projects & 3D Tours', 'url' => '']]
+);
 ?>
 
-<main class="max-w-7xl mx-auto px-6 py-10 flex-1 w-full space-y-8">
+<div class="space-y-8">
 
     <!-- Flash message -->
     <?php if ($feedback): ?>
@@ -715,4 +719,6 @@ render_admin_nav('projects');
     }
 </script>
 
-<?php render_admin_footer(); ?>
+</div>
+
+<?php render_admin_layout_end(); ?>

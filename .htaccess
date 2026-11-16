@@ -1,9 +1,12 @@
 # ==============================================================================
 # AURION • Atelier Vérité — Apache Root Configuration
-# Automatically routes all visitors to the compiled production React app in /dist/
+# Production-ready routing for cPanel shared / cloud hosting
 # Direct Admin Access via /admin or /admin/
 # Preserves direct access to PHP REST API (/api/) and uploads (/uploads/)
+# Automatically routes visitors to compiled React production bundle in /dist/
 # ==============================================================================
+
+DirectoryIndex dist/index.html index.html index.php
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
@@ -25,20 +28,24 @@
   # 3. Route /assets/* directly to dist/assets/*
   RewriteRule ^assets/(.*)$ dist/assets/$1 [L]
 
-  # 4. Serve dist/index.html for root requests
+  # 4. Prevent serving development index.html (always serve production dist/index.html)
+  RewriteRule ^index\.html$ dist/index.html [L]
+
+  # 5. Serve dist/index.html for root requests
   RewriteRule ^$ dist/index.html [L]
 
-  # 5. If requested resource is an existing file or directory, serve it directly
+  # 6. If requested resource is an existing file or directory (except root index.html), serve it directly
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
+  RewriteCond %{REQUEST_URI} !^/index\.html$
   RewriteRule ^ - [L]
 
-  # 6. Route all React Router multipage paths (/work, /services, /contact, etc.) to dist/index.html
+  # 7. Route all React Router multipage paths (/work, /services, /about, /contact, etc.) to dist/index.html
   RewriteCond %{DOCUMENT_ROOT}/dist/index.html -f
   RewriteRule ^.*$ dist/index.html [L]
 
-  # Fallback to index.html if dist is absent
-  RewriteRule ^.*$ index.html [L]
+  # Fallback to dist/index.html
+  RewriteRule ^.*$ dist/index.html [L]
 </IfModule>
 
 # Security: Disable directory browsing

@@ -1,12 +1,13 @@
 -- ==============================================================================
 -- DATABASE SCHEMA: Upscale Interior Design Studio (Atelier Vérité)
 -- Ready for cPanel MySQL / MariaDB Import via phpMyAdmin
+-- Includes Projects, 3D Tours, Dynamic Site Settings, SEO, and Admin Portals
 -- ==============================================================================
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
--- 1. Create Tables
+-- 1. Create Core Projects & Gallery Tables
 -- ------------------------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS `projects` (
@@ -73,6 +74,39 @@ CREATE TABLE IF NOT EXISTS `admin_users` (
     `username` VARCHAR(80) NOT NULL UNIQUE,
     `password_hash` VARCHAR(255) NOT NULL,
     `email` VARCHAR(150) NOT NULL,
+    `reset_token` VARCHAR(128) NULL,
+    `reset_expires` DATETIME NULL,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- 2. Create Dynamic Site Settings, SEO & Press Tables
+-- ------------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `site_settings` (
+    `setting_key` VARCHAR(100) NOT NULL PRIMARY KEY,
+    `setting_group` VARCHAR(50) NOT NULL, -- 'general', 'brand', 'founder', 'contact', 'whatsapp', 'social', 'smtp', 'security', 'analytics'
+    `setting_value` TEXT NULL,
+    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX `idx_setting_group` (`setting_group`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `seo_settings` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `route_key` VARCHAR(50) NOT NULL UNIQUE, -- 'home', 'work', 'services', 'about', 'contact', etc.
+    `meta_title` VARCHAR(255) NULL,
+    `meta_description` TEXT NULL,
+    `meta_keywords` TEXT NULL,
+    `og_image` VARCHAR(512) NULL,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX `idx_route_key` (`route_key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `press_awards` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `title` VARCHAR(255) NOT NULL,
+    `logo_url` VARCHAR(512) NOT NULL,
+    `display_order` INT DEFAULT 0,
     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -89,6 +123,116 @@ VALUES (
 ) ON DUPLICATE KEY UPDATE `id` = `id`;
 
 -- ------------------------------------------------------------------------------
+-- Seed Dynamic Site Settings (General, Brand, Contact, WhatsApp, Social, Founder)
+-- ------------------------------------------------------------------------------
+INSERT INTO `site_settings` (`setting_key`, `setting_group`, `setting_value`) VALUES
+-- Brand & Identity
+('studio_name', 'general', 'AURION • ATELIER VÉRITÉ'),
+('tagline', 'Architecture & Luxury Interior Sanctuaries'),
+('footer_copyright', '© 2026 AURION • Atelier Vérité Architecture & Interiors. All Rights Reserved.'),
+('logo_dark', 'brand', '/uploads/brand/logo-dark.svg'),
+('logo_light', 'brand', '/uploads/brand/logo-light.svg'),
+('favicon', 'brand', '/favicon.ico'),
+
+-- Founder / About Page Info
+('founder_name', 'founder', 'Elena Vance'),
+('founder_designation', 'founder', 'Principal Architect & Creative Director'),
+('founder_bio', 'founder', 'Educated in Milan and Zurich, Elena Vance established Atelier Vérité with an unwavering commitment to architectural restraint, spatial volume, and authentic materiality. Her practice balances classical proportion with bespoke contemporary restraint.'),
+('founder_portrait', 'founder', 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=85'),
+('founder_signature', 'founder', ''),
+
+-- Studio Contact & Physical Location
+('studio_address', 'contact', '74 Mercer Street, Soho, New York, NY 10012'),
+('google_maps_embed_url', 'contact', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.633857502697!2d-74.0016489!3d40.7227563!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2598beea1b585%3A0xbcf0461f36402ec!2s74%20Mercer%20St%2C%20New%20York%2C%20NY%2010012!5e0!3m2!1sen!2sus!4v1700000000000'),
+('primary_phone', 'contact', '+1 (212) 555-0198'),
+('inquiry_receiver_email', 'contact', 'concierge@ateliervérité.com'),
+('working_hours', 'contact', 'Monday – Friday: 09:00 – 18:00 EST by Private Appointment'),
+
+-- WhatsApp Direct Desk
+('whatsapp_number', 'whatsapp', '+12125550198'),
+('whatsapp_default_message', 'whatsapp', 'Hello Atelier Vérité, I would like to inquire about an architectural design commission.'),
+('enable_whatsapp_float', 'whatsapp', '1'),
+
+-- Social Media Networks
+('instagram_url', 'social', 'https://instagram.com/ateliervérité'),
+('pinterest_url', 'social', 'https://pinterest.com/ateliervérité'),
+('houzz_url', 'social', 'https://houzz.com/pro/ateliervérité'),
+('linkedin_url', 'social', 'https://linkedin.com/company/ateliervérité'),
+('youtube_url', 'social', ''),
+
+-- Email & SMTP Settings
+('smtp_host', 'smtp', 'localhost'),
+('smtp_port', 'smtp', '587'),
+('smtp_encryption', 'smtp', 'tls'),
+('smtp_username', 'smtp', 'concierge@ateliervérité.com'),
+('smtp_password', 'smtp', ''),
+('admin_alert_email', 'smtp', 'concierge@ateliervérité.com'),
+('smtp_from_name', 'smtp', 'Atelier Vérité Studio Concierge'),
+('enable_client_autoreply', 'smtp', '1'),
+
+-- Security & Spam Protection
+('recaptcha_site_key', 'security', ''),
+('recaptcha_secret_key', 'security', ''),
+('spam_protection_type', 'security', 'disabled'),
+
+-- Analytics & Tracking IDs
+('ga4_measurement_id', 'analytics', 'G-XXXXXXXXXX'),
+('meta_pixel_id', 'analytics', ''),
+('google_search_console_tag', 'analytics', '')
+ON DUPLICATE KEY UPDATE `setting_key` = `setting_key`;
+
+-- ------------------------------------------------------------------------------
+-- Seed Global SEO & OpenGraph Route Metadata
+-- ------------------------------------------------------------------------------
+INSERT INTO `seo_settings` (`route_key`, `meta_title`, `meta_description`, `meta_keywords`, `og_image`) VALUES
+(
+    'home',
+    'AURION • ATELIER VÉRITÉ — Architecture & Luxury Interior Sanctuaries',
+    'Upscale architecture and interior design studio crafting timeless, marble-toned residential and commercial sanctuaries. Explore interactive 3D virtual tours and bespoke spatial design.',
+    'luxury interior design, architectural studio, turnkey renovation, 3D matterport virtual tours, marble interiors, minimalist bespoke furniture',
+    'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=85'
+),
+(
+    'work',
+    'Curated Sanctuaries & Works | AURION Atelier Vérité',
+    'Explore our comprehensive portfolio of private residential estates, duplex penthouses, and bespoke commercial sanctuaries with interactive 3D virtual walkthroughs.',
+    'interior design portfolio, architectural case studies, residential penthouse design, commercial salon architecture',
+    'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=85'
+),
+(
+    'services',
+    'Disciplines & Design Methodology | AURION Atelier Vérité',
+    'Comprehensive turnkey architectural execution, 3D spatial planning, materiality curation, and bespoke furniture craft for discerning private clients.',
+    'turnkey execution, 3D architectural rendering, spatial planning, custom furniture craft, material procurement',
+    'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1600&q=85'
+),
+(
+    'about',
+    'Studio Heritage & Founder Elena Vance | AURION Atelier Vérité',
+    'Founded by Elena Vance, Atelier Vérité synthesizes European architectural discipline with serene minimalism, honoring unadorned stone, aged bronze, and tailored light.',
+    'Elena Vance architect, interior design philosophy, architectural accolades, luxury design heritage',
+    'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=85'
+),
+(
+    'contact',
+    'Initiate a Private Commission | AURION Atelier Vérité',
+    'Connect with our senior architectural partners to discuss private residential, turnkey development, or commercial interior commissions worldwide.',
+    'interior designer consultation, private commission, architectural booking, interior inquiry Soho New York',
+    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=85'
+)
+ON DUPLICATE KEY UPDATE `route_key` = `route_key`;
+
+-- ------------------------------------------------------------------------------
+-- Seed Press & Accolades Logos
+-- ------------------------------------------------------------------------------
+INSERT INTO `press_awards` (`id`, `title`, `logo_url`, `display_order`) VALUES
+(1, 'Architectural Digest - Top 50 Global Sanctuaries 2025', 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?auto=format&fit=crop&w=300&q=80', 1),
+(2, 'Elle Decor - International Best Penthouse Restoration Award', 'https://images.unsplash.com/photo-1516876437184-593fda40c7ce?auto=format&fit=crop&w=300&q=80', 2),
+(3, 'Wallpaper* Design Awards - Spatial Harmony Finalist', 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?auto=format&fit=crop&w=300&q=80', 3),
+(4, 'Dezeen Awards - Master Hospitality Interior Nominee', 'https://images.unsplash.com/photo-1516876437184-593fda40c7ce?auto=format&fit=crop&w=300&q=80', 4)
+ON DUPLICATE KEY UPDATE `id` = `id`;
+
+-- ------------------------------------------------------------------------------
 -- Seed Sample Projects with Editorial Luxury Imagery & Working 3D Tours
 -- ------------------------------------------------------------------------------
 
@@ -99,102 +243,102 @@ VALUES
     1,
     'the-tribeca-loft',
     'The Tribeca Loft',
-    'Curated Industrial Minimalism & Warm Alabaster Patina',
+    'Cast-Iron Framing & Honed Roman Travertine',
     'Residential',
     'Tribeca, New York',
     4200,
     2025,
     'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=85',
-    'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2200&q=85',
-    'The client sought a complete spatial reimagining of a historic cast-iron warehouse floor. Key mandates included soft architectural acoustic dampening, continuous gallery-scale walls for private art exhibitions, and an effortless transition between serene private suites and high-capacity entertaining salons.',
-    'We stripped back decades of disjointed drywall partitions to honor the original timber beams and structural cast-iron pillars. An expansive open-plan layout was organized into sculptural micro-zones using monolithic travertine islands, custom smoked-oak millwork, and full-height linen acoustic drapery. Flush architectural recessed lighting accentuates rich textural contrasts.',
+    'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=85',
+    'The clients sought to transform a cavernous 19th-century cast-iron industrial warehouse into a serene, light-filled family sanctuary. Key requirements included dampening street acoustics, preserving original Douglas fir timber joists, and creating fluid transitions between the formal salon and culinary quarter.',
+    'We orchestrated a monolithic intervention: floating partition walls coated in brushed warm alabaster plaster, paired with monolithic slabs of unpolished Roman travertine. Unlacquered brass details and concealed acoustic ceiling baffles create an atmosphere of monastic calm within Manhattan’s urban density.',
     1,
-    'https://my.matterport.com/show/?m=JGPnGQLBTJb&play=1&qs=1',
+    'https://my.matterport.com/show/?m=JGPnGGTgJ7L&play=1',
     'matterport'
 ),
 (
     2,
-    'villa-serenita-amalfi',
+    'villa-serenita',
     'Villa Serenità',
-    'Sun-Drenched Terracotta & Mediterranean Modernism',
-    'Turnkey',
+    'Terraced Mediterranean Cliffside Sanctuary',
+    'Residential',
     'Amalfi Coast, Italy',
     6800,
-    2025,
+    2024,
     'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1600&q=85',
-    'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=2200&q=85',
-    'Perched high on the cliffs of Ravello, this private clifftop estate required a turnkey transformation that celebrated boundless azure sea vistas without succumbing to rustic clichés. The owners requested seamless indoor-outdoor living, bespoke climate-resilient furnishings, and a subterranean wine sanctuary.',
-    'A soft, low-reflectance palette of hand-raked lime plaster and honed Roman travertine forms a quiet backdrop to the dramatic Mediterranean light. We designed custom bronze-framed pivot portals opening onto sprawling pergolas, paired with sculpted Bouclé lounge pieces, unlacquered brass hardware, and hand-loomed Tuscan textiles.',
+    'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1600&q=85',
+    'Perched 300 meters above the Tyrrhenian Sea, the estate required a sensitive revival that honored vernacular Italian stone masonry while introducing high-performance climate control and seamless indoor-outdoor living corridors.',
+    'We excavated bedrock to establish subterranean wellness suites and aligned the main salon with infinity-edge travertine reflection pools. Every custom piece of furniture was crafted from bleached chestnut and hand-loomed raw linen sourced from local Salerno artisans.',
     1,
-    'https://sketchfab.com/models/b27f6cfb04ea4f9588eb7d65ff9e6fc9/embed?autostart=0&ui_controls=1&ui_infos=0&ui_inspector=0&ui_watermark=0',
+    'https://sketchfab.com/models/0d13ad3b66444b76a08990b79dd5f522/embed?autostart=1&internal=1&tracking=0&ui_infos=0',
     'sketchfab'
 ),
 (
     3,
-    'kyoto-sanctuary-residence',
+    'kyoto-sanctuary',
     'Kyoto Sanctuary Residence',
-    'Contemporary Wabi-Sabi & Hinoki Timber Craftsmanship',
-    'Residential',
+    'Meditative Hinoki & Wabi-Sabi Minimalism',
+    'Turnkey',
     'Higashiyama, Kyoto',
     3100,
-    2024,
+    2025,
     'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=1600&q=85',
-    'https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=2200&q=85',
-    'Commissioned by a contemporary art patron, the brief called for an introspective residence immersed in traditional Japanese spatial philosophies of Ma (negative space) and Shakkei (borrowed scenery), equipped with discreet state-of-the-art smart environmental controls.',
-    'Constructed in close collaboration with Kyoto master carpenters (Miyadaiku), the home features aromatic Japanese Hinoki framing, hand-troweled Juraku earth plaster walls, and custom Shoji screens reimagined with Belgian linen. A sunken granite soaking bath overlooks an intimate, enclosed moss and water garden.',
+    'https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1600&q=85',
+    'Commissioned by a contemporary art collector, the brief called for a private residential gallery that adhered to traditional Sukiya-zukuri principles while housing large-scale international sculptural works.',
+    'A dialogue between century-old smoked cedar pillars and contemporary micro-cement flooring. Slotted cedar screens modulate natural daylight, casting shifting geometric silhouettes across tactile tatami salons and courtyards planted with Japanese weeping maples.',
     1,
-    'https://kuula.co/share/collection/7lZl5?logo=0&info=0&fs=1&vr=1&sd=1&thumbs=1',
-    'kuula'
-),
-(
-    4,
-    'the-mayfair-heritage-salon',
-    'The Mayfair Heritage Salon',
-    'Georgian Classical Grandeur Meets Bespoke Savile Row Detailing',
-    'Renovation',
-    'Mayfair, London',
-    5400,
-    2024,
-    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=85',
-    'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=2200&q=85',
-    'A sensitive architectural renovation of a Grade II listed Georgian townhouse. The client requested the preservation of delicate 18th-century plaster cornices and marble hearths alongside a cutting-edge contemporary kitchen and subterranean wellness suite.',
-    'We executed painstaking conservation of historic plaster moldings while concealing modern ducted climate systems behind faux coffered friezes. Deep heritage olive and aged bone tones are complemented by fluted Calacatta Viola marble islands, ribbed glass pocket doors, and bespoke upholstery finished in British wool and saddle leather.',
-    0,
-    'https://my.matterport.com/show/?m=JGPnGQLBTJb&play=1&qs=1',
+    'https://my.matterport.com/show/?m=JGPnGGTgJ7L&play=1',
     'matterport'
 ),
 (
-    5,
-    'lumina-flagship-ateliers',
-    'Lumina Haute Parfumerie',
-    'Sensory Retail Environment with Sculptural Fluted Travertine',
-    'Commercial',
-    'Rue Saint-Honoré, Paris',
-    2800,
-    2025,
-    'https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=1600&q=85',
-    'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=2200&q=85',
-    'An experiential flagship store and consultation salon for an artisanal French perfume house. The spatial program demanded high-end olfactory testing bars, intimate VIP consultation alcoves, and gallery-level acoustic privacy in central Paris.',
-    'Centering around a monumental, curving counter carved from solid Navona travertine, the boutique surrounds visitors with warm ambient cove lighting, velvet-draped consultation chambers, and micro-perforated acoustic ceiling panels disguised as brushed alabaster.',
-    1,
-    'https://sketchfab.com/models/b27f6cfb04ea4f9588eb7d65ff9e6fc9/embed?autostart=0&ui_controls=1&ui_infos=0&ui_inspector=0&ui_watermark=0',
+    4,
+    'mayfair-heritage-salon',
+    'Mayfair Heritage Salon',
+    'Georgian Restoration & Contemporary Restraint',
+    'Renovation',
+    'Mayfair, London',
+    3800,
+    2024,
+    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=85',
+    'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1600&q=85',
+    'A Grade II listed Georgian townhouse suffering from decades of inappropriate partitions. The goal was to restore historic ornamental cornices while crafting an ultra-modern turnkey private residence.',
+    'We meticulously cast ornamental plaster molds from surviving fragments, juxtaposing the restored 1780s detailing with floor-to-ceiling blackened steel glass partitions and custom charcoal silk rugs.',
+    0,
+    'https://sketchfab.com/models/0d13ad3b66444b76a08990b79dd5f522/embed?autostart=1&internal=1&tracking=0&ui_infos=0',
     'sketchfab'
 ),
 (
-    6,
-    'bel-air-promontory-villa',
-    'Bel Air Promontory Estate',
-    'California Mid-Century Soul & Warm Architectural Volumes',
-    'Turnkey',
-    'Bel Air, Los Angeles',
-    8200,
-    2024,
-    'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=85',
-    'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=2200&q=85',
-    'A sprawling hill-side turnkey residence designed for an entertainment industry executive who required both a restful retreat and a showcase for modern sculpture and automotive design.',
-    'We blurred the threshold between the interior and the canyon landscape through 14-foot motorized glass pocket facades. Floors of hand-selected French limestone flow seamlessly onto infinity pool terraces, paired with dark American walnut wall paneling, brushed bronze accents, and low-slung Italian modular seating.',
+    5,
+    'lumina-haute-parfumerie',
+    'Lumina Haute Parfumerie',
+    'Bespoke Olfactory Flagship & VIP Suites',
+    'Commercial',
+    'Rue Saint-Honoré, Paris',
+    2400,
+    2025,
+    'https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=1600&q=85',
+    'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=1600&q=85',
+    'A luxury niche fragrance maison requiring an immersive flagship store where customers experience scent through sensory spatial transitions rather than traditional retail counters.',
+    'Concentric fluted travertine pedestals with concealed micro-diffusers guide visitors through varying temperature and lighting zones. Private consultation salons feature velvet banquettes and acoustic felt ceilings.',
     0,
-    'https://my.matterport.com/show/?m=JGPnGQLBTJb&play=1&qs=1',
+    'https://my.matterport.com/show/?m=JGPnGGTgJ7L&play=1',
+    'matterport'
+),
+(
+    6,
+    'bel-air-promontory',
+    'Bel Air Promontory Estate',
+    'Cantilevered Warm Brutalism & Skyline Panoramas',
+    'Residential',
+    'Bel Air, California',
+    9200,
+    2026,
+    'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=85',
+    'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1600&q=85',
+    'An ambitious ground-up architectural build commanding 300-degree vistas over the Los Angeles basin. Demanded heroic structural spans without feeling cold or sterile.',
+    'Board-formed architectural concrete infused with warm sandstone aggregates was paired with deep overhangs of warm teak and floor-to-ceiling glass pocket doors that fully recess into the walls.',
+    1,
+    'https://my.matterport.com/show/?m=JGPnGGTgJ7L&play=1',
     'matterport'
 )
 ON DUPLICATE KEY UPDATE `slug` = `slug`;

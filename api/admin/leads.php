@@ -152,11 +152,15 @@ if ($viewId > 0 && $inquiryModel) {
     } catch (\Throwable $e) {}
 }
 
-render_admin_head('Client Consultation Inquiries', 'leads');
-render_admin_nav('leads');
+render_admin_layout_start(
+    'Consultation Leads & Inquiries',
+    'leads',
+    '',
+    [['label' => 'Consultation Leads', 'url' => '']]
+);
 ?>
 
-<main class="max-w-7xl mx-auto px-6 py-10 flex-1 w-full space-y-8">
+<div class="space-y-8">
 
     <!-- Flash message -->
     <?php if ($feedback): ?>
@@ -358,6 +362,6 @@ render_admin_nav('leads');
         </div>
     </div>
 
-</main>
+</div>
 
-<?php render_admin_footer(); ?>
+<?php render_admin_layout_end(); ?>
