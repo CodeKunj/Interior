@@ -3,6 +3,7 @@
  * Admin Authentication & Master Left Sidebar Layout Shell
  * Atelier Vérité — Calacatta Marble Luxury CMS
  * Native PHP 8+ with Tailwind CSS CDN, Cormorant Garamond, and Plus Jakarta Sans.
+ * Independent dual-scroll architecture (Sidebar scrollbar + Right Workspace scrollbar).
  */
 
 declare(strict_types=1);
@@ -181,7 +182,7 @@ function render_admin_layout_start(
     } catch (\Throwable $e) {}
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -223,23 +224,63 @@ function render_admin_layout_start(
         }
     </script>
     <style>
+        /* Strict Window Viewport Locking */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Prevents global outer window scroll */
+        }
         body {
             background-color: #F7F5F0;
             color: #1C1B19;
             font-family: 'Plus Jakarta Sans', sans-serif;
             -webkit-font-smoothing: antialiased;
         }
-        /* Custom scrollbar for modern sidebar */
-        ::-webkit-scrollbar { width: 5px; height: 5px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #E2DDD5; border-radius: 9999px; }
-        ::-webkit-scrollbar-thumb:hover { background: #8C6D53; }
+
+        /* 1. Dedicated Left Sidebar Dark Custom Scrollbar */
+        .sidebar-scrollbar {
+            scrollbar-width: thin;
+            scrollbar-color: #383531 transparent;
+        }
+        .sidebar-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .sidebar-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .sidebar-scrollbar::-webkit-scrollbar-thumb {
+            background: #383531;
+            border-radius: 9999px;
+        }
+        .sidebar-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #8C6D53;
+        }
+
+        /* 2. Dedicated Right Workspace Light Custom Scrollbar */
+        .main-scrollbar {
+            scrollbar-width: thin;
+            scrollbar-color: #D3CDC1 transparent;
+        }
+        .main-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .main-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .main-scrollbar::-webkit-scrollbar-thumb {
+            background: #D3CDC1;
+            border-radius: 9999px;
+        }
+        .main-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #8C6D53;
+        }
     </style>
 </head>
-<body class="min-h-screen bg-alabaster text-charcoal flex flex-col antialiased">
+<body class="h-full w-full bg-alabaster text-charcoal flex flex-col antialiased overflow-hidden">
 
-    <!-- Mobile Top Navigation Header -->
-    <div class="lg:hidden bg-white/95 backdrop-blur-md border-b border-sand px-5 py-3.5 flex items-center justify-between sticky top-0 z-40">
+    <!-- Mobile Top Navigation Header (hidden on desktop lg) -->
+    <div class="lg:hidden flex-shrink-0 bg-white/95 backdrop-blur-md border-b border-sand px-5 py-3.5 flex items-center justify-between z-40">
         <div class="flex items-center gap-3">
             <button type="button" id="sidebar-toggle-btn" class="p-2 -ml-2 rounded-lg text-charcoal hover:bg-linen transition-colors">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -258,16 +299,16 @@ function render_admin_layout_start(
         </div>
     </div>
 
-    <!-- Main Admin Container -->
-    <div class="flex-1 flex w-full relative">
+    <!-- Main Admin Container: Fills 100% of remaining viewport height -->
+    <div class="flex-1 flex w-full h-full min-h-0 overflow-hidden relative">
 
         <!-- ==================================================================== -->
-        <!-- LUXURY LEFT SIDEBAR NAVIGATION -->
+        <!-- LUXURY LEFT SIDEBAR: Pinned height with own independent scrollbar -->
         <!-- ==================================================================== -->
-        <aside id="admin-sidebar" class="fixed inset-y-0 left-0 z-50 w-72 bg-[#1C1B19] text-[#FAF9F5] flex flex-col transition-transform duration-300 ease-in-out -translate-x-full lg:translate-x-0 lg:static lg:inset-auto shadow-2xl lg:shadow-none border-r border-[#2C2A26]">
+        <aside id="admin-sidebar" class="fixed inset-y-0 left-0 z-50 w-72 h-full flex-shrink-0 bg-[#1C1B19] text-[#FAF9F5] flex flex-col transition-transform duration-300 ease-in-out -translate-x-full lg:translate-x-0 lg:static lg:inset-auto shadow-2xl lg:shadow-none border-r border-[#2C2A26]">
             
-            <!-- Studio Brand Header -->
-            <div class="p-6 border-b border-white/10 flex items-center justify-between">
+            <!-- Studio Brand Header (Pinned at top of sidebar) -->
+            <div class="flex-shrink-0 p-6 border-b border-white/10 flex items-center justify-between">
                 <div>
                     <a href="index.php" class="block group">
                         <span class="font-serif text-2xl tracking-[0.28em] font-light text-white block uppercase group-hover:text-amber-200/90 transition-colors">
@@ -286,8 +327,8 @@ function render_admin_layout_start(
                 </button>
             </div>
 
-            <!-- Navigation Links Scroll Area -->
-            <div class="flex-1 overflow-y-auto px-4 py-6 space-y-6">
+            <!-- Navigation Links Scroll Area: SCROLLS INDEPENDENTLY -->
+            <div class="flex-1 overflow-y-auto min-h-0 px-4 py-6 space-y-6 sidebar-scrollbar">
 
                 <!-- Primary Operational Links -->
                 <div class="space-y-1">
@@ -377,8 +418,8 @@ function render_admin_layout_start(
 
             </div>
 
-            <!-- Sidebar Bottom User Dock -->
-            <div class="p-4 border-t border-white/10 bg-black/20 space-y-3">
+            <!-- Sidebar Bottom User Dock (Pinned at bottom of sidebar) -->
+            <div class="flex-shrink-0 p-4 border-t border-white/10 bg-black/20 space-y-3">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-2.5 min-w-0">
                         <div class="w-7 h-7 rounded-full bg-[#8C6D53] text-white flex items-center justify-center font-serif text-xs font-bold flex-shrink-0">
@@ -408,12 +449,12 @@ function render_admin_layout_start(
         <div id="sidebar-backdrop" class="fixed inset-0 bg-black/50 z-40 lg:hidden hidden"></div>
 
         <!-- ==================================================================== -->
-        <!-- MAIN CONTENT WORKSPACE -->
+        <!-- RIGHT MAIN WORKSPACE: Pinned height with own independent scrollbar -->
         <!-- ==================================================================== -->
-        <main class="flex-1 flex flex-col min-w-0 overflow-y-auto">
+        <main class="flex-1 flex flex-col min-w-0 h-full min-h-0 overflow-hidden bg-alabaster">
 
-            <!-- Desktop Topbar with Breadcrumbs -->
-            <header class="bg-white/80 backdrop-blur-md border-b border-sand px-6 sm:px-8 py-4 sticky top-0 z-30 flex items-center justify-between">
+            <!-- Desktop Topbar with Breadcrumbs (Pinned at top of right panel) -->
+            <header class="flex-shrink-0 bg-white/80 backdrop-blur-md border-b border-sand px-6 sm:px-8 py-4 z-20 flex items-center justify-between">
                 <div>
                     <!-- Breadcrumbs -->
                     <div class="flex items-center gap-2 text-[11px] tracking-wider uppercase font-medium text-stone">
@@ -438,9 +479,10 @@ function render_admin_layout_start(
                 </div>
             </header>
 
-            <!-- Page Workspace Wrapper -->
-            <div class="p-6 sm:p-8 flex-1 max-w-7xl w-full mx-auto">
-                <?php render_flash(); ?>
+            <!-- Page Workspace Wrapper: SCROLLS INDEPENDENTLY WITH RIGHT SCROLLBAR -->
+            <div class="flex-1 overflow-y-auto min-h-0 main-scrollbar flex flex-col">
+                <div class="p-6 sm:p-8 flex-1 max-w-7xl w-full mx-auto">
+                    <?php render_flash(); ?>
 <?php
 }
 
@@ -449,13 +491,15 @@ function render_admin_layout_start(
  */
 function render_admin_layout_end(): void {
 ?>
-            </div><!-- /Workspace Wrapper -->
+                </div><!-- /Max-w container -->
 
-            <!-- Minimal Footer -->
-            <footer class="border-t border-sand py-5 px-8 text-center sm:text-left text-[11px] text-stone bg-white/50 flex flex-col sm:flex-row items-center justify-between gap-2 mt-auto">
-                <p>AURION &bull; ATELIER VÉRITÉ ARCHITECTURAL SANCTUARIES &bull; cPanel Native Engine</p>
-                <p class="text-[10px] text-stone/80">Tailwind CSS &bull; PDO Secure &bull; WebP Optimizer</p>
-            </footer>
+                <!-- Minimal Footer at bottom of scrollable content -->
+                <footer class="border-t border-sand py-5 px-8 text-center sm:text-left text-[11px] text-stone bg-white/50 flex flex-col sm:flex-row items-center justify-between gap-2 mt-auto">
+                    <p>AURION &bull; ATELIER VÉRITÉ ARCHITECTURAL SANCTUARIES &bull; cPanel Native Engine</p>
+                    <p class="text-[10px] text-stone/80">Tailwind CSS &bull; PDO Secure &bull; WebP Optimizer</p>
+                </footer>
+
+            </div><!-- /Workspace Scrollable Area -->
 
         </main>
     </div>
