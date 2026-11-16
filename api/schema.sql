@@ -128,18 +128,18 @@ VALUES (
 INSERT INTO `site_settings` (`setting_key`, `setting_group`, `setting_value`) VALUES
 -- Brand & Identity
 ('studio_name', 'general', 'AURION • ATELIER VÉRITÉ'),
-('tagline', 'Architecture & Luxury Interior Sanctuaries'),
-('footer_copyright', '© 2026 AURION • Atelier Vérité Architecture & Interiors. All Rights Reserved.'),
-('logo_dark', 'brand', '/uploads/brand/logo-dark.svg'),
-('logo_light', 'brand', '/uploads/brand/logo-light.svg'),
-('favicon', 'brand', '/favicon.ico'),
+('tagline', 'general', 'Architecture & Luxury Interior Sanctuaries'),
+('footer_copyright', 'general', '© 2026 AURION • Atelier Vérité Architecture & Interiors. All Rights Reserved.'),
+('studio_logo_dark', 'general', '/uploads/brand/logo-dark.svg'),
+('studio_logo_light', 'general', '/uploads/brand/logo-light.svg'),
+('favicon', 'general', '/favicon.ico'),
 
 -- Founder / About Page Info
-('founder_name', 'founder', 'Elena Vance'),
-('founder_designation', 'founder', 'Principal Architect & Creative Director'),
-('founder_bio', 'founder', 'Educated in Milan and Zurich, Elena Vance established Atelier Vérité with an unwavering commitment to architectural restraint, spatial volume, and authentic materiality. Her practice balances classical proportion with bespoke contemporary restraint.'),
-('founder_portrait', 'founder', 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=85'),
-('founder_signature', 'founder', ''),
+('founder_name', 'general', 'Elena Vance'),
+('founder_designation', 'general', 'Principal Architect & Creative Director'),
+('founder_bio', 'general', 'Educated in Milan and Zurich, Elena Vance established Atelier Vérité with an unwavering commitment to architectural restraint, spatial volume, and authentic materiality. Her practice balances classical proportion with bespoke contemporary restraint.'),
+('founder_portrait', 'general', 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=85'),
+('founder_signature', 'general', ''),
 
 -- Studio Contact & Physical Location
 ('studio_address', 'contact', '74 Mercer Street, Soho, New York, NY 10012'),
@@ -149,9 +149,9 @@ INSERT INTO `site_settings` (`setting_key`, `setting_group`, `setting_value`) VA
 ('working_hours', 'contact', 'Monday – Friday: 09:00 – 18:00 EST by Private Appointment'),
 
 -- WhatsApp Direct Desk
-('whatsapp_number', 'whatsapp', '+12125550198'),
-('whatsapp_default_message', 'whatsapp', 'Hello Atelier Vérité, I would like to inquire about an architectural design commission.'),
-('enable_whatsapp_float', 'whatsapp', '1'),
+('whatsapp_number', 'contact', '+12125550198'),
+('whatsapp_default_message', 'contact', 'Hello Atelier Vérité, I would like to inquire about an architectural design commission.'),
+('enable_whatsapp_float', 'contact', '1'),
 
 -- Social Media Networks
 ('instagram_url', 'social', 'https://instagram.com/ateliervérité'),
@@ -176,9 +176,9 @@ INSERT INTO `site_settings` (`setting_key`, `setting_group`, `setting_value`) VA
 ('spam_protection_type', 'security', 'disabled'),
 
 -- Analytics & Tracking IDs
-('ga4_measurement_id', 'analytics', 'G-XXXXXXXXXX'),
-('meta_pixel_id', 'analytics', ''),
-('google_search_console_tag', 'analytics', '')
+('ga4_measurement_id', 'seo', 'G-XXXXXXXXXX'),
+('meta_pixel_id', 'seo', ''),
+('google_search_console_tag', 'seo', '')
 ON DUPLICATE KEY UPDATE `setting_key` = `setting_key`;
 
 -- ------------------------------------------------------------------------------
