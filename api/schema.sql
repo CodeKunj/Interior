@@ -133,6 +133,7 @@ INSERT INTO `site_settings` (`setting_key`, `setting_group`, `setting_value`) VA
 ('studio_logo_dark', 'general', '/uploads/brand/logo-dark.svg'),
 ('studio_logo_light', 'general', '/uploads/brand/logo-light.svg'),
 ('favicon', 'general', '/favicon.ico'),
+('default_og_image', 'general', 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=85'),
 
 -- Founder / About Page Info
 ('founder_name', 'general', 'Elena Vance'),

@@ -34,7 +34,8 @@ try {
         'general' => [
             'studio_name'      => 'AURION • ATELIER VÉRITÉ',
             'tagline'          => 'Architecture & Luxury Interior Sanctuaries',
-            'footer_copyright' => '© ' . date('Y') . ' AURION • Atelier Vérité Architecture & Interiors. All Rights Reserved.'
+            'footer_copyright' => '© ' . date('Y') . ' AURION • Atelier Vérité Architecture & Interiors. All Rights Reserved.',
+            'default_og_image' => 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=85'
         ],
         'brand' => [
             'logo_dark'  => '/uploads/brand/logo-dark.svg',

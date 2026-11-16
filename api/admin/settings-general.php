@@ -55,6 +55,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
 
+        if (!empty($_FILES['default_og_image']['name'])) {
+            $uploaded = handle_image_upload('default_og_image', 'brand', 'og_banner');
+            if ($uploaded) {
+                $settingsToUpdate['default_og_image'] = $uploaded;
+            }
+        }
+
         if (!empty($_FILES['founder_portrait']['name'])) {
             $uploaded = handle_image_upload('founder_portrait', 'brand', 'founder_portrait');
             if ($uploaded) {
@@ -129,8 +136,8 @@ render_admin_layout_start(
                 </div>
             </div>
 
-            <!-- Logo Upload Grid -->
-            <div class="border-t border-sand/60 pt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Logo & Brand Assets Upload Grid -->
+            <div class="border-t border-sand/60 pt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 
                 <!-- Dark Logo (For Light Backgrounds) -->
                 <div class="p-4 rounded-xl border border-sand bg-alabaster/30 flex flex-col justify-between">
@@ -177,6 +184,22 @@ render_admin_layout_start(
                     </div>
                     <div>
                         <input type="file" name="favicon" accept="image/*" class="text-xs text-stone file:mr-2 file:py-1 file:px-3 file:rounded-full file:border-0 file:text-[10px] file:font-semibold file:bg-sand/60 file:text-charcoal hover:file:bg-bronze hover:file:text-white cursor-pointer w-full">
+                    </div>
+                </div>
+
+                <!-- Global OpenGraph Social Banner -->
+                <div class="p-4 rounded-xl border border-sand bg-alabaster/30 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[10px] uppercase font-bold tracking-wider text-charcoal block mb-1">Default OG Social Banner</span>
+                        <p class="text-[11px] text-stone mb-3">1200 &times; 630 share card for WhatsApp, iMessage, and Twitter previews.</p>
+                        <?php if (!empty($current['default_og_image'])): ?>
+                            <div class="mb-3 p-1 bg-charcoal rounded-lg border border-sand overflow-hidden aspect-[1.91/1] flex items-center justify-center">
+                                <img src="<?= htmlspecialchars($current['default_og_image']) ?>" alt="OG Banner" class="w-full h-full object-cover">
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                    <div>
+                        <input type="file" name="default_og_image" accept="image/*" class="text-xs text-stone file:mr-2 file:py-1 file:px-3 file:rounded-full file:border-0 file:text-[10px] file:font-semibold file:bg-sand/60 file:text-charcoal hover:file:bg-bronze hover:file:text-white cursor-pointer w-full">
                     </div>
                 </div>
 
