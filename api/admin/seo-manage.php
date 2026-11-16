@@ -199,7 +199,7 @@ render_admin_layout_start(
                         <span class="text-xs text-[#202124] truncate">https://interior.ritiverse.in<?= $routes[$activeRoute]['slug'] ?></span>
                     </div>
                     <div id="preview_title" class="text-base text-[#1a0dab] font-medium leading-snug line-clamp-1 hover:underline cursor-pointer">
-                        <?= htmlspecialchars($currentRouteSeo['meta_title'] ?? 'AURION • Atelier Vérité') ?>
+                        <?= htmlspecialchars($currentRouteSeo['meta_title'] ?? 'RiTiVerse • Atelier Vérité') ?>
                     </div>
                     <div id="preview_desc" class="text-xs text-[#4d5156] mt-1 line-clamp-2 leading-relaxed">
                         <?= htmlspecialchars($currentRouteSeo['meta_description'] ?? 'Upscale architecture and interior design studio crafting timeless, marble-toned residential and commercial sanctuaries.') ?>
@@ -216,7 +216,7 @@ render_admin_layout_start(
                     </div>
                     <div class="p-3 bg-white">
                         <p class="text-[10px] uppercase tracking-wider text-stone font-semibold">interior.ritiverse.in</p>
-                        <p id="preview_wa_title" class="text-xs font-semibold text-charcoal mt-0.5 line-clamp-1"><?= htmlspecialchars($currentRouteSeo['meta_title'] ?? 'AURION • Atelier Vérité') ?></p>
+                        <p id="preview_wa_title" class="text-xs font-semibold text-charcoal mt-0.5 line-clamp-1"><?= htmlspecialchars($currentRouteSeo['meta_title'] ?? 'RiTiVerse • Atelier Vérité') ?></p>
                         <p id="preview_wa_desc" class="text-[11px] text-stone mt-0.5 line-clamp-2 leading-tight"><?= htmlspecialchars($currentRouteSeo['meta_description'] ?? 'Upscale architecture and interior design studio.') ?></p>
                     </div>
                 </div>
@@ -288,8 +288,8 @@ render_admin_layout_start(
     function updateCounters() {
         if (titleInput && titleCount) {
             titleCount.textContent = `${titleInput.value.length}/70`;
-            if (previewTitle) previewTitle.textContent = titleInput.value || 'AURION • Atelier Vérité';
-            if (previewWaTitle) previewWaTitle.textContent = titleInput.value || 'AURION • Atelier Vérité';
+            if (previewTitle) previewTitle.textContent = titleInput.value || 'RiTiVerse • Atelier Vérité';
+            if (previewWaTitle) previewWaTitle.textContent = titleInput.value || 'RiTiVerse • Atelier Vérité';
         }
         if (descInput && descCount) {
             descCount.textContent = `${descInput.value.length}/160`;

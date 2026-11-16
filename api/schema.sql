@@ -127,9 +127,9 @@ VALUES (
 -- ------------------------------------------------------------------------------
 INSERT INTO `site_settings` (`setting_key`, `setting_group`, `setting_value`) VALUES
 -- Brand & Identity
-('studio_name', 'general', 'AURION • ATELIER VÉRITÉ'),
+('studio_name', 'general', 'RiTiVerse • ATELIER VÉRITÉ'),
 ('tagline', 'general', 'Architecture & Luxury Interior Sanctuaries'),
-('footer_copyright', 'general', '© 2026 AURION • Atelier Vérité Architecture & Interiors. All Rights Reserved.'),
+('footer_copyright', 'general', '© 2026 RiTiVerse • Atelier Vérité Architecture & Interiors. All Rights Reserved.'),
 ('studio_logo_dark', 'general', '/uploads/brand/logo-dark.svg'),
 ('studio_logo_light', 'general', '/uploads/brand/logo-light.svg'),
 ('favicon', 'general', '/favicon.ico'),
@@ -188,35 +188,35 @@ ON DUPLICATE KEY UPDATE `setting_key` = `setting_key`;
 INSERT INTO `seo_settings` (`route_key`, `meta_title`, `meta_description`, `meta_keywords`, `og_image`) VALUES
 (
     'home',
-    'AURION • ATELIER VÉRITÉ — Architecture & Luxury Interior Sanctuaries',
+    'RiTiVerse • ATELIER VÉRITÉ — Architecture & Luxury Interior Sanctuaries',
     'Upscale architecture and interior design studio crafting timeless, marble-toned residential and commercial sanctuaries. Explore interactive 3D virtual tours and bespoke spatial design.',
     'luxury interior design, architectural studio, turnkey renovation, 3D matterport virtual tours, marble interiors, minimalist bespoke furniture',
     'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=85'
 ),
 (
     'work',
-    'Curated Sanctuaries & Works | AURION Atelier Vérité',
+    'Curated Sanctuaries & Works | RiTiVerse Atelier Vérité',
     'Explore our comprehensive portfolio of private residential estates, duplex penthouses, and bespoke commercial sanctuaries with interactive 3D virtual walkthroughs.',
     'interior design portfolio, architectural case studies, residential penthouse design, commercial salon architecture',
     'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=85'
 ),
 (
     'services',
-    'Disciplines & Design Methodology | AURION Atelier Vérité',
+    'Disciplines & Design Methodology | RiTiVerse Atelier Vérité',
     'Comprehensive turnkey architectural execution, 3D spatial planning, materiality curation, and bespoke furniture craft for discerning private clients.',
     'turnkey execution, 3D architectural rendering, spatial planning, custom furniture craft, material procurement',
     'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1600&q=85'
 ),
 (
     'about',
-    'Studio Heritage & Founder Elena Vance | AURION Atelier Vérité',
+    'Studio Heritage & Founder Elena Vance | RiTiVerse Atelier Vérité',
     'Founded by Elena Vance, Atelier Vérité synthesizes European architectural discipline with serene minimalism, honoring unadorned stone, aged bronze, and tailored light.',
     'Elena Vance architect, interior design philosophy, architectural accolades, luxury design heritage',
     'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=85'
 ),
 (
     'contact',
-    'Initiate a Private Commission | AURION Atelier Vérité',
+    'Initiate a Private Commission | RiTiVerse Atelier Vérité',
     'Connect with our senior architectural partners to discuss private residential, turnkey development, or commercial interior commissions worldwide.',
     'interior designer consultation, private commission, architectural booking, interior inquiry Soho New York',
     'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=85'

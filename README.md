@@ -1,4 +1,4 @@
-# AURION &bull; ATELIER VÉRITÉ — Architecture & Luxury Interior Sanctuaries
+# RiTiVerse &bull; ATELIER VÉRITÉ — Architecture & Luxury Interior Sanctuaries
 
 A production-ready multipage website and modular plain PHP 8+ REST API backend for an upscale Interior Design Studio, inspired by the editorial luxury aesthetic of **[Webild Boutique Hotel Template](https://www.webild.io/templates/boutique-hotel)**, tailored with a **Calacatta Marble White background (`#FAF9F5`), soft warm neutrals, Bodoni Moda luxury serif typography, and an interactive 3D virtual tour player**.
 
@@ -31,13 +31,13 @@ Crafted specifically for upscale interior architecture studios:
 
 1. **`NavbarFullscreen.jsx` (Floating Marble Glass Header):**
    - Floating pill with `bg-white/90` and `backdrop-blur-xl`, hairlike sand border `#E2DDD5`.
-   - **Left:** Refined serif brand mark `AURION` with delicate subscript `ATELIER VÉRITÉ` (no awkward badge wrapping).
+   - **Left:** Refined serif brand mark `RiTiVerse` with delicate subscript `ATELIER VÉRITÉ` (no awkward badge wrapping).
    - **Center:** Clean, concise single-word links (`Portfolio`, `Services`, `Journeys`, `Philosophy`) with `whitespace-nowrap` that never wrap lines or collide with buttons.
    - **Right:** High-contrast `Book Consultation ↗` pill button (`bg-[#1C1B19] text-[#FAF9F5]` hovering to soft bronze) + circular menu trigger.
    - **Fullscreen Overlay Menu:** Cinematic full-page overlay with numbered editorial links (`01 Selected Works`, `02 Disciplines & Process`, `03 Architectural Journeys`, `04 Studio Philosophy`, `05 Private Commissions`), direct WhatsApp desk, and studio locations.
 2. **`HeroExpand.jsx`:**
    - Architectural photography at 100% full opacity with multi-image fallback and subtle ambient film.
-   - Title `AURION`, studio pill badge, and split-text roll action buttons.
+   - Title `RiTiVerse`, studio pill badge, and split-text roll action buttons.
 3. **`AboutParallax.jsx`:**
    - Layered dual-image composition with inverse parallax drifting.
 4. **`FeaturesAttributeCards.jsx`:**
@@ -49,7 +49,7 @@ Crafted specifically for upscale interior architecture studios:
 7. **`ContactSplitForm.jsx`:**
    - Split 2-column contact section (pure white form card + full-bleed photograph).
 8. **`FooterBrand.jsx`:**
-   - Monumental brand typography (`AURION`) in soft linen (`#EFECE6`) with chevron columns and CMS link.
+   - Monumental brand typography (`RiTiVerse`) in soft linen (`#EFECE6`) with chevron columns and CMS link.
 9. **`VirtualTourEmbed.jsx` (Critical 3D Feature):**
    - Responsive 16:9 3D virtual tour player supporting Matterport, Kuula, Sketchfab, and Spline embeds with full-screen toggle.
 10. **`BeforeAfterSlider.jsx`:**

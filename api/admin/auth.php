@@ -175,10 +175,10 @@ function render_admin_layout_start(
     $username = $_SESSION['atelier_admin'] ?? 'Admin';
 
     // Retrieve studio name for sidebar branding
-    $studioName = 'AURION';
+    $studioName = 'RiTiVerse';
     try {
         $settingModel = new Setting();
-        $studioName = $settingModel->get('studio_name', 'AURION');
+        $studioName = $settingModel->get('studio_name', 'RiTiVerse');
     } catch (\Throwable $e) {}
 ?>
 <!DOCTYPE html>
@@ -495,7 +495,7 @@ function render_admin_layout_end(): void {
 
                 <!-- Minimal Footer at bottom of scrollable content -->
                 <footer class="border-t border-sand py-5 px-8 text-center sm:text-left text-[11px] text-stone bg-white/50 flex flex-col sm:flex-row items-center justify-between gap-2 mt-auto">
-                    <p>AURION &bull; ATELIER VÉRITÉ ARCHITECTURAL SANCTUARIES &bull; cPanel Native Engine</p>
+                    <p>RiTiVerse &bull; ATELIER VÉRITÉ ARCHITECTURAL SANCTUARIES &bull; cPanel Native Engine</p>
                     <p class="text-[10px] text-stone/80">Tailwind CSS &bull; PDO Secure &bull; WebP Optimizer</p>
                 </footer>
 

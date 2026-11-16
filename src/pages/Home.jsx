@@ -41,7 +41,7 @@ export default function Home() {
       {/* 1. Hero Expand Section (Video Expand Signature) */}
       <div id="hero">
         <HeroExpand
-          title="AURION"
+          title="RiTiVerse"
           subtitle="An upscale interior architecture studio sculpted in marble white, daylight, and quiet luxury."
           imageSrc="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2400&q=90"
           videoSrc="https://storage.googleapis.com/webild/default/templates/hotel/hero.mp4"
@@ -120,7 +120,7 @@ export default function Home() {
         <FeaturesRevealCardsBento
           tag="Curated Journeys"
           title="The Journeys"
-          description="Exclusive architectural journeys and transformations curated for Aurion patrons — across New York, Amalfi, Kyoto, London, and Paris."
+          description="Exclusive architectural journeys and transformations curated for RiTiVerse patrons — across New York, Amalfi, Kyoto, London, and Paris."
         />
       </div>
 

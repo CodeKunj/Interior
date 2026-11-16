@@ -113,7 +113,7 @@ if ($isLoggedIn && $projectModel && $inquiryModel) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Studio Sign In | AURION Atelier CMS</title>
+    <title>Studio Sign In | RiTiVerse Atelier CMS</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -142,7 +142,7 @@ if ($isLoggedIn && $projectModel && $inquiryModel) {
     <div class="w-full max-w-md bg-white border border-sand p-8 sm:p-10 rounded-3xl shadow-[0_12px_40px_rgba(28,27,25,0.06)] space-y-8">
         <div class="text-center">
             <span class="text-[10px] uppercase tracking-[0.3em] text-bronze font-semibold block mb-2">Studio Authentication</span>
-            <h1 class="font-serif text-3xl text-charcoal font-medium">AURION &bull; ATELIER VÉRITÉ</h1>
+            <h1 class="font-serif text-3xl text-charcoal font-medium">RiTiVerse &bull; ATELIER VÉRITÉ</h1>
             <p class="text-stone text-xs mt-2 font-light leading-relaxed">Enter studio credentials to manage architectural sanctuaries, 3D digital twins, and consultation dossiers.</p>
         </div>
 

@@ -46,7 +46,7 @@ const FALLBACK_IMAGES = [
 ];
 
 export default function HeroExpand({
-  title = 'AURION',
+  title = 'RiTiVerse',
   subtitle = 'An upscale interior architecture studio sculpted in marble white, daylight, and quiet luxury.',
   imageSrc = 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2400&q=90',
   videoSrc = 'https://storage.googleapis.com/webild/default/templates/hotel/hero.mp4',
@@ -87,7 +87,7 @@ export default function HeroExpand({
         {/* 1. Signature High-Resolution Interior Photograph (Always visible & crisp) */}
         <img
           src={activeImage}
-          alt="AURION Atelier Vérité Architecture & Interior Design"
+          alt="RiTiVerse Atelier Vérité Architecture & Interior Design"
           loading="eager"
           fetchPriority="high"
           onError={handleImageError}

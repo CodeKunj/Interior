@@ -12,7 +12,7 @@ $rawCors = env('CORS_ALLOWED_ORIGINS', 'http://localhost:5173,http://localhost:3
 $allowedOrigins = is_array($rawCors) ? $rawCors : array_map('trim', explode(',', (string)$rawCors));
 
 return [
-    'app_name'    => env('APP_NAME', 'Atelier Vérité • Aurion Interiors'),
+    'app_name'    => env('APP_NAME', 'Atelier Vérité • RiTiVerse Interiors'),
     'app_env'     => env('APP_ENV', 'production'),
     'debug'       => env('APP_DEBUG', false),
     'app_url'     => env('APP_URL', 'https://yourdomain.com'),

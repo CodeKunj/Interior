@@ -45,7 +45,7 @@ class Mailer {
             'username'     => $dbSettings['smtp_username'] ?? $envMail['username'] ?? '',
             'password'     => $dbSettings['smtp_password'] ?? $envMail['password'] ?? '',
             'from_address' => $dbSettings['smtp_username'] ?? $envMail['from_address'] ?? 'concierge@interior.ritiverse.in',
-            'from_name'    => 'AURION • Atelier Vérité',
+            'from_name'    => 'RiTiVerse • Atelier Vérité',
             'admin_alert'  => $dbSettings['admin_alert_email'] ?? $envMail['admin_recipient'] ?? 'concierge@interior.ritiverse.in',
             'auto_reply'   => ($dbSettings['enable_client_autoreply'] ?? '1') === '1',
         ];
@@ -94,7 +94,7 @@ class Mailer {
 <body>
   <div class="card">
     <div class="header">
-      <h1>AURION</h1>
+      <h1>RiTiVerse</h1>
       <p>Atelier Vérité &bull; Architecture & Interiors</p>
     </div>
     <div class="content">
@@ -141,7 +141,7 @@ HTML;
     public function sendClientAutoReply(array $inquiry): bool {
         $to = $inquiry['email'];
         $name = htmlspecialchars($inquiry['name'] ?? 'Guest');
-        $subject = "Receipt of Commission Inquiry — AURION • Atelier Vérité";
+        $subject = "Receipt of Commission Inquiry — RiTiVerse • Atelier Vérité";
 
         $htmlBody = <<<HTML
 <!DOCTYPE html>
@@ -161,17 +161,17 @@ HTML;
 <body>
   <div class="card">
     <div class="header">
-      <h1>AURION</h1>
+      <h1>RiTiVerse</h1>
       <p>Atelier Vérité &bull; Architecture & Interior Sanctuaries</p>
     </div>
     <div class="content">
       <p>Dear {$name},</p>
-      <p>Thank you for introducing your spatial aspirations to AURION • Atelier Vérité. Our senior architectural concierge and design partners have received your commission inquiry.</p>
+      <p>Thank you for introducing your spatial aspirations to RiTiVerse • Atelier Vérité. Our senior architectural concierge and design partners have received your commission inquiry.</p>
       <p>We review every project brief with careful consideration of light, material integrity, and architectural harmony. A principal designer will reach out within 24 to 48 business hours to arrange an introductory dialogue.</p>
       <p style="margin-top: 32px; font-family: Georgia, serif; font-style: italic; color: #1C1B19;">Warmest regards,<br>The Studio Directors &bull; Atelier Vérité</p>
     </div>
     <div class="footer">
-      AURION &bull; Atelier Vérité Sanctuaries &bull; Confidential &bull; All Rights Reserved
+      RiTiVerse &bull; Atelier Vérité Sanctuaries &bull; Confidential &bull; All Rights Reserved
     </div>
   </div>
 </body>
@@ -204,7 +204,7 @@ HTML;
 <body>
   <div class="card">
     <div class="header">
-      <h2 style="margin:0; font-family: Georgia, serif; letter-spacing: 0.2em; text-transform: uppercase;">AURION CMS</h2>
+      <h2 style="margin:0; font-family: Georgia, serif; letter-spacing: 0.2em; text-transform: uppercase;">RiTiVerse CMS</h2>
     </div>
     <div class="content">
       <p>Hello,</p>
@@ -215,7 +215,7 @@ HTML;
       <p style="font-size: 12px; color: #6E6A63;">This link is cryptographically signed and will expire in 1 hour. If you did not request this change, you may safely ignore this message.</p>
     </div>
     <div class="footer">
-      AURION &bull; Atelier Vérité Security
+      RiTiVerse &bull; Atelier Vérité Security
     </div>
   </div>
 </body>
@@ -230,7 +230,7 @@ HTML;
      */
     public function sendTestEmail(string $recipient): array {
         $subject = "SMTP Diagnostic Test — Atelier CMS (" . date('H:i:s') . ")";
-        $htmlBody = "<p>This is a diagnostic verification email sent from your <strong>AURION Atelier Vérité CMS</strong>.</p><p>SMTP credentials and socket connectivity verified successfully on " . htmlspecialchars($this->config['host']) . ":" . $this->config['port'] . " (" . $this->config['encryption'] . ").</p>";
+        $htmlBody = "<p>This is a diagnostic verification email sent from your <strong>RiTiVerse Atelier Vérité CMS</strong>.</p><p>SMTP credentials and socket connectivity verified successfully on " . htmlspecialchars($this->config['host']) . ":" . $this->config['port'] . " (" . $this->config['encryption'] . ").</p>";
 
         try {
             $success = $this->sendViaSmtpSocket($recipient, $subject, $htmlBody);

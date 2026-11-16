@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $user) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Set New Password | AURION Atelier CMS</title>
+    <title>Set New Password | RiTiVerse Atelier CMS</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $user) {
         
         <!-- Header -->
         <div class="text-center space-y-2">
-            <span class="font-serif text-3xl tracking-[0.25em] uppercase font-light text-charcoal block">AURION</span>
+            <span class="font-serif text-3xl tracking-[0.25em] uppercase font-light text-charcoal block">RiTiVerse</span>
             <span class="text-[10px] tracking-[0.3em] uppercase text-bronze font-semibold block">Atelier Vérité &bull; CMS</span>
             <h1 class="text-lg font-serif text-charcoal pt-2">Set New Password</h1>
         </div>

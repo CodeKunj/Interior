@@ -39,7 +39,7 @@ export default function App() {
         </main>
 
         {/* Boutique Hotel Giant Brand Footer in Soft Linen */}
-        <FooterBrand brand="AURION" />
+        <FooterBrand brand="RiTiVerse" />
       </div>
     </SmoothScroll>
   );

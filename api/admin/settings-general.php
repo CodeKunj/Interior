@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
         $settingsToUpdate = [
-            'studio_name'         => trim($_POST['studio_name'] ?? 'AURION'),
+            'studio_name'         => trim($_POST['studio_name'] ?? 'RiTiVerse'),
             'tagline'             => trim($_POST['tagline'] ?? ''),
             'footer_copyright'    => trim($_POST['footer_copyright'] ?? ''),
             'founder_name'        => trim($_POST['founder_name'] ?? ''),
@@ -115,7 +115,7 @@ render_admin_layout_start(
                 <!-- Studio Name -->
                 <div>
                     <label class="block text-xs uppercase tracking-wider font-semibold text-charcoal mb-2">Studio Name</label>
-                    <input type="text" name="studio_name" value="<?= htmlspecialchars($current['studio_name'] ?? 'AURION') ?>" required
+                    <input type="text" name="studio_name" value="<?= htmlspecialchars($current['studio_name'] ?? 'RiTiVerse') ?>" required
                            class="w-full px-4 py-2.5 rounded-xl border border-sand bg-alabaster/50 text-sm focus:outline-none focus:border-bronze focus:bg-white transition-all">
                     <p class="text-[11px] text-stone mt-1">Primary luxury monogram / brand identifier.</p>
                 </div>
@@ -131,7 +131,7 @@ render_admin_layout_start(
                 <!-- Footer Copyright -->
                 <div class="sm:col-span-2">
                     <label class="block text-xs uppercase tracking-wider font-semibold text-charcoal mb-2">Footer Copyright Notice</label>
-                    <input type="text" name="footer_copyright" value="<?= htmlspecialchars($current['footer_copyright'] ?? '© 2026 AURION • Atelier Vérité Architecture & Luxury Interiors. All Rights Reserved.') ?>"
+                    <input type="text" name="footer_copyright" value="<?= htmlspecialchars($current['footer_copyright'] ?? '© 2026 RiTiVerse • Atelier Vérité Architecture & Luxury Interiors. All Rights Reserved.') ?>"
                            class="w-full px-4 py-2.5 rounded-xl border border-sand bg-alabaster/50 text-sm focus:outline-none focus:border-bronze focus:bg-white transition-all">
                 </div>
             </div>
@@ -233,7 +233,7 @@ render_admin_layout_start(
                 <div class="sm:col-span-2">
                     <label class="block text-xs uppercase tracking-wider font-semibold text-charcoal mb-2">Founder Bio & Philosophy</label>
                     <textarea name="founder_bio" rows="4"
-                              class="w-full px-4 py-3 rounded-xl border border-sand bg-alabaster/50 text-sm focus:outline-none focus:border-bronze focus:bg-white transition-all leading-relaxed"><?= htmlspecialchars($current['founder_bio'] ?? "Trained across Milan and Paris, Éléonore founded AURION Atelier Vérité with an unwavering belief in architectural restraint, honest materiality, and quiet luxury.") ?></textarea>
+                              class="w-full px-4 py-3 rounded-xl border border-sand bg-alabaster/50 text-sm focus:outline-none focus:border-bronze focus:bg-white transition-all leading-relaxed"><?= htmlspecialchars($current['founder_bio'] ?? "Trained across Milan and Paris, Éléonore founded RiTiVerse Atelier Vérité with an unwavering belief in architectural restraint, honest materiality, and quiet luxury.") ?></textarea>
                 </div>
             </div>
 

@@ -1,5 +1,5 @@
 # ==============================================================================
-# AURION • Atelier Vérité — Apache Root Configuration
+# RiTiVerse • Atelier Vérité — Apache Root Configuration
 # Production-ready routing for cPanel shared / cloud hosting
 # Direct Admin Access via /admin or /admin/
 # Preserves direct access to PHP REST API (/api/) and uploads (/uploads/)

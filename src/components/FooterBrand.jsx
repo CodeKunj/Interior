@@ -32,7 +32,7 @@ const FOOTER_COLUMNS = [
   }
 ];
 
-export default function FooterBrand({ brand = 'AURION' }) {
+export default function FooterBrand({ brand = 'RiTiVerse' }) {
   return (
     <footer className="w-full pt-20 pb-12 rounded-t-3xl overflow-hidden bg-[#EFECE6] text-[#1C1B19] border-t border-[#E2DDD5]">
       <div className="w-full max-w-6xl px-6 md:px-12 mx-auto flex flex-col gap-12 md:gap-16">
@@ -86,7 +86,7 @@ export default function FooterBrand({ brand = 'AURION' }) {
         {/* Bottom Credits & cPanel Admin Link */}
         <div className="pt-8 border-t border-[#E2DDD5] flex flex-col sm:flex-row items-center justify-between text-xs text-stone gap-4">
           <p>
-            &copy; {new Date().getFullYear()} AURION &bull; Atelier Vérité Interiors. Calacatta Marble & Soft Editorial Aesthetics.
+            &copy; {new Date().getFullYear()} RiTiVerse &bull; Atelier Vérité Interiors. Calacatta Marble & Soft Editorial Aesthetics.
           </p>
 
           <div className="flex items-center space-x-6">

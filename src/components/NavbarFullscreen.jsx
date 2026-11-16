@@ -86,7 +86,7 @@ export default function NavbarFullscreen() {
             className="flex items-center space-x-3 group flex-shrink-0"
           >
             <span className="font-serif text-lg sm:text-xl tracking-[0.24em] uppercase text-[#1C1B19] font-medium group-hover:text-accent transition-colors leading-none">
-              AURION
+              RiTiVerse
             </span>
             <span className="hidden sm:inline-block w-[1px] h-3.5 bg-[#1C1B19]/20" />
             <span className="hidden sm:inline-block text-[9px] tracking-[0.28em] uppercase text-accent font-medium whitespace-nowrap leading-none">
@@ -167,7 +167,7 @@ export default function NavbarFullscreen() {
             {/* Top Brand Banner inside Overlay */}
             <div className="flex items-center justify-between border-b border-[#E2DDD5] pb-6 max-w-6xl mx-auto w-full">
               <div className="flex items-center space-x-3">
-                <span className="font-serif text-2xl tracking-[0.24em] text-[#1C1B19]">AURION</span>
+                <span className="font-serif text-2xl tracking-[0.24em] text-[#1C1B19]">RiTiVerse</span>
                 <span className="text-xs text-stone tracking-[0.2em] uppercase">&bull; Atelier Vérité</span>
               </div>
               <span className="text-[10px] sm:text-xs text-accent font-mono uppercase tracking-[0.25em]">
@@ -240,7 +240,7 @@ export default function NavbarFullscreen() {
                   Studios: New York &bull; Paris &bull; Kyoto
                 </span>
                 <span className="text-[10px] text-stone">
-                  &copy; {new Date().getFullYear()} AURION &bull; All Rights Reserved
+                  &copy; {new Date().getFullYear()} RiTiVerse &bull; All Rights Reserved
                 </span>
               </div>
             </div>
