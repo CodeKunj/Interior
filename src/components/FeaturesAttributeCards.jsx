@@ -9,10 +9,10 @@ export default function FeaturesAttributeCards({
   projects = []
 }) {
   return (
-    <section id="rooms" className="py-24 md:py-36 px-6 md:px-12 bg-[#F5F3EE] border-y border-[#EAE6DF]">
-      <div className="max-w-6xl mx-auto space-y-16">
+    <section id="rooms" className="py-16 sm:py-24 md:py-36 px-4 sm:px-6 md:px-12 bg-[#F5F3EE] border-y border-[#EAE6DF]">
+      <div className="max-w-6xl mx-auto space-y-12 sm:space-y-16">
         {/* Section Header */}
-        <div className="flex flex-col items-center text-center space-y-4 max-w-3xl mx-auto">
+        <div className="flex flex-col items-center text-center space-y-3 sm:space-y-4 max-w-3xl mx-auto">
           <div className="pill-tag bg-white shadow-sm">
             <Sparkles className="w-3.5 h-3.5 text-accent" />
             <span>{tag}</span>
@@ -22,13 +22,13 @@ export default function FeaturesAttributeCards({
             {title}
           </h2>
 
-          <p className="text-stone text-sm sm:text-base font-light max-w-2xl leading-relaxed">
+          <p className="text-stone text-xs sm:text-base font-light max-w-2xl leading-relaxed">
             {description}
           </p>
         </div>
 
         {/* 3-Column Attribute Card Grid (Crisp White on Soft Travertine) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {projects.map((project) => (
             <article
               key={project.id || project.slug}
@@ -80,17 +80,17 @@ export default function FeaturesAttributeCards({
                 </div>
 
                 {/* Specs Row with Icons */}
-                <div className="pt-4 border-t border-[#EAE6DF] flex items-center justify-between text-xs text-stone">
-                  <div className="flex items-center space-x-4">
-                    <span className="flex items-center space-x-1.5">
+                <div className="pt-4 border-t border-[#EAE6DF] flex flex-wrap items-center justify-between text-xs text-stone gap-2">
+                  <div className="flex items-center space-x-3 sm:space-x-4">
+                    <span className="flex items-center space-x-1 sm:space-x-1.5 text-[11px] sm:text-xs">
                       <Bed className="w-3.5 h-3.5 text-accent" />
                       <span>{project.category === 'Commercial' ? 'Salon' : 'Suite'}</span>
                     </span>
-                    <span className="flex items-center space-x-1.5">
+                    <span className="flex items-center space-x-1 sm:space-x-1.5 text-[11px] sm:text-xs">
                       <Bath className="w-3.5 h-3.5 text-accent" />
                       <span>Ensuite</span>
                     </span>
-                    <span className="flex items-center space-x-1.5">
+                    <span className="flex items-center space-x-1 sm:space-x-1.5 text-[11px] sm:text-xs">
                       <Maximize2 className="w-3.5 h-3.5 text-accent" />
                       <span>{project.area_sqft ? `${project.area_sqft} sq ft` : 'Spacious'}</span>
                     </span>
@@ -98,7 +98,7 @@ export default function FeaturesAttributeCards({
 
                   <Link
                     to={`/work/${project.slug}`}
-                    className="p-2 rounded-full bg-[#FAF9F5] border border-[#E2DDD5] group-hover:bg-accent group-hover:text-white group-hover:border-accent text-[#1C1B19] transition-all duration-300 shadow-sm"
+                    className="p-2 rounded-full bg-[#FAF9F5] border border-[#E2DDD5] group-hover:bg-accent group-hover:text-white group-hover:border-accent text-[#1C1B19] transition-all duration-300 shadow-sm ml-auto"
                     aria-label={`View ${project.title}`}
                   >
                     <ArrowUpRight className="w-4 h-4" />
@@ -110,10 +110,10 @@ export default function FeaturesAttributeCards({
         </div>
 
         {/* View All Works CTA */}
-        <div className="text-center pt-4">
+        <div className="text-center pt-2 sm:pt-4">
           <Link
             to="/work"
-            className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.2em] font-semibold text-[#1C1B19] hover:text-white bg-white hover:bg-accent border border-[#E2DDD5] hover:border-accent px-8 py-3.5 rounded-full transition-all shadow-sm"
+            className="inline-flex items-center justify-center space-x-2 text-xs uppercase tracking-[0.16em] sm:tracking-[0.2em] font-semibold text-[#1C1B19] hover:text-white bg-white hover:bg-accent border border-[#E2DDD5] hover:border-accent px-6 sm:px-8 py-3.5 rounded-full transition-all shadow-sm w-full sm:w-auto"
           >
             <span>Explore Complete Portfolio (6 Sanctuaries)</span>
             <ArrowUpRight className="w-3.5 h-3.5" />

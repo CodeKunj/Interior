@@ -15,7 +15,20 @@ export default function BeforeAfterSlider({
 }) {
   const [sliderPosition, setSliderPosition] = useState(50); // percentage 0 - 100
   const [isDragging, setIsDragging] = useState(false);
+  const [containerWidth, setContainerWidth] = useState(0);
   const containerRef = useRef(null);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const updateWidth = () => {
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.offsetWidth);
+      }
+    };
+    updateWidth();
+    window.addEventListener('resize', updateWidth);
+    return () => window.removeEventListener('resize', updateWidth);
+  }, []);
 
   const handleMove = useCallback((clientX) => {
     if (!containerRef.current) return;
@@ -78,6 +91,7 @@ export default function BeforeAfterSlider({
         ref={containerRef}
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
+        style={{ touchAction: 'pan-y' }}
         className="relative w-full aspect-[4/3] md:aspect-[16/10] overflow-hidden select-none cursor-ew-resize rounded-2xl border border-[#E5E0D8] bg-[#FAF9F5] shadow-xl"
       >
         {/* Layer 1: "After" Image (Full background) */}
@@ -88,7 +102,7 @@ export default function BeforeAfterSlider({
         />
 
         {/* Floating After Badge */}
-        <div className="absolute top-4 right-4 z-20 pointer-events-none bg-white/95 text-[#1C1B19] text-[10px] uppercase tracking-[0.2em] px-3.5 py-1.5 rounded-full backdrop-blur-md border border-[#E2DDD5] shadow-md font-medium">
+        <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 pointer-events-none bg-white/95 text-[#1C1B19] text-[9px] sm:text-[10px] uppercase tracking-[0.16em] sm:tracking-[0.2em] px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full backdrop-blur-md border border-[#E2DDD5] shadow-md font-medium">
           {afterLabel}
         </div>
 
@@ -101,11 +115,11 @@ export default function BeforeAfterSlider({
             src={beforeImage}
             alt={beforeLabel}
             className="absolute inset-0 w-full h-full object-cover pointer-events-none max-w-none"
-            style={{ width: containerRef.current ? `${containerRef.current.offsetWidth}px` : '100%' }}
+            style={{ width: containerWidth ? `${containerWidth}px` : '100%' }}
           />
 
           {/* Floating Before Badge */}
-          <div className="absolute top-4 left-4 z-20 pointer-events-none bg-white/95 text-stone text-[10px] uppercase tracking-[0.2em] px-3.5 py-1.5 rounded-full backdrop-blur-md border border-[#E2DDD5] shadow-md font-medium">
+          <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-20 pointer-events-none bg-white/95 text-stone text-[9px] sm:text-[10px] uppercase tracking-[0.16em] sm:tracking-[0.2em] px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full backdrop-blur-md border border-[#E2DDD5] shadow-md font-medium">
             {beforeLabel}
           </div>
         </div>
@@ -118,14 +132,14 @@ export default function BeforeAfterSlider({
           <div className="w-[2px] h-full bg-white shadow-[0_0_12px_rgba(28,27,25,0.4)]" />
 
           {/* Central Handle Button */}
-          <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-white text-[#1C1B19] border border-[#DCD6CC] shadow-2xl flex items-center justify-center pointer-events-auto transition-transform hover:scale-110 active:scale-95">
-            <ChevronsLeftRight className="w-4 h-4 text-accent" />
+          <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white text-[#1C1B19] border border-[#DCD6CC] shadow-2xl flex items-center justify-center pointer-events-auto transition-transform hover:scale-110 active:scale-95">
+            <ChevronsLeftRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent" />
           </div>
         </div>
 
         {/* Drag Helper Cue on Bottom */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 pointer-events-none bg-white/90 text-[#1C1B19] text-[10px] uppercase tracking-widest px-4 py-1 rounded-full backdrop-blur-md border border-[#E2DDD5] shadow-sm font-medium">
-          Drag slider to compare
+        <div className="absolute bottom-3 sm:bottom-4 left-1/2 -translate-x-1/2 z-20 pointer-events-none bg-white/90 text-[#1C1B19] text-[9px] sm:text-[10px] uppercase tracking-wider px-3 sm:px-4 py-1 rounded-full backdrop-blur-md border border-[#E2DDD5] shadow-sm font-medium whitespace-nowrap">
+          Drag to compare
         </div>
       </div>
     </div>

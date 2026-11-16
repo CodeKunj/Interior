@@ -7,20 +7,23 @@
 
 declare(strict_types=1);
 
-// Helper function env() is registered by api/config/Env.php
+// Ensure Native .env Loader is always loaded and initialized
+require_once __DIR__ . '/Env.php';
+\Atelier\Config\Env::load();
+
 $rawCors = env('CORS_ALLOWED_ORIGINS', 'http://localhost:5173,http://localhost:3000,http://127.0.0.1:5173,http://127.0.0.1:3000');
 $allowedOrigins = is_array($rawCors) ? $rawCors : array_map('trim', explode(',', (string)$rawCors));
 
 return [
-    'app_name'    => env('APP_NAME', 'Atelier Vérité • RiTiVerse Interiors'),
+    'app_name'    => env('APP_NAME', 'RiTiVerse • Atelier Vérité Interiors'),
     'app_env'     => env('APP_ENV', 'production'),
     'debug'       => env('APP_DEBUG', false),
-    'app_url'     => env('APP_URL', 'https://yourdomain.com'),
+    'app_url'     => env('APP_URL', 'https://interior.ritiverse.in'),
 
-    // Database credentials
+    // Database credentials (Reads from .env, or can be set directly for cPanel)
     'db' => [
         'host'    => env('DB_HOST', 'localhost'),
-        'database'=> env('DB_NAME', 'atelier_interiors'),
+        'database'=> env('DB_NAME', 'ritivers_interior'),
         'username'=> env('DB_USER', 'root'),
         'password'=> env('DB_PASS', ''),
         'port'    => (int)env('DB_PORT', 3306),

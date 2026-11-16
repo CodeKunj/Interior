@@ -125,38 +125,38 @@ export default function Home() {
       </div>
 
       {/* 6. Client Testimonial Editorial Strip (Soft Travertine / Pure White) */}
-      <section className="py-24 px-6 md:px-12 bg-[#FAF9F5]">
-        <div className="max-w-4xl mx-auto rounded-2xl border border-[#E5E0D8] bg-white p-10 md:p-16 relative shadow-xl">
-          <Quote className="w-12 h-12 text-accent/20 absolute top-8 left-8" />
+      <section className="py-16 sm:py-24 px-4 sm:px-6 md:px-12 bg-[#FAF9F5]">
+        <div className="max-w-4xl mx-auto rounded-2xl border border-[#E5E0D8] bg-white p-6 sm:p-10 md:p-16 relative shadow-xl">
+          <Quote className="w-8 h-8 sm:w-12 sm:h-12 text-accent/20 absolute top-5 left-5 sm:top-8 sm:left-8" />
 
-          <div className="relative z-10 space-y-6">
+          <div className="relative z-10 space-y-4 sm:space-y-6">
             <div className="pill-tag bg-[#FAF9F5] shadow-sm">
               <Sparkles className="w-3.5 h-3.5 text-accent" />
               <span>Guest & Client Perspectives</span>
             </div>
 
-            <blockquote className="font-serif text-2xl sm:text-3xl md:text-4xl text-[#1C1B19] leading-snug font-normal">
+            <blockquote className="font-serif text-xl sm:text-3xl md:text-4xl text-[#1C1B19] leading-snug font-normal">
               "{MOCK_TESTIMONIALS[activeTestimonial].quote}"
             </blockquote>
 
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between pt-6 border-t border-[#EAE6DF] gap-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between pt-5 sm:pt-6 border-t border-[#EAE6DF] gap-4">
               <div>
-                <strong className="text-[#1C1B19] font-medium text-sm block">
+                <strong className="text-[#1C1B19] font-medium text-xs sm:text-sm block">
                   {MOCK_TESTIMONIALS[activeTestimonial].author}
                 </strong>
-                <span className="text-xs text-stone">
+                <span className="text-[11px] sm:text-xs text-stone">
                   {MOCK_TESTIMONIALS[activeTestimonial].role} &bull; {MOCK_TESTIMONIALS[activeTestimonial].project}
                 </span>
               </div>
 
               {/* Slider Controls */}
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center space-x-3 self-end sm:self-auto">
                 <button
                   onClick={prevTestimonial}
                   aria-label="Previous testimonial"
-                  className="p-2.5 rounded-full border border-[#E2DDD5] text-[#1C1B19] hover:bg-[#FAF9F5] transition-colors"
+                  className="p-2 sm:p-2.5 rounded-full border border-[#E2DDD5] text-[#1C1B19] hover:bg-[#FAF9F5] transition-colors"
                 >
-                  <ChevronLeft className="w-4 h-4" />
+                  <ChevronLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 </button>
                 <span className="text-xs text-stone font-mono">
                   0{activeTestimonial + 1} / 0{MOCK_TESTIMONIALS.length}
@@ -164,9 +164,9 @@ export default function Home() {
                 <button
                   onClick={nextTestimonial}
                   aria-label="Next testimonial"
-                  className="p-2.5 rounded-full border border-[#E2DDD5] text-[#1C1B19] hover:bg-[#FAF9F5] transition-colors"
+                  className="p-2 sm:p-2.5 rounded-full border border-[#E2DDD5] text-[#1C1B19] hover:bg-[#FAF9F5] transition-colors"
                 >
-                  <ChevronRight className="w-4 h-4" />
+                  <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 </button>
               </div>
             </div>

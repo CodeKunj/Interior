@@ -42,10 +42,10 @@ export default function FeaturesMediaGrid({
   items = DEFAULT_ITEMS
 }) {
   return (
-    <section id="experience" className="py-24 md:py-36 px-6 md:px-12 bg-[#FAF9F5]">
-      <div className="max-w-6xl mx-auto space-y-16">
+    <section id="experience" className="py-16 sm:py-24 md:py-36 px-4 sm:px-6 md:px-12 bg-[#FAF9F5]">
+      <div className="max-w-6xl mx-auto space-y-12 sm:space-y-16">
         {/* Header */}
-        <div className="flex flex-col items-center text-center space-y-4 max-w-3xl mx-auto">
+        <div className="flex flex-col items-center text-center space-y-3 sm:space-y-4 max-w-3xl mx-auto">
           <div className="pill-tag bg-white shadow-sm">
             <Sparkles className="w-3.5 h-3.5 text-accent" />
             <span>{tag}</span>
@@ -55,17 +55,17 @@ export default function FeaturesMediaGrid({
             {title}
           </h2>
 
-          <p className="text-stone text-sm sm:text-base font-light max-w-2xl leading-relaxed">
+          <p className="text-stone text-xs sm:text-base font-light max-w-2xl leading-relaxed">
             {description}
           </p>
         </div>
 
         {/* Asymmetric Media Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-5 sm:gap-6">
           {items.map((item, idx) => (
             <div
               key={idx}
-              className={`group relative rounded-2xl overflow-hidden border border-[#E5E0D8] bg-[#161616] min-h-[340px] md:min-h-[380px] flex flex-col justify-end p-8 shadow-lg ${
+              className={`group relative rounded-2xl overflow-hidden border border-[#E5E0D8] bg-[#161616] min-h-[280px] sm:min-h-[340px] md:min-h-[380px] flex flex-col justify-end p-5 sm:p-8 shadow-lg ${
                 item.span || 'lg:col-span-4'
               }`}
             >

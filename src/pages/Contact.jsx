@@ -87,30 +87,30 @@ export default function Contact() {
   };
 
   return (
-    <div className="pt-36 pb-32 space-y-24 md:space-y-32 bg-[#FAF9F5] min-h-screen text-[#1C1B19]">
+    <div className="pt-28 sm:pt-36 pb-20 sm:pb-32 space-y-16 sm:space-y-24 md:space-y-32 bg-[#FAF9F5] min-h-screen text-[#1C1B19]">
       {/* 1. Header */}
-      <section className="max-w-6xl mx-auto px-6 md:px-12">
-        <div className="max-w-3xl space-y-4">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 md:px-12">
+        <div className="max-w-3xl space-y-3 sm:space-y-4">
           <div className="pill-tag bg-white shadow-sm">
             <Sparkles className="w-3.5 h-3.5 text-accent" />
             <span>Client Inquiries & Private Commissions</span>
           </div>
 
-          <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl font-normal text-[#1C1B19] leading-[1.05]">
+          <h1 className="font-serif text-3xl xs:text-4xl sm:text-6xl md:text-7xl font-normal text-[#1C1B19] leading-[1.08] break-words">
             Initiate Consultation
           </h1>
 
-          <p className="text-stone text-base md:text-lg font-light leading-relaxed pt-2">
+          <p className="text-stone text-xs sm:text-base md:text-lg font-light leading-relaxed pt-1 sm:pt-2">
             Every bespoke sanctuary begins with an exploratory conversation. Share your architectural vision, property parameters, and desired timeline below.
           </p>
         </div>
       </section>
 
       {/* 2. Form & Direct Studio Details */}
-      <section className="max-w-6xl mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 md:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16">
           {/* Inquiry Form Column */}
-          <div className="lg:col-span-7 rounded-2xl border border-[#E5E0D8] bg-white p-8 md:p-12 shadow-xl">
+          <div className="lg:col-span-7 rounded-2xl border border-[#E5E0D8] bg-white p-5 sm:p-8 md:p-12 shadow-xl">
             {submitted ? (
               <div className="py-12 text-center space-y-6">
                 <div className="w-16 h-16 bg-[#FAF9F5] text-accent rounded-full flex items-center justify-center mx-auto border border-[#E2DDD5]">
@@ -155,7 +155,7 @@ export default function Contact() {
                   </div>
                 )}
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                   <div>
                     <label className="block text-xs uppercase tracking-wider text-stone mb-1 font-medium">
                       Full Name *
@@ -167,7 +167,7 @@ export default function Contact() {
                       onChange={handleChange}
                       required
                       placeholder="Lord Julian Vance"
-                      className="w-full bg-[#FAF9F5] border border-[#E2DDD5] rounded-xl px-4 py-3 text-xs text-[#1C1B19] placeholder:text-stone-light focus:outline-none focus:border-accent transition-colors"
+                      className="w-full bg-[#FAF9F5] border border-[#E2DDD5] rounded-xl px-4 py-3 text-sm sm:text-xs text-[#1C1B19] placeholder:text-stone-light focus:outline-none focus:border-accent transition-colors"
                     />
                   </div>
 
@@ -182,12 +182,12 @@ export default function Contact() {
                       onChange={handleChange}
                       required
                       placeholder="julian@vance.com"
-                      className="w-full bg-[#FAF9F5] border border-[#E2DDD5] rounded-xl px-4 py-3 text-xs text-[#1C1B19] placeholder:text-stone-light focus:outline-none focus:border-accent transition-colors"
+                      className="w-full bg-[#FAF9F5] border border-[#E2DDD5] rounded-xl px-4 py-3 text-sm sm:text-xs text-[#1C1B19] placeholder:text-stone-light focus:outline-none focus:border-accent transition-colors"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                   <div>
                     <label className="block text-xs uppercase tracking-wider text-stone mb-1 font-medium">
                       Phone Number *
@@ -199,7 +199,7 @@ export default function Contact() {
                       onChange={handleChange}
                       required
                       placeholder="+1 (212) 555-0198"
-                      className="w-full bg-[#FAF9F5] border border-[#E2DDD5] rounded-xl px-4 py-3 text-xs text-[#1C1B19] placeholder:text-stone-light focus:outline-none focus:border-accent transition-colors"
+                      className="w-full bg-[#FAF9F5] border border-[#E2DDD5] rounded-xl px-4 py-3 text-sm sm:text-xs text-[#1C1B19] placeholder:text-stone-light focus:outline-none focus:border-accent transition-colors"
                     />
                   </div>
 
@@ -213,12 +213,12 @@ export default function Contact() {
                       value={formData.city}
                       onChange={handleChange}
                       placeholder="New York, USA"
-                      className="w-full bg-[#FAF9F5] border border-[#E2DDD5] rounded-xl px-4 py-3 text-xs text-[#1C1B19] placeholder:text-stone-light focus:outline-none focus:border-accent transition-colors"
+                      className="w-full bg-[#FAF9F5] border border-[#E2DDD5] rounded-xl px-4 py-3 text-sm sm:text-xs text-[#1C1B19] placeholder:text-stone-light focus:outline-none focus:border-accent transition-colors"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                   <div>
                     <label className="block text-xs uppercase tracking-wider text-stone mb-1 font-medium">
                       Property Typology
@@ -227,7 +227,7 @@ export default function Contact() {
                       name="propertyType"
                       value={formData.propertyType}
                       onChange={handleChange}
-                      className="w-full bg-[#FAF9F5] border border-[#E2DDD5] rounded-xl px-4 py-3 text-xs text-[#1C1B19] focus:outline-none focus:border-accent transition-colors"
+                      className="w-full bg-[#FAF9F5] border border-[#E2DDD5] rounded-xl px-4 py-3 text-sm sm:text-xs text-[#1C1B19] focus:outline-none focus:border-accent transition-colors"
                     >
                       {PROPERTY_TYPES.map((t) => (
                         <option key={t} value={t}>{t}</option>
@@ -245,7 +245,7 @@ export default function Contact() {
                       value={formData.areaSqft}
                       onChange={handleChange}
                       placeholder="e.g. 4,500 sq. ft."
-                      className="w-full bg-[#FAF9F5] border border-[#E2DDD5] rounded-xl px-4 py-3 text-xs text-[#1C1B19] placeholder:text-stone-light focus:outline-none focus:border-accent transition-colors"
+                      className="w-full bg-[#FAF9F5] border border-[#E2DDD5] rounded-xl px-4 py-3 text-sm sm:text-xs text-[#1C1B19] placeholder:text-stone-light focus:outline-none focus:border-accent transition-colors"
                     />
                   </div>
                 </div>
@@ -258,7 +258,7 @@ export default function Contact() {
                     name="budgetRange"
                     value={formData.budgetRange}
                     onChange={handleChange}
-                    className="w-full bg-[#FAF9F5] border border-[#E2DDD5] rounded-xl px-4 py-3 text-xs text-[#1C1B19] focus:outline-none focus:border-accent transition-colors"
+                    className="w-full bg-[#FAF9F5] border border-[#E2DDD5] rounded-xl px-4 py-3 text-sm sm:text-xs text-[#1C1B19] focus:outline-none focus:border-accent transition-colors"
                   >
                     {BUDGET_RANGES.map((b) => (
                       <option key={b} value={b}>{b}</option>
@@ -277,14 +277,14 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     placeholder="Describe your property, acoustic priorities, daylight requirements, and anticipated completion date..."
-                    className="w-full bg-[#FAF9F5] border border-[#E2DDD5] rounded-xl p-4 text-xs text-[#1C1B19] placeholder:text-stone-light focus:outline-none focus:border-accent transition-colors leading-relaxed"
+                    className="w-full bg-[#FAF9F5] border border-[#E2DDD5] rounded-xl p-4 text-sm sm:text-xs text-[#1C1B19] placeholder:text-stone-light focus:outline-none focus:border-accent transition-colors leading-relaxed"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-[#1C1B19] text-[#FAF9F5] hover:bg-accent hover:text-white py-4 rounded-xl text-xs uppercase tracking-[0.2em] font-semibold flex items-center justify-center space-x-2 transition-all duration-300 shadow-xl disabled:opacity-50"
+                  className="w-full bg-[#1C1B19] text-[#FAF9F5] hover:bg-accent hover:text-white py-3.5 sm:py-4 rounded-xl text-xs uppercase tracking-[0.16em] sm:tracking-[0.2em] font-semibold flex items-center justify-center space-x-2 transition-all duration-300 shadow-xl disabled:opacity-50"
                 >
                   {loading ? (
                     <span>Transmitting Dossier...</span>
@@ -300,15 +300,15 @@ export default function Contact() {
           </div>
 
           {/* Direct Studio Contact & WhatsApp Sidecard */}
-          <div className="lg:col-span-5 space-y-10">
+          <div className="lg:col-span-5 space-y-6 sm:space-y-10">
             {/* WhatsApp Direct Line Card */}
-            <div className="rounded-2xl border border-[#E5E0D8] bg-white p-8 space-y-4 shadow-sm">
+            <div className="rounded-2xl border border-[#E5E0D8] bg-white p-5 sm:p-8 space-y-3 sm:space-y-4 shadow-sm">
               <div className="pill-tag bg-[#FAF9F5]">
                 <Sparkles className="w-3.5 h-3.5 text-accent" />
                 <span>Instant Dialogue</span>
               </div>
 
-              <h3 className="font-serif text-2xl text-[#1C1B19]">
+              <h3 className="font-serif text-xl sm:text-2xl text-[#1C1B19]">
                 WhatsApp Private Client Desk
               </h3>
               <p className="text-stone text-xs leading-relaxed font-light">
@@ -318,7 +318,7 @@ export default function Contact() {
                 href="https://wa.me/12125550198"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center space-x-2 bg-[#25D366] text-white hover:bg-[#1EBE5D] transition-colors px-6 py-3.5 rounded-full text-xs uppercase tracking-wider font-semibold shadow-md"
+                className="inline-flex items-center justify-center space-x-2 bg-[#25D366] text-white hover:bg-[#1EBE5D] transition-colors px-6 py-3.5 rounded-full text-xs uppercase tracking-wider font-semibold shadow-md w-full sm:w-auto"
               >
                 <MessageSquare className="w-4 h-4" />
                 <span>Open WhatsApp Chat</span>

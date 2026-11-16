@@ -70,19 +70,19 @@ export default function ContactSplitForm({
   };
 
   return (
-    <section id="contact" className="py-24 md:py-36 px-6 md:px-12 bg-[#FAF9F5] border-t border-[#EAE6DF]">
+    <section id="contact" className="py-16 sm:py-24 md:py-36 px-4 sm:px-6 md:px-12 bg-[#FAF9F5] border-t border-[#EAE6DF]">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
           {/* Left Column: Pure White Luxury Inquiry Card Form */}
-          <div className="rounded-2xl border border-[#E5E0D8] bg-white p-8 md:p-12 shadow-xl flex flex-col justify-between">
-            <div className="space-y-6">
+          <div className="rounded-2xl border border-[#E5E0D8] bg-white p-5 sm:p-8 md:p-12 shadow-xl flex flex-col justify-between">
+            <div className="space-y-5 sm:space-y-6">
               <div className="pill-tag bg-[#FAF9F5] shadow-sm">
                 <Sparkles className="w-3.5 h-3.5 text-accent" />
                 <span>{tag}</span>
               </div>
 
               <div className="space-y-2">
-                <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-[#1C1B19]">
+                <h2 className="font-serif text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-normal text-[#1C1B19]">
                   {title}
                 </h2>
                 <p className="text-stone text-xs sm:text-sm font-light leading-relaxed">
@@ -116,7 +116,7 @@ export default function ContactSplitForm({
                     </div>
                   )}
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                     <input
                       type="text"
                       name="name"
@@ -124,7 +124,7 @@ export default function ContactSplitForm({
                       onChange={handleChange}
                       placeholder="Full Name *"
                       required
-                      className="w-full bg-[#FAF9F5] border border-[#E2DDD5] rounded-xl px-4 py-3 text-xs text-[#1C1B19] placeholder:text-stone-light focus:outline-none focus:border-accent transition-colors"
+                      className="w-full bg-[#FAF9F5] border border-[#E2DDD5] rounded-xl px-4 py-3 text-sm sm:text-xs text-[#1C1B19] placeholder:text-stone-light focus:outline-none focus:border-accent transition-colors"
                     />
 
                     <input
@@ -134,11 +134,11 @@ export default function ContactSplitForm({
                       onChange={handleChange}
                       placeholder="Email Address *"
                       required
-                      className="w-full bg-[#FAF9F5] border border-[#E2DDD5] rounded-xl px-4 py-3 text-xs text-[#1C1B19] placeholder:text-stone-light focus:outline-none focus:border-accent transition-colors"
+                      className="w-full bg-[#FAF9F5] border border-[#E2DDD5] rounded-xl px-4 py-3 text-sm sm:text-xs text-[#1C1B19] placeholder:text-stone-light focus:outline-none focus:border-accent transition-colors"
                     />
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                     <input
                       type="tel"
                       name="phone"
@@ -146,7 +146,7 @@ export default function ContactSplitForm({
                       onChange={handleChange}
                       placeholder="Phone Number *"
                       required
-                      className="w-full bg-[#FAF9F5] border border-[#E2DDD5] rounded-xl px-4 py-3 text-xs text-[#1C1B19] placeholder:text-stone-light focus:outline-none focus:border-accent transition-colors"
+                      className="w-full bg-[#FAF9F5] border border-[#E2DDD5] rounded-xl px-4 py-3 text-sm sm:text-xs text-[#1C1B19] placeholder:text-stone-light focus:outline-none focus:border-accent transition-colors"
                     />
 
                     <input
@@ -155,7 +155,7 @@ export default function ContactSplitForm({
                       value={formData.area}
                       onChange={handleChange}
                       placeholder="Carpet Area / Preferred Dates"
-                      className="w-full bg-[#FAF9F5] border border-[#E2DDD5] rounded-xl px-4 py-3 text-xs text-[#1C1B19] placeholder:text-stone-light focus:outline-none focus:border-accent transition-colors"
+                      className="w-full bg-[#FAF9F5] border border-[#E2DDD5] rounded-xl px-4 py-3 text-sm sm:text-xs text-[#1C1B19] placeholder:text-stone-light focus:outline-none focus:border-accent transition-colors"
                     />
                   </div>
 
@@ -165,13 +165,13 @@ export default function ContactSplitForm({
                     value={formData.message}
                     onChange={handleChange}
                     placeholder="Describe your architectural priorities, daylight aspirations, or project timeline..."
-                    className="w-full bg-[#FAF9F5] border border-[#E2DDD5] rounded-xl p-4 text-xs text-[#1C1B19] placeholder:text-stone-light focus:outline-none focus:border-accent transition-colors leading-relaxed"
+                    className="w-full bg-[#FAF9F5] border border-[#E2DDD5] rounded-xl p-4 text-sm sm:text-xs text-[#1C1B19] placeholder:text-stone-light focus:outline-none focus:border-accent transition-colors leading-relaxed"
                   />
 
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full bg-[#1C1B19] text-[#FAF9F5] hover:bg-accent hover:text-white py-4 rounded-xl text-xs uppercase tracking-[0.2em] font-semibold flex items-center justify-center space-x-2 transition-all duration-300 shadow-md disabled:opacity-50"
+                    className="w-full bg-[#1C1B19] text-[#FAF9F5] hover:bg-accent hover:text-white py-3.5 sm:py-4 rounded-xl text-xs uppercase tracking-[0.16em] sm:tracking-[0.2em] font-semibold flex items-center justify-center space-x-2 transition-all duration-300 shadow-md disabled:opacity-50"
                   >
                     {loading ? (
                       <span>Transmitting Dossier...</span>

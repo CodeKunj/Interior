@@ -94,32 +94,32 @@ export default function Journeys() {
     : JOURNEYS_DATA.filter(j => j.tag === selectedTag);
 
   return (
-    <div className="pt-36 pb-32 space-y-24 md:space-y-32 bg-[#FAF9F5] min-h-screen text-[#1C1B19]">
+    <div className="pt-28 sm:pt-36 pb-20 sm:pb-32 space-y-16 sm:space-y-24 md:space-y-32 bg-[#FAF9F5] min-h-screen text-[#1C1B19]">
       {/* 1. Page Header */}
-      <section className="max-w-6xl mx-auto px-6 md:px-12">
-        <div className="max-w-3xl space-y-4">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 md:px-12">
+        <div className="max-w-3xl space-y-3 sm:space-y-4">
           <div className="pill-tag bg-white shadow-sm">
             <Sparkles className="w-3.5 h-3.5 text-accent" />
             <span>Architectural Chronicles & Transformations</span>
           </div>
 
-          <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl font-normal text-[#1C1B19] leading-[1.05]">
+          <h1 className="font-serif text-3xl xs:text-4xl sm:text-6xl md:text-7xl font-normal text-[#1C1B19] leading-[1.08] break-words">
             The Architectural Journeys
           </h1>
 
-          <p className="text-stone text-base md:text-lg font-light leading-relaxed pt-2">
+          <p className="text-stone text-xs sm:text-base md:text-lg font-light leading-relaxed pt-1 sm:pt-2">
             Every sanctuary is an intimate journey of spatial rebirth. Explore our curated case studies tracing bare structural shells through to fully realized, daylight-sculpted residences across New York, Amalfi, Kyoto, London, and Paris.
           </p>
         </div>
 
         {/* Tag Filters */}
-        <div className="mt-12 pt-8 border-t border-[#EAE6DF] flex flex-wrap items-center gap-2.5">
-          <span className="text-xs uppercase tracking-wider text-stone mr-2">Typology:</span>
+        <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-[#EAE6DF] flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none sm:flex-wrap">
+          <span className="text-[11px] sm:text-xs uppercase tracking-wider text-stone mr-2 whitespace-nowrap flex-shrink-0">Typology:</span>
           {tags.map((tag) => (
             <button
               key={tag}
               onClick={() => setSelectedTag(tag)}
-              className={`text-xs uppercase tracking-[0.16em] px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border transition-all duration-300 font-medium ${
+              className={`text-[11px] sm:text-xs uppercase tracking-[0.14em] sm:tracking-[0.16em] px-3.5 sm:px-5 py-1.5 sm:py-2.5 rounded-full border transition-all duration-300 font-medium whitespace-nowrap flex-shrink-0 ${
                 selectedTag === tag
                   ? 'bg-[#1C1B19] text-[#FAF9F5] border-[#1C1B19] shadow-md'
                   : 'bg-white text-stone border-[#E2DDD5] hover:border-accent hover:text-[#1C1B19]'
@@ -132,7 +132,7 @@ export default function Journeys() {
       </section>
 
       {/* 2. Interactive Transformation Spotlight (Before & After) */}
-      <section className="max-w-6xl mx-auto px-6 md:px-12">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 md:px-12">
         <div className="rounded-2xl border border-[#E5E0D8] bg-white p-8 md:p-12 shadow-xl space-y-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-[#EAE6DF] pb-6 gap-4">
             <div className="space-y-2">
@@ -208,26 +208,26 @@ export default function Journeys() {
               </div>
 
               {/* Journey Body */}
-              <div className="p-6 md:p-8 space-y-6 flex-1 flex flex-col justify-between">
+              <div className="p-5 sm:p-6 md:p-8 space-y-4 sm:space-y-6 flex-1 flex flex-col justify-between">
                 <div className="space-y-3">
-                  <div className="flex items-center space-x-4 text-xs text-stone">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs text-stone">
                     <span className="flex items-center space-x-1">
                       <MapPin className="w-3.5 h-3.5 text-accent" />
                       <span>{journey.location}</span>
                     </span>
-                    <span>&bull;</span>
+                    <span className="hidden sm:inline">&bull;</span>
                     <span className="flex items-center space-x-1">
                       <Maximize2 className="w-3.5 h-3.5 text-accent" />
                       <span>{journey.area}</span>
                     </span>
-                    <span>&bull;</span>
+                    <span className="hidden sm:inline">&bull;</span>
                     <span className="flex items-center space-x-1">
                       <Calendar className="w-3.5 h-3.5 text-accent" />
                       <span>{journey.duration}</span>
                     </span>
                   </div>
 
-                  <h3 className="font-serif text-2xl sm:text-3xl text-[#1C1B19] group-hover:text-accent transition-colors">
+                  <h3 className="font-serif text-xl sm:text-2xl md:text-3xl text-[#1C1B19] group-hover:text-accent transition-colors">
                     <Link to={`/work/${journey.slug}`}>{journey.title}</Link>
                   </h3>
 
@@ -237,7 +237,7 @@ export default function Journeys() {
                 </div>
 
                 {/* Materials Used Pills */}
-                <div className="pt-4 border-t border-[#EAE6DF] space-y-3">
+                <div className="pt-4 border-t border-[#EAE6DF] space-y-2 sm:space-y-3">
                   <span className="text-[10px] uppercase tracking-wider text-[#1C1B19] font-semibold flex items-center space-x-1.5">
                     <Layers className="w-3 h-3 text-accent" />
                     <span>Selected Materiality:</span>
@@ -258,7 +258,7 @@ export default function Journeys() {
                 <div className="pt-2">
                   <Link
                     to={`/work/${journey.slug}`}
-                    className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.18em] font-semibold text-[#1C1B19] hover:text-accent transition-colors"
+                    className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.14em] sm:tracking-[0.18em] font-semibold text-[#1C1B19] hover:text-accent transition-colors"
                   >
                     <span>Inspect Full Case Study & 3D Tour</span>
                     <ArrowUpRight className="w-4 h-4" />
@@ -271,13 +271,13 @@ export default function Journeys() {
       </section>
 
       {/* 4. Patrons Consultation CTA */}
-      <section className="max-w-6xl mx-auto px-6 md:px-12">
-        <div className="rounded-2xl border border-[#E5E0D8] bg-white p-10 md:p-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 shadow-xl">
-          <div className="space-y-3 max-w-2xl">
-            <span className="text-[11px] uppercase tracking-[0.25em] text-accent font-semibold block">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 md:px-12">
+        <div className="rounded-2xl border border-[#E5E0D8] bg-white p-6 sm:p-10 md:p-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8 shadow-xl">
+          <div className="space-y-2 sm:space-y-3 max-w-2xl">
+            <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] sm:tracking-[0.25em] text-accent font-semibold block">
               Begin Your Journey
             </span>
-            <h3 className="font-serif text-3xl md:text-4xl text-[#1C1B19]">
+            <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl text-[#1C1B19]">
               Commission your bespoke private sanctuary.
             </h3>
             <p className="text-stone text-xs md:text-sm font-light">
@@ -287,7 +287,7 @@ export default function Journeys() {
 
           <Link
             to="/contact"
-            className="inline-flex items-center space-x-2 bg-[#1C1B19] text-[#FAF9F5] hover:bg-accent hover:text-white px-8 py-4 rounded-full text-xs uppercase tracking-[0.2em] font-semibold transition-all shadow-md whitespace-nowrap"
+            className="inline-flex items-center justify-center space-x-2 bg-[#1C1B19] text-[#FAF9F5] hover:bg-accent hover:text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-full text-xs uppercase tracking-[0.16em] sm:tracking-[0.2em] font-semibold transition-all shadow-md whitespace-nowrap w-full sm:w-auto"
           >
             <span>Initiate Consultation Dossier</span>
             <ArrowUpRight className="w-4 h-4" />

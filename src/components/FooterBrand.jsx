@@ -34,26 +34,26 @@ const FOOTER_COLUMNS = [
 
 export default function FooterBrand({ brand = 'RiTiVerse' }) {
   return (
-    <footer className="w-full pt-20 pb-12 rounded-t-3xl overflow-hidden bg-[#EFECE6] text-[#1C1B19] border-t border-[#E2DDD5]">
-      <div className="w-full max-w-6xl px-6 md:px-12 mx-auto flex flex-col gap-12 md:gap-16">
+    <footer className="w-full pt-14 sm:pt-20 pb-10 sm:pb-12 rounded-t-2xl sm:rounded-t-3xl overflow-hidden bg-[#EFECE6] text-[#1C1B19] border-t border-[#E2DDD5]">
+      <div className="w-full max-w-6xl px-4 sm:px-6 md:px-12 mx-auto flex flex-col gap-10 sm:gap-14">
         {/* Massive Auto-Fill Editorial Bodoni Moda Brand Headline */}
-        <div className="overflow-hidden select-none border-b border-[#E2DDD5] pb-12">
-          <span className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-normal tracking-tight text-[#1C1B19] block leading-none hover:text-accent transition-colors duration-500">
+        <div className="overflow-hidden select-none border-b border-[#E2DDD5] pb-8 sm:pb-12">
+          <span className="font-serif text-4xl xs:text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-normal tracking-tight text-[#1C1B19] block leading-none hover:text-accent transition-colors duration-500 break-words">
             {brand}
           </span>
-          <span className="text-xs uppercase tracking-[0.35em] text-stone block mt-3 font-light">
+          <span className="text-[10px] sm:text-xs uppercase tracking-[0.16em] sm:tracking-[0.35em] text-stone block mt-3 font-light break-words">
             ATELIER VÉRITÉ ARCHITECTURE & LUXURY INTERIOR SANCTUARIES
           </span>
         </div>
 
         {/* 3 Navigation Columns with Chevrons */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-10">
           {FOOTER_COLUMNS.map((col, idx) => (
-            <div key={idx} className="space-y-4">
-              <h4 className="text-xs uppercase tracking-[0.25em] text-accent font-semibold">
+            <div key={idx} className="space-y-3 sm:space-y-4">
+              <h4 className="text-xs uppercase tracking-[0.2em] sm:tracking-[0.25em] text-accent font-semibold">
                 {col.title}
               </h4>
-              <ul className="space-y-3 text-sm text-stone">
+              <ul className="space-y-2.5 sm:space-y-3 text-xs sm:text-sm text-stone">
                 {col.items.map((item, itemIdx) => (
                   <li key={itemIdx}>
                     {item.external ? (
@@ -61,7 +61,7 @@ export default function FooterBrand({ brand = 'RiTiVerse' }) {
                         href={item.href}
                         target="_blank"
                         rel="noreferrer"
-                        className="group flex items-center space-x-2 text-stone hover:text-[#1C1B19] transition-colors"
+                        className="group flex items-center space-x-2 text-stone hover:text-[#1C1B19] transition-colors py-0.5"
                       >
                         <ChevronRight className="w-3.5 h-3.5 text-accent opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
                         <span>{item.label}</span>
@@ -70,7 +70,7 @@ export default function FooterBrand({ brand = 'RiTiVerse' }) {
                     ) : (
                       <Link
                         to={item.href}
-                        className="group flex items-center space-x-2 text-stone hover:text-[#1C1B19] transition-colors"
+                        className="group flex items-center space-x-2 text-stone hover:text-[#1C1B19] transition-colors py-0.5"
                       >
                         <ChevronRight className="w-3.5 h-3.5 text-accent opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
                         <span>{item.label}</span>
@@ -84,12 +84,12 @@ export default function FooterBrand({ brand = 'RiTiVerse' }) {
         </div>
 
         {/* Bottom Credits & cPanel Admin Link */}
-        <div className="pt-8 border-t border-[#E2DDD5] flex flex-col sm:flex-row items-center justify-between text-xs text-stone gap-4">
-          <p>
+        <div className="pt-6 sm:pt-8 border-t border-[#E2DDD5] flex flex-col sm:flex-row items-center justify-between text-xs text-stone gap-4 text-center sm:text-left">
+          <p className="text-[11px] sm:text-xs">
             &copy; {new Date().getFullYear()} RiTiVerse &bull; Atelier Vérité Interiors. Calacatta Marble & Soft Editorial Aesthetics.
           </p>
 
-          <div className="flex items-center space-x-6">
+          <div className="flex items-center space-x-4 sm:space-x-6 text-[11px] sm:text-xs">
             <span className="text-stone-light">Shared cPanel / PHP 8+ PDO API</span>
             <a
               href="/admin/"

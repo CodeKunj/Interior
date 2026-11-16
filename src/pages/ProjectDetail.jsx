@@ -59,36 +59,36 @@ export default function ProjectDetail() {
   const hasTour3D = Boolean(project.tour_3d_url);
 
   return (
-    <div className="pt-36 pb-32 space-y-20 md:space-y-28 bg-[#FAF9F5] min-h-screen text-[#1C1B19]">
+    <div className="pt-28 sm:pt-36 pb-20 sm:pb-32 space-y-12 sm:space-y-20 md:space-y-28 bg-[#FAF9F5] min-h-screen text-[#1C1B19]">
       {/* 1. Project Header & Breadcrumb */}
-      <section className="max-w-6xl mx-auto px-6 md:px-12 space-y-8">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 md:px-12 space-y-6 sm:space-y-8">
         <div className="flex items-center justify-between border-b border-[#EAE6DF] pb-4">
           <Link
             to="/work"
-            className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.2em] text-stone hover:text-[#1C1B19] transition-colors font-medium"
+            className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.16em] sm:tracking-[0.2em] text-stone hover:text-[#1C1B19] transition-colors font-medium"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Back to Portfolio</span>
           </Link>
-          <div className="pill-tag bg-white shadow-sm">
+          <div className="pill-tag bg-white shadow-sm text-[10px] sm:text-xs">
             <Sparkles className="w-3 h-3 text-accent" />
             <span>{project.category}</span>
           </div>
         </div>
 
-        <div className="max-w-4xl space-y-4">
-          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-[#1C1B19] leading-[1.05]">
+        <div className="max-w-4xl space-y-3 sm:space-y-4">
+          <h1 className="font-serif text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-[#1C1B19] leading-[1.08] break-words">
             {project.title}
           </h1>
           {project.subtitle && (
-            <p className="text-stone text-base md:text-xl font-light leading-relaxed">
+            <p className="text-stone text-sm sm:text-base md:text-xl font-light leading-relaxed">
               {project.subtitle}
             </p>
           )}
         </div>
 
         {/* Project Key Metadata Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 py-6 border-y border-[#EAE6DF] text-xs">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 py-4 sm:py-6 border-y border-[#EAE6DF] text-xs">
           <div>
             <span className="text-[10px] uppercase tracking-wider text-stone flex items-center space-x-1.5 mb-1 font-medium">
               <MapPin className="w-3.5 h-3.5 text-accent" />
@@ -123,7 +123,7 @@ export default function ProjectDetail() {
       </section>
 
       {/* 2. Full-Bleed Architectural Hero Frame */}
-      <section className="max-w-6xl mx-auto px-6 md:px-12">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 md:px-12">
         <div className="relative aspect-[16/9] overflow-hidden rounded-2xl border border-[#E5E0D8] bg-[#FAF9F5] shadow-2xl">
           <img
             src={project.hero_image || project.cover_image}
@@ -163,46 +163,52 @@ export default function ProjectDetail() {
       </section>
 
       {/* 4. GALLERY SECTION VIEW SWITCHER (CRITICAL 3D GALLERY FEATURE) */}
-      <section className="max-w-6xl mx-auto px-6 md:px-12">
-        <div className="rounded-2xl border border-[#E5E0D8] bg-white p-6 md:p-10 shadow-xl space-y-8">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 md:px-12">
+        <div className="rounded-2xl border border-[#E5E0D8] bg-white p-5 sm:p-8 md:p-10 shadow-xl space-y-6 sm:space-y-8">
           {/* Header & View Switcher Tabs */}
-          <div className="flex flex-col md:flex-row md:items-center justify-between pb-6 border-b border-[#EAE6DF] gap-6">
+          <div className="flex flex-col md:flex-row md:items-center justify-between pb-6 border-b border-[#EAE6DF] gap-4 sm:gap-6">
             <div>
-              <span className="text-[11px] uppercase tracking-[0.28em] text-accent font-semibold block mb-1">
+              <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.24em] sm:tracking-[0.28em] text-accent font-semibold block mb-1">
                 Visual Documentation
               </span>
-              <h3 className="font-serif text-3xl text-[#1C1B19]">
+              <h3 className="font-serif text-2xl sm:text-3xl text-[#1C1B19]">
                 Interactive Case Study Exploration
               </h3>
             </div>
 
             {/* Editorial Tab Switcher Buttons */}
-            <div className="flex flex-wrap items-center gap-2">
+            <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none sm:flex-wrap">
               {/* Tab 1: Photography */}
               <button
                 onClick={() => setActiveTab('photography')}
-                className={`inline-flex items-center space-x-2 text-xs uppercase tracking-[0.16em] px-5 py-2.5 rounded-full border transition-all duration-300 ${
+                className={`inline-flex items-center space-x-1.5 sm:space-x-2 text-[11px] sm:text-xs uppercase tracking-[0.12em] sm:tracking-[0.16em] px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border transition-all duration-300 whitespace-nowrap flex-shrink-0 ${
                   activeTab === 'photography'
                     ? 'bg-[#1C1B19] text-[#FAF9F5] border-[#1C1B19] font-semibold shadow-md'
                     : 'bg-[#FAF9F5] text-stone border-[#E2DDD5] hover:text-[#1C1B19] hover:border-accent'
                 }`}
               >
                 <Camera className="w-3.5 h-3.5 text-accent" />
-                <span>Curated Photography ({project.gallery?.length || 0})</span>
+                <span>
+                  <span className="inline sm:hidden">Photos ({project.gallery?.length || 0})</span>
+                  <span className="hidden sm:inline">Curated Photography ({project.gallery?.length || 0})</span>
+                </span>
               </button>
 
               {/* Tab 2: Before & After (if available) */}
               {hasBeforeAfter && (
                 <button
                   onClick={() => setActiveTab('before-after')}
-                  className={`inline-flex items-center space-x-2 text-xs uppercase tracking-[0.16em] px-5 py-2.5 rounded-full border transition-all duration-300 ${
+                  className={`inline-flex items-center space-x-1.5 sm:space-x-2 text-[11px] sm:text-xs uppercase tracking-[0.12em] sm:tracking-[0.16em] px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border transition-all duration-300 whitespace-nowrap flex-shrink-0 ${
                     activeTab === 'before-after'
                       ? 'bg-[#1C1B19] text-[#FAF9F5] border-[#1C1B19] font-semibold shadow-md'
                       : 'bg-[#FAF9F5] text-stone border-[#E2DDD5] hover:text-[#1C1B19] hover:border-accent'
                   }`}
                 >
                   <SplitSquareVertical className="w-3.5 h-3.5 text-accent" />
-                  <span>Before & After ({project.before_after.length})</span>
+                  <span>
+                    <span className="inline sm:hidden">Before/After ({project.before_after.length})</span>
+                    <span className="hidden sm:inline">Before & After ({project.before_after.length})</span>
+                  </span>
                 </button>
               )}
 
@@ -210,14 +216,17 @@ export default function ProjectDetail() {
               {hasTour3D && (
                 <button
                   onClick={() => setActiveTab('tour-3d')}
-                  className={`inline-flex items-center space-x-2 text-xs uppercase tracking-[0.16em] px-5 py-2.5 rounded-full border transition-all duration-300 relative ${
+                  className={`inline-flex items-center space-x-1.5 sm:space-x-2 text-[11px] sm:text-xs uppercase tracking-[0.12em] sm:tracking-[0.16em] px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border transition-all duration-300 relative whitespace-nowrap flex-shrink-0 ${
                     activeTab === 'tour-3d'
                       ? 'bg-[#1C1B19] text-[#FAF9F5] border-[#1C1B19] font-semibold shadow-md'
                       : 'bg-[#FAF9F5] text-stone border-[#E2DDD5] hover:text-[#1C1B19] hover:border-accent'
                   }`}
                 >
                   <Compass className="w-3.5 h-3.5 text-accent animate-pulse" />
-                  <span>Interactive 3D Virtual Tour</span>
+                  <span>
+                    <span className="inline sm:hidden">3D Tour</span>
+                    <span className="hidden sm:inline">Interactive 3D Virtual Tour</span>
+                  </span>
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 absolute -top-1 -right-1" />
                 </button>
               )}
