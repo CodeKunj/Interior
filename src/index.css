@@ -64,13 +64,22 @@ html.lenis, html.lenis body {
 
 /* Marble Interior UI Utility Components */
 .card-marble {
-  background-color: #FFFFFF;
-  border: 1px solid #E5E0D8;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 221, 213, 0.85);
   border-radius: 1.25rem;
+  box-shadow: 0 16px 36px -12px rgba(28, 27, 25, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 .card-marble:hover {
   border-color: #C8BFB3;
+  box-shadow: 0 24px 48px -12px rgba(28, 27, 25, 0.08), inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+/* Subtle Vignette for Architectural Depth */
+.bg-radial-vignette {
+  background: radial-gradient(circle at 50% 50%, transparent 55%, rgba(28, 27, 25, 0.025) 100%);
 }
 
 .pill-tag {

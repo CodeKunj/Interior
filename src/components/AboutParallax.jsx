@@ -22,7 +22,7 @@ export default function AboutParallax({
   const backScale = useTransform(scrollYProgress, [0, 1], [1, 1.06]);
 
   return (
-    <section ref={containerRef} className="relative py-16 sm:py-24 md:py-36 px-4 sm:px-6 md:px-12 bg-[#FAF9F5] overflow-hidden">
+    <section ref={containerRef} className="relative py-16 sm:py-24 md:py-36 px-4 sm:px-6 md:px-12 bg-transparent overflow-hidden">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-center">
         {/* Narrative Column */}
         <div className="lg:col-span-5 space-y-4 sm:space-y-6">

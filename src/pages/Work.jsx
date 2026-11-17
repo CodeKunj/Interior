@@ -26,7 +26,7 @@ export default function Work() {
   }, [selectedCategory]);
 
   return (
-    <div className="pt-28 sm:pt-36 pb-20 sm:pb-32 space-y-12 sm:space-y-16 bg-[#FAF9F5] min-h-screen text-[#1C1B19]">
+    <div className="pt-28 sm:pt-36 pb-20 sm:pb-32 space-y-12 sm:space-y-16 bg-transparent min-h-screen text-[#1C1B19] relative">
       {/* Portfolio Header */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 md:px-12">
         <div className="max-w-3xl space-y-3 sm:space-y-4">

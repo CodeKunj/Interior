@@ -70,7 +70,7 @@ export default function ContactSplitForm({
   };
 
   return (
-    <section id="contact" className="py-16 sm:py-24 md:py-36 px-4 sm:px-6 md:px-12 bg-[#FAF9F5] border-t border-[#EAE6DF]">
+    <section id="contact" className="py-16 sm:py-24 md:py-36 px-4 sm:px-6 md:px-12 bg-transparent border-t border-[#EAE6DF]/70 relative">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
           {/* Left Column: Pure White Luxury Inquiry Card Form */}

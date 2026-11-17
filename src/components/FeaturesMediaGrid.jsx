@@ -42,7 +42,7 @@ export default function FeaturesMediaGrid({
   items = DEFAULT_ITEMS
 }) {
   return (
-    <section id="experience" className="py-16 sm:py-24 md:py-36 px-4 sm:px-6 md:px-12 bg-[#FAF9F5]">
+    <section id="experience" className="py-16 sm:py-24 md:py-36 px-4 sm:px-6 md:px-12 bg-transparent relative">
       <div className="max-w-6xl mx-auto space-y-12 sm:space-y-16">
         {/* Header */}
         <div className="flex flex-col items-center text-center space-y-3 sm:space-y-4 max-w-3xl mx-auto">

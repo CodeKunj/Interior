@@ -94,7 +94,7 @@ export default function Journeys() {
     : JOURNEYS_DATA.filter(j => j.tag === selectedTag);
 
   return (
-    <div className="pt-28 sm:pt-36 pb-20 sm:pb-32 space-y-16 sm:space-y-24 md:space-y-32 bg-[#FAF9F5] min-h-screen text-[#1C1B19]">
+    <div className="pt-28 sm:pt-36 pb-20 sm:pb-32 space-y-16 sm:space-y-24 md:space-y-32 bg-transparent min-h-screen text-[#1C1B19] relative">
       {/* 1. Page Header */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 md:px-12">
         <div className="max-w-3xl space-y-3 sm:space-y-4">

@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import SmoothScroll from './components/SmoothScroll';
 import ScrollToTop from './components/ScrollToTop';
+import ArchitecturalCanvasBackground from './components/ArchitecturalCanvasBackground';
 import NavbarFullscreen from './components/NavbarFullscreen';
 import FooterBrand from './components/FooterBrand';
 
@@ -16,7 +17,10 @@ import Contact from './pages/Contact';
 export default function App() {
   return (
     <SmoothScroll>
-      <div className="min-h-screen flex flex-col bg-[#FAF9F5] text-[#1C1B19] selection:bg-[#8C6D53] selection:text-white">
+      <div className="min-h-screen flex flex-col bg-[#FAF9F5] text-[#1C1B19] selection:bg-[#8C6D53] selection:text-white relative">
+        {/* Dynamic Architectural Canvas: Shifting daylight, tactile lime plaster & blueprint guidelines */}
+        <ArchitecturalCanvasBackground />
+
         {/* Scroll restoration upon page change */}
         <ScrollToTop />
 
@@ -24,7 +28,7 @@ export default function App() {
         <NavbarFullscreen />
 
         {/* Main page content view */}
-        <main className="flex-1">
+        <main className="flex-1 relative z-10">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/work" element={<Work />} />

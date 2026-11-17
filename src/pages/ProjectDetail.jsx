@@ -30,7 +30,7 @@ export default function ProjectDetail() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center pt-32 pb-24 text-stone text-xs tracking-widest uppercase bg-[#FAF9F5]">
+      <div className="min-h-screen flex items-center justify-center pt-32 pb-24 text-stone text-xs tracking-widest uppercase bg-transparent relative">
         <div className="text-center space-y-4">
           <div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin mx-auto"></div>
           <p>Retrieving Case Study & Architectural Specifications...</p>
@@ -41,7 +41,7 @@ export default function ProjectDetail() {
 
   if (!project) {
     return (
-      <div className="min-h-screen max-w-4xl mx-auto px-6 pt-40 pb-24 text-center space-y-6 bg-[#FAF9F5] text-[#1C1B19]">
+      <div className="min-h-screen max-w-4xl mx-auto px-6 pt-40 pb-24 text-center space-y-6 bg-transparent text-[#1C1B19] relative">
         <h1 className="font-serif text-4xl text-[#1C1B19]">Project Not Found</h1>
         <p className="text-stone text-sm">The requested case study could not be located in our archive.</p>
         <Link
@@ -59,7 +59,7 @@ export default function ProjectDetail() {
   const hasTour3D = Boolean(project.tour_3d_url);
 
   return (
-    <div className="pt-28 sm:pt-36 pb-20 sm:pb-32 space-y-12 sm:space-y-20 md:space-y-28 bg-[#FAF9F5] min-h-screen text-[#1C1B19]">
+    <div className="pt-28 sm:pt-36 pb-20 sm:pb-32 space-y-12 sm:space-y-20 md:space-y-28 bg-transparent min-h-screen text-[#1C1B19] relative">
       {/* 1. Project Header & Breadcrumb */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 md:px-12 space-y-6 sm:space-y-8">
         <div className="flex items-center justify-between border-b border-[#EAE6DF] pb-4">

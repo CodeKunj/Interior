@@ -37,7 +37,7 @@ export default function Home() {
   };
 
   return (
-    <div className="bg-[#FAF9F5] text-[#1C1B19] space-y-0">
+    <div className="text-[#1C1B19] space-y-0 relative">
       {/* 1. Hero Expand Section (Video Expand Signature) */}
       <div id="hero">
         <HeroExpand
@@ -125,8 +125,8 @@ export default function Home() {
       </div>
 
       {/* 6. Client Testimonial Editorial Strip (Soft Travertine / Pure White) */}
-      <section className="py-16 sm:py-24 px-4 sm:px-6 md:px-12 bg-[#FAF9F5]">
-        <div className="max-w-4xl mx-auto rounded-2xl border border-[#E5E0D8] bg-white p-6 sm:p-10 md:p-16 relative shadow-xl">
+      <section className="py-16 sm:py-24 px-4 sm:px-6 md:px-12 bg-transparent">
+        <div className="max-w-4xl mx-auto rounded-2xl border border-[#E5E0D8]/90 bg-white/95 backdrop-blur-md p-6 sm:p-10 md:p-16 relative shadow-xl">
           <Quote className="w-8 h-8 sm:w-12 sm:h-12 text-accent/20 absolute top-5 left-5 sm:top-8 sm:left-8" />
 
           <div className="relative z-10 space-y-4 sm:space-y-6">
