@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import marbleTexture from '../assets/textures/marble-calacatta.webp';
 
 /**
  * ArchitecturalCanvasBackground
@@ -53,9 +54,9 @@ export default function ArchitecturalCanvasBackground() {
       {/* 1.5 Authentic Italian Calacatta Marble Vein Substratum              */}
       {/* ------------------------------------------------------------------ */}
       <div
-        className="absolute inset-0 opacity-[0.07] mix-blend-multiply bg-cover bg-center pointer-events-none"
+        className="absolute inset-0 opacity-[0.11] mix-blend-multiply bg-cover bg-center pointer-events-none"
         style={{
-          backgroundImage: `url('/textures/marble-calacatta.webp')`,
+          backgroundImage: `url(${marbleTexture})`,
         }}
       />
 

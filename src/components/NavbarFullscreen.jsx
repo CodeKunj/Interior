@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, MessageSquare, Compass, Phone } from 'lucide-react';
+import marbleTexture from '../assets/textures/marble-calacatta.webp';
 
 const NAV_ITEMS = [
   { name: 'Portfolio', path: '/work', subtitle: 'Curated Sanctuaries & 3D Virtual Tours' },
@@ -82,8 +83,8 @@ export default function NavbarFullscreen() {
         >
           {/* Subtle Marble Capsule Texture */}
           <div
-            className="absolute inset-0 bg-cover bg-center opacity-[0.09] mix-blend-multiply pointer-events-none rounded-full"
-            style={{ backgroundImage: `url('/textures/marble-calacatta.webp')` }}
+            className="absolute inset-0 bg-cover bg-center opacity-[0.15] mix-blend-multiply pointer-events-none rounded-full"
+            style={{ backgroundImage: `url(${marbleTexture})` }}
           />
 
           {/* 1. Left Brand Identity */}

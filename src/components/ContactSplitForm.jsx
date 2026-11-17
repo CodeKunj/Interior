@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Send, CheckCircle2, AlertCircle, Sparkles, MessageSquare } from 'lucide-react';
 import { submitInquiry } from '../services/api';
+import marbleTexture from '../assets/textures/marble-calacatta.webp';
 
 export default function ContactSplitForm({
   tag = 'Private Commissions',
@@ -77,8 +78,8 @@ export default function ContactSplitForm({
           <div className="rounded-2xl border border-[#E5E0D8] bg-white/95 backdrop-blur-md p-5 sm:p-8 md:p-12 shadow-xl flex flex-col justify-between relative overflow-hidden">
             {/* Subtle Calacatta Marble Veining */}
             <div
-              className="absolute inset-0 bg-cover bg-center opacity-[0.14] mix-blend-multiply pointer-events-none"
-              style={{ backgroundImage: `url('/textures/marble-calacatta.webp')` }}
+              className="absolute inset-0 bg-cover bg-center opacity-[0.22] mix-blend-multiply pointer-events-none"
+              style={{ backgroundImage: `url(${marbleTexture})` }}
             />
             <div className="relative z-10 space-y-5 sm:space-y-6">
               <div className="pill-tag bg-[#FAF9F5] shadow-sm">

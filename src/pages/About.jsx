@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, Sparkles } from 'lucide-react';
+import marbleTexture from '../assets/textures/marble-calacatta.webp';
 
 const PRESS_MENTIONS = [
   { outlet: 'Architectural Digest', quote: 'A masterclass in quiet luxury and architectural restraint.' },
@@ -42,12 +43,18 @@ export default function About() {
                 className="w-full h-full object-cover grayscale contrast-110"
               />
             </div>
-            <div className="mt-4 sm:mt-0 sm:absolute sm:-bottom-6 sm:-right-6 bg-white/95 backdrop-blur-md border border-[#E2DDD5] p-4 sm:p-6 rounded-2xl shadow-xl max-w-xs relative overflow-hidden bg-marble-subtle">
-              <span className="text-[10px] uppercase tracking-widest text-accent font-semibold block">
-                Principal & Founder
-              </span>
-              <p className="font-serif text-lg sm:text-xl text-[#1C1B19]">Elena Vance, AIA</p>
-              <p className="text-[11px] text-stone font-light">Architectural Director & Scenographer</p>
+            <div className="mt-4 sm:mt-0 sm:absolute sm:-bottom-6 sm:-right-6 bg-white/95 backdrop-blur-md border border-[#E2DDD5] p-4 sm:p-6 rounded-2xl shadow-xl max-w-xs relative overflow-hidden">
+              <div
+                className="absolute inset-0 bg-cover bg-center opacity-[0.20] mix-blend-multiply pointer-events-none"
+                style={{ backgroundImage: `url(${marbleTexture})` }}
+              />
+              <div className="relative z-10">
+                <span className="text-[10px] uppercase tracking-widest text-accent font-semibold block">
+                  Principal & Founder
+                </span>
+                <p className="font-serif text-lg sm:text-xl text-[#1C1B19]">Elena Vance, AIA</p>
+                <p className="text-[11px] text-stone font-light">Architectural Director & Scenographer</p>
+              </div>
             </div>
           </div>
 

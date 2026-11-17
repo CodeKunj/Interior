@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight, ArrowUpRight } from 'lucide-react';
+import marbleTexture from '../assets/textures/marble-calacatta.webp';
 
 const FOOTER_COLUMNS = [
   {
@@ -37,8 +38,8 @@ export default function FooterBrand({ brand = 'RiTiVerse' }) {
     <footer className="relative z-10 w-full pt-14 sm:pt-20 pb-10 sm:pb-12 rounded-t-2xl sm:rounded-t-3xl overflow-hidden bg-[#EFECE6] text-[#1C1B19] border-t border-[#E2DDD5]">
       {/* Authentic Monolithic Honed Marble Texture Underlay */}
       <div
-        className="absolute inset-0 bg-cover bg-center opacity-[0.14] mix-blend-multiply pointer-events-none"
-        style={{ backgroundImage: `url('/textures/marble-calacatta.webp')` }}
+        className="absolute inset-0 bg-cover bg-center opacity-[0.25] mix-blend-multiply pointer-events-none"
+        style={{ backgroundImage: `url(${marbleTexture})` }}
       />
       <div className="relative z-10 w-full max-w-6xl px-4 sm:px-6 md:px-12 mx-auto flex flex-col gap-10 sm:gap-14">
         {/* Massive Auto-Fill Editorial Bodoni Moda Brand Headline */}

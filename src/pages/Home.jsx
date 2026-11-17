@@ -8,6 +8,7 @@ import FeaturesRevealCardsBento from '../components/FeaturesRevealCardsBento';
 import ContactSplitForm from '../components/ContactSplitForm';
 import { Quote, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 import { MOCK_TESTIMONIALS } from '../services/mockData';
+import marbleTexture from '../assets/textures/marble-calacatta.webp';
 
 export default function Home() {
   const [featuredProjects, setFeaturedProjects] = useState([]);
@@ -129,8 +130,8 @@ export default function Home() {
         <div className="max-w-4xl mx-auto rounded-2xl border border-[#E5E0D8]/90 bg-white/95 backdrop-blur-md p-6 sm:p-10 md:p-16 relative shadow-xl overflow-hidden">
           {/* Calacatta Marble Plaque Texture */}
           <div
-            className="absolute inset-0 bg-cover bg-center opacity-[0.16] mix-blend-multiply pointer-events-none"
-            style={{ backgroundImage: `url('/textures/marble-calacatta.webp')` }}
+            className="absolute inset-0 bg-cover bg-center opacity-[0.28] mix-blend-multiply pointer-events-none"
+            style={{ backgroundImage: `url(${marbleTexture})` }}
           />
           <Quote className="w-8 h-8 sm:w-12 sm:h-12 text-accent/20 absolute top-5 left-5 sm:top-8 sm:left-8 z-10" />
 

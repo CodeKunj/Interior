@@ -25,8 +25,9 @@ DirectoryIndex dist/index.html index.html index.php
   RewriteCond %{REQUEST_URI} ^/uploads/ [NC]
   RewriteRule ^ - [L]
 
-  # 3. Route /assets/* directly to dist/assets/*
+  # 3. Route /assets/* and /textures/* directly to dist/
   RewriteRule ^assets/(.*)$ dist/assets/$1 [L]
+  RewriteRule ^textures/(.*)$ dist/textures/$1 [L]
 
   # 4. Prevent serving development index.html (always serve production dist/index.html)
   RewriteRule ^index\.html$ dist/index.html [L]
