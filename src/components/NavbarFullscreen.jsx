@@ -74,12 +74,18 @@ export default function NavbarFullscreen() {
         className="fixed top-3 sm:top-5 left-0 right-0 z-50 flex justify-center px-3 sm:px-6 pointer-events-none"
       >
         <div
-          className={`pointer-events-auto flex items-center justify-between w-full max-w-[1240px] px-4 sm:px-8 py-2.5 sm:py-3.5 rounded-full transition-all duration-500 border ${
+          className={`pointer-events-auto flex items-center justify-between w-full max-w-[1240px] px-4 sm:px-8 py-2.5 sm:py-3.5 rounded-full transition-all duration-500 border relative overflow-hidden ${
             isScrolled
               ? 'bg-[#FAF9F5]/95 backdrop-blur-xl border-[#DCD6CC] shadow-[0_12px_40px_rgba(28,27,25,0.08)] py-2 sm:py-3'
               : 'bg-white/90 backdrop-blur-md border-[#E2DDD5] shadow-[0_8px_32px_rgba(28,27,25,0.05)]'
           }`}
         >
+          {/* Subtle Marble Capsule Texture */}
+          <div
+            className="absolute inset-0 bg-cover bg-center opacity-[0.09] mix-blend-multiply pointer-events-none rounded-full"
+            style={{ backgroundImage: `url('/textures/marble-calacatta.webp')` }}
+          />
+
           {/* 1. Left Brand Identity */}
           <Link
             to="/"

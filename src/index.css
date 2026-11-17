@@ -64,6 +64,7 @@ html.lenis, html.lenis body {
 
 /* Marble Interior UI Utility Components */
 .card-marble {
+  position: relative;
   background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -75,6 +76,23 @@ html.lenis, html.lenis body {
 .card-marble:hover {
   border-color: #C8BFB3;
   box-shadow: 0 24px 48px -12px rgba(28, 27, 25, 0.08), inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+/* Calacatta Honed Marble Slab Utility */
+.bg-marble-subtle {
+  position: relative;
+}
+.bg-marble-subtle::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('/textures/marble-calacatta.webp');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.12;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  border-radius: inherit;
 }
 
 /* Subtle Vignette for Architectural Depth */

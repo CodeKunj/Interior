@@ -35,7 +35,12 @@ const FOOTER_COLUMNS = [
 export default function FooterBrand({ brand = 'RiTiVerse' }) {
   return (
     <footer className="relative z-10 w-full pt-14 sm:pt-20 pb-10 sm:pb-12 rounded-t-2xl sm:rounded-t-3xl overflow-hidden bg-[#EFECE6] text-[#1C1B19] border-t border-[#E2DDD5]">
-      <div className="w-full max-w-6xl px-4 sm:px-6 md:px-12 mx-auto flex flex-col gap-10 sm:gap-14">
+      {/* Authentic Monolithic Honed Marble Texture Underlay */}
+      <div
+        className="absolute inset-0 bg-cover bg-center opacity-[0.14] mix-blend-multiply pointer-events-none"
+        style={{ backgroundImage: `url('/textures/marble-calacatta.webp')` }}
+      />
+      <div className="relative z-10 w-full max-w-6xl px-4 sm:px-6 md:px-12 mx-auto flex flex-col gap-10 sm:gap-14">
         {/* Massive Auto-Fill Editorial Bodoni Moda Brand Headline */}
         <div className="overflow-hidden select-none border-b border-[#E2DDD5] pb-8 sm:pb-12">
           <span className="font-serif text-4xl xs:text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-normal tracking-tight text-[#1C1B19] block leading-none hover:text-accent transition-colors duration-500 break-words">

@@ -74,8 +74,13 @@ export default function ContactSplitForm({
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
           {/* Left Column: Pure White Luxury Inquiry Card Form */}
-          <div className="rounded-2xl border border-[#E5E0D8] bg-white p-5 sm:p-8 md:p-12 shadow-xl flex flex-col justify-between">
-            <div className="space-y-5 sm:space-y-6">
+          <div className="rounded-2xl border border-[#E5E0D8] bg-white/95 backdrop-blur-md p-5 sm:p-8 md:p-12 shadow-xl flex flex-col justify-between relative overflow-hidden">
+            {/* Subtle Calacatta Marble Veining */}
+            <div
+              className="absolute inset-0 bg-cover bg-center opacity-[0.14] mix-blend-multiply pointer-events-none"
+              style={{ backgroundImage: `url('/textures/marble-calacatta.webp')` }}
+            />
+            <div className="relative z-10 space-y-5 sm:space-y-6">
               <div className="pill-tag bg-[#FAF9F5] shadow-sm">
                 <Sparkles className="w-3.5 h-3.5 text-accent" />
                 <span>{tag}</span>
@@ -187,7 +192,7 @@ export default function ContactSplitForm({
             </div>
 
             {/* Direct WhatsApp Pill at Bottom of Card */}
-            <div className="pt-6 mt-6 border-t border-[#EAE6DF] flex items-center justify-between text-xs text-stone">
+            <div className="relative z-10 pt-6 mt-6 border-t border-[#EAE6DF] flex items-center justify-between text-xs text-stone">
               <span>Prefer immediate discussion?</span>
               <a
                 href="https://wa.me/12125550198"

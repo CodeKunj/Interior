@@ -50,6 +50,16 @@ export default function ArchitecturalCanvasBackground() {
       <div className="absolute inset-0 bg-[#FAF9F5]" />
 
       {/* ------------------------------------------------------------------ */}
+      {/* 1.5 Authentic Italian Calacatta Marble Vein Substratum              */}
+      {/* ------------------------------------------------------------------ */}
+      <div
+        className="absolute inset-0 opacity-[0.07] mix-blend-multiply bg-cover bg-center pointer-events-none"
+        style={{
+          backgroundImage: `url('/textures/marble-calacatta.webp')`,
+        }}
+      />
+
+      {/* ------------------------------------------------------------------ */}
       {/* 2. Organic Shifting Daylight Orbs (Natural Sunlight Simulation)     */}
       {/* ------------------------------------------------------------------ */}
       {/* Top Right: Warm Golden Hour Sunlit Glow */}

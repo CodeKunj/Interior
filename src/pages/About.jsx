@@ -42,7 +42,7 @@ export default function About() {
                 className="w-full h-full object-cover grayscale contrast-110"
               />
             </div>
-            <div className="mt-4 sm:mt-0 sm:absolute sm:-bottom-6 sm:-right-6 bg-white/95 backdrop-blur-md border border-[#E2DDD5] p-4 sm:p-6 rounded-2xl shadow-xl max-w-xs">
+            <div className="mt-4 sm:mt-0 sm:absolute sm:-bottom-6 sm:-right-6 bg-white/95 backdrop-blur-md border border-[#E2DDD5] p-4 sm:p-6 rounded-2xl shadow-xl max-w-xs relative overflow-hidden bg-marble-subtle">
               <span className="text-[10px] uppercase tracking-widest text-accent font-semibold block">
                 Principal & Founder
               </span>
