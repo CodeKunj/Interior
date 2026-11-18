@@ -3,6 +3,34 @@ import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import { getJourneys } from '../services/api';
 
+const SPAN_LOOKUP = {
+  'md:col-span-4': 'md:col-span-4',
+  'md:col-span-6': 'md:col-span-6',
+  'md:col-span-8': 'md:col-span-8',
+  'md:col-span-12': 'md:col-span-12',
+  '4': 'md:col-span-4',
+  '6': 'md:col-span-6',
+  '8': 'md:col-span-8',
+  '12': 'md:col-span-12'
+};
+
+const DEFAULT_BENTO_SPANS = [
+  'md:col-span-4',
+  'md:col-span-8',
+  'md:col-span-6',
+  'md:col-span-6',
+  'md:col-span-4',
+  'md:col-span-4',
+  'md:col-span-4'
+];
+
+function getCardSpan(item, idx) {
+  if (item && item.span && SPAN_LOOKUP[item.span]) {
+    return SPAN_LOOKUP[item.span];
+  }
+  return DEFAULT_BENTO_SPANS[idx % DEFAULT_BENTO_SPANS.length];
+}
+
 export default function FeaturesRevealCardsBento({
   tag = 'Transformations',
   title = 'The Architectural Journeys',
@@ -59,48 +87,50 @@ export default function FeaturesRevealCardsBento({
 
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6">
-          {items.map((item, idx) => (
-            <Link
-              key={item.id || item.slug || idx}
-              to={item.href || `/work/${item.slug}`}
-              className={`group relative rounded-2xl overflow-hidden border border-[#E5E0D8] bg-[#161616] min-h-[300px] sm:min-h-[360px] md:min-h-[420px] flex flex-col justify-between p-5 sm:p-8 hover:border-accent/60 transition-all duration-500 shadow-lg hover:shadow-2xl ${
-                item.span || 'md:col-span-4'
-              }`}
-            >
-              {/* Background Photo */}
-              {item.imageSrc && (
-                <img
-                  src={item.imageSrc}
-                  alt={item.title}
-                  loading="lazy"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                />
-              )}
+          {items.map((item, idx) => {
+            const spanClass = getCardSpan(item, idx);
 
-              {/* Dark Gradient Overlay for typography readability */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#141312] via-[#141312]/60 to-[#141312]/20 transition-opacity duration-300 group-hover:opacity-90" />
+            return (
+              <Link
+                key={item.id || item.slug || idx}
+                to={item.href || `/work/${item.slug}`}
+                className={`group relative rounded-2xl overflow-hidden border border-[#E5E0D8] bg-[#161616] min-h-[300px] sm:min-h-[360px] md:min-h-[420px] flex flex-col justify-between p-5 sm:p-8 hover:border-accent/60 transition-all duration-500 shadow-lg hover:shadow-2xl ${spanClass}`}
+              >
+                {/* Background Photo */}
+                {item.imageSrc && (
+                  <img
+                    src={item.imageSrc}
+                    alt={item.title}
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                )}
 
-              {/* Top Tag & Action Icon */}
-              <div className="relative z-10 flex items-center justify-between">
-                <span className="bg-white/90 backdrop-blur-md text-[#1C1B19] text-[10px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full border border-white/30 shadow-sm">
-                  {item.tag}
-                </span>
-                <div className="w-8 h-8 rounded-full bg-white text-[#1C1B19] group-hover:bg-accent group-hover:text-white flex items-center justify-center backdrop-blur-md transition-all duration-300 shadow-md">
-                  <ArrowUpRight className="w-4 h-4" />
+                {/* Dark Gradient Overlay for typography readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#141312] via-[#141312]/60 to-[#141312]/20 transition-opacity duration-300 group-hover:opacity-90" />
+
+                {/* Top Tag & Action Icon */}
+                <div className="relative z-10 flex items-center justify-between">
+                  <span className="bg-white/90 backdrop-blur-md text-[#1C1B19] text-[10px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full border border-white/30 shadow-sm">
+                    {item.tag}
+                  </span>
+                  <div className="w-8 h-8 rounded-full bg-white text-[#1C1B19] group-hover:bg-accent group-hover:text-white flex items-center justify-center backdrop-blur-md transition-all duration-300 shadow-md">
+                    <ArrowUpRight className="w-4 h-4" />
+                  </div>
                 </div>
-              </div>
 
-              {/* Bottom Text */}
-              <div className="relative z-10 space-y-2 pt-12">
-                <h3 className="font-serif text-2xl sm:text-3xl text-white group-hover:text-accent transition-colors">
-                  {item.title}
-                </h3>
-                <p className="text-[#E0DBD3] text-xs sm:text-sm font-light leading-relaxed line-clamp-3">
-                  {item.description || item.overview}
-                </p>
-              </div>
-            </Link>
-          ))}
+                {/* Bottom Text */}
+                <div className="relative z-10 space-y-2 pt-12">
+                  <h3 className="font-serif text-2xl sm:text-3xl text-white group-hover:text-accent transition-colors">
+                    {item.title}
+                  </h3>
+                  <p className="text-[#E0DBD3] text-xs sm:text-sm font-light leading-relaxed line-clamp-3">
+                    {item.description || item.overview}
+                  </p>
+                </div>
+              </Link>
+            );
+          })}
         </div>
 
         {/* Explore All Journeys CTA */}

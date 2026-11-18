@@ -3,6 +3,33 @@ import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { getDisciplines } from '../services/api';
 
+const MEDIA_SPAN_LOOKUP = {
+  'lg:col-span-7': 'lg:col-span-7',
+  'lg:col-span-5': 'lg:col-span-5',
+  'lg:col-span-4': 'lg:col-span-4',
+  'lg:col-span-6': 'lg:col-span-6',
+  'lg:col-span-8': 'lg:col-span-8',
+  'lg:col-span-12': 'lg:col-span-12',
+  '7': 'lg:col-span-7',
+  '5': 'lg:col-span-5',
+  '4': 'lg:col-span-4'
+};
+
+const DEFAULT_MEDIA_SPANS = [
+  'lg:col-span-7',
+  'lg:col-span-5',
+  'lg:col-span-4',
+  'lg:col-span-4',
+  'lg:col-span-4'
+];
+
+function getMediaSpan(item, idx) {
+  if (item && item.span && MEDIA_SPAN_LOOKUP[item.span]) {
+    return MEDIA_SPAN_LOOKUP[item.span];
+  }
+  return DEFAULT_MEDIA_SPANS[idx % DEFAULT_MEDIA_SPANS.length];
+}
+
 export default function FeaturesMediaGrid({
   tag = 'Architectural Practice',
   title = 'World-Class Spatial Disciplines',
@@ -59,38 +86,40 @@ export default function FeaturesMediaGrid({
 
         {/* Asymmetric Media Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-5 sm:gap-6">
-          {items.map((item, idx) => (
-            <div
-              key={item.id || idx}
-              className={`group relative rounded-2xl overflow-hidden border border-[#E5E0D8] bg-[#161616] min-h-[280px] sm:min-h-[340px] md:min-h-[380px] flex flex-col justify-end p-5 sm:p-8 shadow-lg ${
-                item.span || 'lg:col-span-4'
-              }`}
-            >
-              {/* Background Photography */}
-              {item.imageSrc && (
-                <img
-                  src={item.imageSrc}
-                  alt={item.title}
-                  loading="lazy"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                />
-              )}
+          {items.map((item, idx) => {
+            const spanClass = getMediaSpan(item, idx);
 
-              {/* Ambient Dark Gradient for text readability */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#141312] via-[#141312]/60 to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-85" />
+            return (
+              <div
+                key={item.id || idx}
+                className={`group relative rounded-2xl overflow-hidden border border-[#E5E0D8] bg-[#161616] min-h-[280px] sm:min-h-[340px] md:min-h-[380px] flex flex-col justify-end p-5 sm:p-8 shadow-lg ${spanClass}`}
+              >
+                {/* Background Photography */}
+                {item.imageSrc && (
+                  <img
+                    src={item.imageSrc}
+                    alt={item.title}
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                )}
 
-              {/* Text Details */}
-              <div className="relative z-10 space-y-2">
-                <span className="font-mono text-xs text-accent">0{idx + 1}</span>
-                <h3 className="font-serif text-2xl md:text-3xl text-white group-hover:text-accent transition-colors">
-                  {item.title}
-                </h3>
-                <p className="text-[#E0DBD3] text-xs sm:text-sm font-light leading-relaxed max-w-md">
-                  {item.description}
-                </p>
+                {/* Ambient Dark Gradient for text readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#141312] via-[#141312]/60 to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-85" />
+
+                {/* Text Details */}
+                <div className="relative z-10 space-y-2">
+                  <span className="font-mono text-xs text-accent">0{idx + 1}</span>
+                  <h3 className="font-serif text-2xl md:text-3xl text-white group-hover:text-accent transition-colors">
+                    {item.title}
+                  </h3>
+                  <p className="text-[#E0DBD3] text-xs sm:text-sm font-light leading-relaxed max-w-md">
+                    {item.description}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Link to Services */}
