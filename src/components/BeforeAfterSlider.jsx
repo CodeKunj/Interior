@@ -82,7 +82,7 @@ export default function BeforeAfterSlider({
       {(title || description) && (
         <div className="max-w-2xl mb-4">
           {title && <h4 className="font-serif text-2xl text-[#1C1B19] mb-1">{title}</h4>}
-          {description && <p className="text-stone text-xs md:text-sm leading-relaxed font-light">{description}</p>}
+          {description && <p className="text-[#3D3A35] text-xs md:text-sm leading-relaxed font-normal">{description}</p>}
         </div>
       )}
 
@@ -119,7 +119,7 @@ export default function BeforeAfterSlider({
           />
 
           {/* Floating Before Badge */}
-          <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-20 pointer-events-none bg-white/95 text-stone text-[9px] sm:text-[10px] uppercase tracking-[0.16em] sm:tracking-[0.2em] px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full backdrop-blur-md border border-[#E2DDD5] shadow-md font-medium">
+          <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-20 pointer-events-none bg-white/95 text-[#1C1B19] text-[9px] sm:text-[10px] uppercase tracking-[0.16em] sm:tracking-[0.2em] px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full backdrop-blur-md border border-[#E2DDD5] shadow-md font-semibold">
             {beforeLabel}
           </div>
         </div>

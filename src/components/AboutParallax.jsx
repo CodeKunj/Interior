@@ -34,18 +34,18 @@ export default function AboutParallax({
             {title}
           </h2>
 
-          <p className="text-stone text-xs sm:text-base font-light leading-relaxed">
+          <p className="text-stone text-sm sm:text-base font-normal leading-relaxed">
             {description}
           </p>
 
-          <p className="text-stone-dark text-xs sm:text-sm font-light leading-relaxed">
+          <p className="text-stone-dark text-xs sm:text-sm font-normal leading-relaxed">
             We collaborate with generational master stonemasons and Japanese timber joiners to deliver environments that age with grace, depth, and tactile patina.
           </p>
 
           <div className="pt-2 sm:pt-4 flex items-center space-x-6">
             <Link
               to="/about"
-              className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.16em] sm:tracking-[0.2em] font-medium text-[#1C1B19] hover:text-accent border-b border-[#1C1B19]/30 pb-1 transition-colors"
+              className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.16em] sm:tracking-[0.2em] font-semibold text-[#1C1B19] hover:text-accent border-b border-[#1C1B19]/50 pb-1 transition-colors"
             >
               <span>Explore Studio Philosophy</span>
               <ArrowUpRight className="w-3.5 h-3.5" />

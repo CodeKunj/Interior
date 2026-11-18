@@ -102,7 +102,7 @@ export default function NavbarFullscreen() {
           </Link>
 
           {/* 2. Center Desktop Navigation (Clean, concise, never wrapping) */}
-          <nav className="hidden lg:flex items-center space-x-7 xl:space-x-10 text-[11px] xl:text-xs tracking-[0.2em] uppercase font-medium text-stone flex-shrink-0">
+          <nav className="hidden lg:flex items-center space-x-7 xl:space-x-10 text-[11px] xl:text-xs tracking-[0.2em] uppercase font-medium text-[#3D3A35] flex-shrink-0">
             {NAV_ITEMS.map((item) => {
               const isActive = location.pathname === item.path;
               return (
@@ -111,7 +111,7 @@ export default function NavbarFullscreen() {
                   to={item.path}
                   onClick={() => handleNavClick(item)}
                   className={`relative py-1 whitespace-nowrap transition-colors duration-300 hover:text-[#1C1B19] ${
-                    isActive ? 'text-[#1C1B19] font-semibold' : 'text-stone'
+                    isActive ? 'text-[#1C1B19] font-bold' : 'text-[#3D3A35]'
                   }`}
                 >
                   <span>{item.name}</span>
@@ -212,14 +212,14 @@ export default function NavbarFullscreen() {
                         className="group flex items-baseline justify-between py-2 sm:py-2.5 text-[#1C1B19] hover:text-accent transition-colors border-b border-[#EAE6DF]"
                       >
                         <div className="flex items-baseline space-x-3 sm:space-x-8">
-                          <span className="font-mono text-xs sm:text-sm text-stone group-hover:text-accent transition-colors">
+                          <span className="font-mono text-xs sm:text-sm text-[#7A756D] group-hover:text-accent transition-colors font-semibold">
                             0{index + 1}
                           </span>
                           <div>
                             <span className="font-serif text-2xl sm:text-4xl md:text-5xl font-normal leading-tight tracking-tight block text-[#1C1B19] group-hover:text-accent transition-colors">
                               {item.name}
                             </span>
-                            <span className="text-[10px] sm:text-xs uppercase tracking-[0.14em] sm:tracking-[0.2em] text-stone group-hover:text-[#1C1B19] block mt-0.5 sm:mt-1 font-light line-clamp-1">
+                            <span className="text-[10px] sm:text-xs uppercase tracking-[0.14em] sm:tracking-[0.2em] text-[#5C5852] group-hover:text-[#1C1B19] block mt-0.5 sm:mt-1 font-normal line-clamp-1">
                               {item.subtitle}
                             </span>
                           </div>

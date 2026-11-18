@@ -47,7 +47,7 @@ export default function FooterBrand({ brand = 'RiTiVerse' }) {
           <span className="font-serif text-4xl xs:text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-normal tracking-tight text-[#1C1B19] block leading-none hover:text-accent transition-colors duration-500 break-words">
             {brand}
           </span>
-          <span className="text-[10px] sm:text-xs uppercase tracking-[0.16em] sm:tracking-[0.35em] text-stone block mt-3 font-light break-words">
+          <span className="text-[10px] sm:text-xs uppercase tracking-[0.16em] sm:tracking-[0.35em] text-[#3D3A35] block mt-3 font-medium break-words">
             ATELIER VÉRITÉ ARCHITECTURE & LUXURY INTERIOR SANCTUARIES
           </span>
         </div>
@@ -59,7 +59,7 @@ export default function FooterBrand({ brand = 'RiTiVerse' }) {
               <h4 className="text-xs uppercase tracking-[0.2em] sm:tracking-[0.25em] text-accent font-semibold">
                 {col.title}
               </h4>
-              <ul className="space-y-2.5 sm:space-y-3 text-xs sm:text-sm text-stone">
+              <ul className="space-y-2.5 sm:space-y-3 text-xs sm:text-sm text-[#2E2B27] font-medium">
                 {col.items.map((item, itemIdx) => (
                   <li key={itemIdx}>
                     {item.external ? (
@@ -67,7 +67,7 @@ export default function FooterBrand({ brand = 'RiTiVerse' }) {
                         href={item.href}
                         target="_blank"
                         rel="noreferrer"
-                        className="group flex items-center space-x-2 text-stone hover:text-[#1C1B19] transition-colors py-0.5"
+                        className="group flex items-center space-x-2 text-[#2E2B27] hover:text-accent transition-colors py-0.5"
                       >
                         <ChevronRight className="w-3.5 h-3.5 text-accent opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
                         <span>{item.label}</span>
@@ -76,7 +76,7 @@ export default function FooterBrand({ brand = 'RiTiVerse' }) {
                     ) : (
                       <Link
                         to={item.href}
-                        className="group flex items-center space-x-2 text-stone hover:text-[#1C1B19] transition-colors py-0.5"
+                        className="group flex items-center space-x-2 text-[#2E2B27] hover:text-accent transition-colors py-0.5"
                       >
                         <ChevronRight className="w-3.5 h-3.5 text-accent opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
                         <span>{item.label}</span>
@@ -90,18 +90,18 @@ export default function FooterBrand({ brand = 'RiTiVerse' }) {
         </div>
 
         {/* Bottom Credits & cPanel Admin Link */}
-        <div className="pt-6 sm:pt-8 border-t border-[#E2DDD5] flex flex-col sm:flex-row items-center justify-between text-xs text-stone gap-4 text-center sm:text-left">
+        <div className="pt-6 sm:pt-8 border-t border-[#E2DDD5] flex flex-col sm:flex-row items-center justify-between text-xs text-[#3D3A35] font-medium gap-4 text-center sm:text-left">
           <p className="text-[11px] sm:text-xs">
             &copy; {new Date().getFullYear()} RiTiVerse &bull; Atelier Vérité Interiors. Calacatta Marble & Soft Editorial Aesthetics.
           </p>
 
           <div className="flex items-center space-x-4 sm:space-x-6 text-[11px] sm:text-xs">
-            <span className="text-stone-light">Shared cPanel / PHP 8+ PDO API</span>
+            <span className="text-[#5C5852]">Shared cPanel / PHP 8+ PDO API</span>
             <a
               href="/admin/"
               target="_blank"
               rel="noreferrer"
-              className="text-stone hover:text-accent transition-colors underline underline-offset-4 font-medium"
+              className="text-[#2E2B27] hover:text-accent transition-colors underline underline-offset-4 font-semibold"
             >
               CMS Admin
             </a>

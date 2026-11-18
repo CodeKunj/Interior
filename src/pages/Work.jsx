@@ -38,14 +38,14 @@ export default function Work() {
             Selected Works
           </h1>
 
-          <p className="text-stone text-xs sm:text-base md:text-lg font-light leading-relaxed pt-1 sm:pt-2">
+          <p className="text-[#3D3A35] text-xs sm:text-base md:text-lg font-normal leading-relaxed pt-1 sm:pt-2">
             A survey of residential estates, historic restorations, and experiential commercial salons. Every case study includes full architectural specifications and interactive 3D digital twins.
           </p>
         </div>
 
         {/* Category Filter Bar */}
         <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-[#EAE6DF] flex items-center gap-2 sm:gap-3 overflow-x-auto pb-2 scrollbar-none sm:flex-wrap">
-          <span className="text-[11px] sm:text-xs uppercase tracking-wider text-stone flex items-center space-x-1.5 mr-2 whitespace-nowrap flex-shrink-0">
+          <span className="text-[11px] sm:text-xs uppercase tracking-wider text-[#5C5852] font-semibold flex items-center space-x-1.5 mr-2 whitespace-nowrap flex-shrink-0">
             <Filter className="w-3.5 h-3.5 text-accent" />
             <span>Category:</span>
           </span>
@@ -59,7 +59,7 @@ export default function Work() {
                 className={`text-[11px] sm:text-xs uppercase tracking-[0.14em] sm:tracking-[0.16em] px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border transition-all duration-300 font-medium whitespace-nowrap flex-shrink-0 ${
                   isActive
                     ? 'bg-[#1C1B19] text-[#FAF9F5] border-[#1C1B19] shadow-md'
-                    : 'bg-white text-stone border-[#E2DDD5] hover:border-accent hover:text-[#1C1B19]'
+                    : 'bg-white text-[#3D3A35] border-[#D8D2C7] hover:border-accent hover:text-[#1C1B19]'
                 }`}
               >
                 {cat}
@@ -72,13 +72,13 @@ export default function Work() {
       {/* Editorial Projects Grid */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 md:px-12">
         {loading ? (
-          <div className="py-28 text-center text-stone text-xs tracking-widest uppercase">
+          <div className="py-28 text-center text-[#5C5852] text-xs tracking-widest uppercase font-medium">
             Loading architectural portfolio...
           </div>
         ) : projects.length === 0 ? (
-          <div className="py-24 text-center text-stone border border-[#E5E0D8] bg-white rounded-2xl p-8 shadow-sm">
+          <div className="py-24 text-center text-[#5C5852] border border-[#E5E0D8] bg-white rounded-2xl p-8 shadow-sm">
             <p className="font-serif text-2xl text-[#1C1B19] mb-2">No projects found in this category.</p>
-            <p className="text-xs text-stone">Please select "All" to review our complete architectural repertoire.</p>
+            <p className="text-xs text-[#5C5852]">Please select "All" to review our complete architectural repertoire.</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -101,14 +101,14 @@ export default function Work() {
 
                   {/* 3D Virtual Tour Badge */}
                   {project.has_3d_tour && (
-                    <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-md text-[#1C1B19] text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-[#E2DDD5] flex items-center space-x-1.5 shadow-sm font-medium">
+                    <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-md text-[#1C1B19] text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-[#E2DDD5] flex items-center space-x-1.5 shadow-sm font-semibold">
                       <Compass className="w-3.5 h-3.5 text-accent" />
                       <span>3D Tour</span>
                     </div>
                   )}
 
                   {/* Category Pill */}
-                  <div className="absolute bottom-3 left-4 bg-white/90 backdrop-blur-md text-[#1C1B19] text-[10px] uppercase tracking-wider px-2.5 py-0.5 rounded-full border border-white/40 shadow-sm font-medium">
+                  <div className="absolute bottom-3 left-4 bg-white/95 backdrop-blur-md text-[#1C1B19] text-[10px] uppercase tracking-wider px-2.5 py-0.5 rounded-full border border-white/60 shadow-sm font-semibold">
                     {project.category}
                   </div>
                 </div>
@@ -116,21 +116,21 @@ export default function Work() {
                 {/* Card Editorial Info */}
                 <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
                   <div>
-                    <span className="text-[11px] uppercase tracking-wider text-stone block mb-1">
+                    <span className="text-[11px] uppercase tracking-wider text-[#5C5852] font-semibold block mb-1">
                       {project.location}
                     </span>
                     <h2 className="font-serif text-2xl text-[#1C1B19] group-hover:text-accent transition-colors">
                       <Link to={`/work/${project.slug}`}>{project.title}</Link>
                     </h2>
                     {project.subtitle && (
-                      <p className="text-stone text-xs mt-2 font-light line-clamp-2 leading-relaxed">
+                      <p className="text-[#3D3A35] text-xs mt-2 font-normal line-clamp-2 leading-relaxed">
                         {project.subtitle}
                       </p>
                     )}
                   </div>
 
                   {/* Footnote Specs */}
-                  <div className="pt-4 border-t border-[#EAE6DF] flex items-center justify-between text-xs text-stone">
+                  <div className="pt-4 border-t border-[#EAE6DF] flex items-center justify-between text-xs text-[#5C5852] font-medium">
                     <div className="flex items-center space-x-3">
                       <span className="flex items-center space-x-1">
                         <Bed className="w-3 h-3 text-accent" />

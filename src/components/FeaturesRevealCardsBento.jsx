@@ -107,11 +107,11 @@ export default function FeaturesRevealCardsBento({
                 )}
 
                 {/* Dark Gradient Overlay for typography readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#141312] via-[#141312]/60 to-[#141312]/20 transition-opacity duration-300 group-hover:opacity-90" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/75 via-45% to-transparent opacity-95 transition-opacity duration-300 group-hover:opacity-100" />
 
                 {/* Top Tag & Action Icon */}
                 <div className="relative z-10 flex items-center justify-between">
-                  <span className="bg-white/90 backdrop-blur-md text-[#1C1B19] text-[10px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full border border-white/30 shadow-sm">
+                  <span className="bg-white/95 backdrop-blur-md text-[#1C1B19] text-[10px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full border border-white/40 shadow-sm">
                     {item.tag}
                   </span>
                   <div className="w-8 h-8 rounded-full bg-white text-[#1C1B19] group-hover:bg-accent group-hover:text-white flex items-center justify-center backdrop-blur-md transition-all duration-300 shadow-md">
@@ -121,10 +121,10 @@ export default function FeaturesRevealCardsBento({
 
                 {/* Bottom Text */}
                 <div className="relative z-10 space-y-2 pt-12">
-                  <h3 className="font-serif text-2xl sm:text-3xl text-white group-hover:text-accent transition-colors">
+                  <h3 className="font-serif text-2xl sm:text-3xl text-white group-hover:text-[#E5C158] transition-colors drop-shadow-md">
                     {item.title}
                   </h3>
-                  <p className="text-[#E0DBD3] text-xs sm:text-sm font-light leading-relaxed line-clamp-3">
+                  <p className="text-[#F5F2EB] text-xs sm:text-sm font-normal leading-relaxed line-clamp-3 drop-shadow-sm">
                     {item.description || item.overview}
                   </p>
                 </div>

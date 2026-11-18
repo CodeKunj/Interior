@@ -49,7 +49,7 @@ export default function Journeys() {
             The Architectural Journeys
           </h1>
 
-          <p className="text-stone text-xs sm:text-base md:text-lg font-light leading-relaxed pt-1 sm:pt-2">
+          <p className="text-stone text-sm sm:text-base md:text-lg font-normal leading-relaxed pt-1 sm:pt-2">
             Every sanctuary is an intimate journey of spatial rebirth. Explore our curated case studies tracing bare structural shells through to fully realized, daylight-sculpted residences across New York, Amalfi, Kyoto, London, and Paris.
           </p>
         </div>
@@ -57,7 +57,7 @@ export default function Journeys() {
         {/* Tag Filters */}
         {tags.length > 1 && (
           <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-[#EAE6DF] flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none sm:flex-wrap">
-            <span className="text-[11px] sm:text-xs uppercase tracking-wider text-stone mr-2 whitespace-nowrap flex-shrink-0">Typology:</span>
+            <span className="text-[11px] sm:text-xs uppercase tracking-wider text-[#2E2B27] font-semibold mr-2 whitespace-nowrap flex-shrink-0">Typology:</span>
             {tags.map((tag) => (
               <button
                 key={tag}
@@ -65,7 +65,7 @@ export default function Journeys() {
                 className={`text-[11px] sm:text-xs uppercase tracking-[0.14em] sm:tracking-[0.16em] px-3.5 sm:px-5 py-1.5 sm:py-2.5 rounded-full border transition-all duration-300 font-medium whitespace-nowrap flex-shrink-0 ${
                   selectedTag === tag
                     ? 'bg-[#1C1B19] text-[#FAF9F5] border-[#1C1B19] shadow-md'
-                    : 'bg-white text-stone border-[#E2DDD5] hover:border-accent hover:text-[#1C1B19]'
+                    : 'bg-white text-[#2E2B27] border-[#D5CFC5] hover:border-accent hover:text-[#1C1B19]'
                 }`}
               >
                 {tag}
@@ -156,7 +156,7 @@ export default function Journeys() {
               {/* Journey Body */}
               <div className="p-5 sm:p-6 md:p-8 space-y-4 sm:space-y-6 flex-1 flex flex-col justify-between">
                 <div className="space-y-3">
-                  <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs text-stone">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs text-[#2E2B27] font-medium">
                     <span className="flex items-center space-x-1">
                       <MapPin className="w-3.5 h-3.5 text-accent" />
                       <span>{journey.location}</span>
@@ -177,7 +177,7 @@ export default function Journeys() {
                     <Link to={journey.href || `/work/${journey.slug}`}>{journey.title}</Link>
                   </h3>
 
-                  <p className="text-stone text-xs md:text-sm font-light leading-relaxed">
+                  <p className="text-stone text-xs md:text-sm font-normal leading-relaxed">
                     {journey.overview}
                   </p>
                 </div>
@@ -193,7 +193,7 @@ export default function Journeys() {
                       {journey.materials.map((m, mIdx) => (
                         <span
                           key={mIdx}
-                          className="text-[10px] px-2.5 py-1 rounded-full bg-[#FAF9F5] text-stone border border-[#E2DDD5]"
+                          className="text-[10px] px-2.5 py-1 rounded-full bg-[#FAF9F5] text-[#2E2B27] border border-[#D5CFC5] font-medium"
                         >
                           {m}
                         </span>

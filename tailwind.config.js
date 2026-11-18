@@ -37,13 +37,14 @@ export default {
           muted: '#363430'
         },
         stone: {
-          DEFAULT: '#6E6A63', // Soft Muted Text
-          light: '#8F8B83',
-          dark: '#4A4742'
+          DEFAULT: '#3D3A35', // High-contrast, rich warm editorial charcoal (WCAG AAA compliant on marble)
+          light: '#6E6A63',
+          dark: '#24221F'
         },
         accent: {
           DEFAULT: '#8C6D53', // Muted Bronze / Terracotta
           light: '#B89F88',
+          gold: '#D4AF37',   // Luminous warm champagne gold for dark cards
           dark: '#6E523C',
           tint: 'rgba(140, 109, 83, 0.08)'
         },

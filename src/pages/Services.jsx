@@ -55,7 +55,7 @@ export default function Services() {
             Services & Architectural Process
           </h1>
 
-          <p className="text-stone text-xs sm:text-base md:text-lg font-light leading-relaxed pt-1 sm:pt-2">
+          <p className="text-stone text-sm sm:text-base md:text-lg font-normal leading-relaxed pt-1 sm:pt-2">
             We provide comprehensive architectural stewardship from initial concept modeling and 3D digital twins through to quarry-direct material sourcing and bespoke turnkey execution.
           </p>
         </div>
@@ -96,12 +96,12 @@ export default function Services() {
                     <h2 className="font-serif text-3xl sm:text-4xl text-[#1C1B19]">
                       {service.title}
                     </h2>
-                    <p className="text-xs uppercase tracking-[0.2em] text-accent font-medium">
+                    <p className="text-xs uppercase tracking-[0.2em] text-accent font-semibold">
                       {service.subtitle}
                     </p>
                   </div>
 
-                  <p className="text-stone text-sm md:text-base leading-relaxed font-light">
+                  <p className="text-[#2E2B27] text-sm md:text-base leading-relaxed font-normal">
                     {service.description}
                   </p>
 
@@ -111,7 +111,7 @@ export default function Services() {
                       <span className="text-[11px] uppercase tracking-wider text-[#1C1B19] font-semibold block">
                         Key Atelier Deliverables:
                       </span>
-                      <ul className="space-y-2 text-xs md:text-sm text-stone font-light">
+                      <ul className="space-y-2 text-xs md:text-sm text-[#2E2B27] font-medium">
                         {service.deliverables.map((item, dIdx) => (
                           <li key={dIdx} className="flex items-start space-x-2.5">
                             <Check className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
@@ -141,7 +141,7 @@ export default function Services() {
                 Our 4-Step Design Process
               </h2>
 
-              <p className="text-stone text-xs sm:text-sm font-light">
+              <p className="text-[#3D3A35] text-xs sm:text-sm font-normal">
                 How we guide your project from first dialogue to physical turnkey handover with absolute transparency.
               </p>
             </div>
@@ -155,7 +155,7 @@ export default function Services() {
                   <div className="space-y-4">
                     <div className="flex items-baseline justify-between border-b border-[#EAE6DF] pb-4">
                       <span className="font-serif text-4xl text-[#1C1B19] font-normal">{step.step}</span>
-                      <span className="text-[10px] uppercase tracking-wider bg-[#FAF9F5] text-accent px-2.5 py-1 rounded-full border border-[#E2DDD5] font-medium">
+                      <span className="text-[10px] uppercase tracking-wider bg-[#FAF9F5] text-accent px-2.5 py-1 rounded-full border border-[#E2DDD5] font-semibold">
                         {step.phase}
                       </span>
                     </div>
@@ -164,7 +164,7 @@ export default function Services() {
                       {step.title}
                     </h3>
 
-                    <p className="text-stone text-xs leading-relaxed font-light">
+                    <p className="text-[#3D3A35] text-xs leading-relaxed font-normal">
                       {step.description}
                     </p>
                   </div>

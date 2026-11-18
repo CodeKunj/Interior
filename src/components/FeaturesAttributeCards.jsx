@@ -21,7 +21,7 @@ export default function FeaturesAttributeCards({
             {title}
           </h2>
 
-          <p className="text-stone text-xs sm:text-base font-light max-w-2xl leading-relaxed">
+          <p className="text-[#3D3A35] text-xs sm:text-base font-normal max-w-2xl leading-relaxed">
             {description}
           </p>
         </div>
@@ -68,7 +68,7 @@ export default function FeaturesAttributeCards({
                     </span>
                   )}
                   {project.has_3d_tour && (
-                    <span className="bg-white/95 backdrop-blur-md text-[#1C1B19] text-[10px] uppercase tracking-wider px-2.5 py-0.5 rounded-full border border-[#E2DDD5] flex items-center space-x-1.5 shadow-sm font-medium">
+                    <span className="bg-white/95 backdrop-blur-md text-[#1C1B19] text-[10px] uppercase tracking-wider px-2.5 py-0.5 rounded-full border border-[#E2DDD5] flex items-center space-x-1.5 shadow-sm font-semibold">
                       <Compass className="w-3 h-3 text-accent" />
                       <span>3D Tour</span>
                     </span>
@@ -76,7 +76,7 @@ export default function FeaturesAttributeCards({
                 </div>
 
                 {/* Category / Location Pill */}
-                <div className="absolute bottom-3 left-4 bg-white/90 backdrop-blur-md text-[#1C1B19] text-[10px] uppercase tracking-wider px-3 py-0.5 rounded-full border border-white/40 shadow-sm font-medium">
+                <div className="absolute bottom-3 left-4 bg-white/95 backdrop-blur-md text-[#1C1B19] text-[10px] uppercase tracking-wider px-3 py-0.5 rounded-full border border-white/60 shadow-sm font-semibold">
                   {project.category || project.location}
                 </div>
               </div>
@@ -88,13 +88,13 @@ export default function FeaturesAttributeCards({
                     <Link to={`/work/${project.slug}`}>{project.title}</Link>
                   </h3>
 
-                  <p className="text-stone text-xs tracking-wider uppercase mt-1">
+                  <p className="text-[#5C5852] text-xs tracking-wider uppercase mt-1 font-semibold">
                     {project.subtitle || project.tags || project.location}
                   </p>
                 </div>
 
                 {/* Specs Row with Icons */}
-                <div className="pt-4 border-t border-[#EAE6DF] flex flex-wrap items-center justify-between text-xs text-stone gap-2">
+                <div className="pt-4 border-t border-[#EAE6DF] flex flex-wrap items-center justify-between text-xs text-[#5C5852] font-medium gap-2">
                   <div className="flex items-center space-x-3 sm:space-x-4">
                     <span className="flex items-center space-x-1 sm:space-x-1.5 text-[11px] sm:text-xs">
                       <Bed className="w-3.5 h-3.5 text-accent" />

@@ -131,7 +131,7 @@ export default function Home() {
                   <strong className="text-[#1C1B19] font-medium text-xs sm:text-sm block">
                     {currentTestimonial.author}
                   </strong>
-                  <span className="text-[11px] sm:text-xs text-stone">
+                  <span className="text-[11px] sm:text-xs text-[#5C5852] font-medium">
                     {currentTestimonial.role} &bull; {currentTestimonial.project}
                   </span>
                 </div>
@@ -146,7 +146,7 @@ export default function Home() {
                     >
                       <ChevronLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     </button>
-                    <span className="text-xs text-stone font-mono">
+                    <span className="text-xs text-[#5C5852] font-mono font-medium">
                       0{activeTestimonial + 1} / 0{testimonials.length}
                     </span>
                     <button

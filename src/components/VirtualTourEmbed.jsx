@@ -52,14 +52,14 @@ export default function VirtualTourEmbed({
   return (
     <div className="space-y-4">
       {/* Top Controls & Provider Banner */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs text-stone gap-3">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs text-[#5C5852] gap-3">
         <div className="flex items-center space-x-2">
-          <span className="inline-flex items-center space-x-1.5 bg-accent/10 text-accent px-3 py-1 text-[11px] uppercase tracking-wider font-medium rounded-full border border-accent/25">
+          <span className="inline-flex items-center space-x-1.5 bg-accent/10 text-accent px-3 py-1 text-[11px] uppercase tracking-wider font-semibold rounded-full border border-accent/25">
             <Eye className="w-3.5 h-3.5" />
             <span>{getProviderName(tourType)}</span>
           </span>
-          <span className="hidden sm:inline text-stone/40">&bull;</span>
-          <span className="text-[11px] text-stone font-light">Photorealistic Digital Twin Walkthrough</span>
+          <span className="hidden sm:inline text-[#5C5852]/40">&bull;</span>
+          <span className="text-[11px] text-[#5C5852] font-medium">Photorealistic Digital Twin Walkthrough</span>
         </div>
 
         <div className="flex items-center space-x-4">
@@ -67,7 +67,7 @@ export default function VirtualTourEmbed({
             href={tourUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center space-x-1 hover:text-[#1C1B19] transition-colors underline underline-offset-4 text-stone"
+            className="inline-flex items-center space-x-1 hover:text-[#1C1B19] transition-colors underline underline-offset-4 text-[#3D3A35] font-medium"
           >
             <span>Open in Dedicated Window</span>
             <ExternalLink className="w-3 h-3" />

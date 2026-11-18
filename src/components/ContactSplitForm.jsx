@@ -90,7 +90,7 @@ export default function ContactSplitForm({
                 <h2 className="font-serif text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-normal text-[#1C1B19]">
                   {title}
                 </h2>
-                <p className="text-stone text-xs sm:text-sm font-light leading-relaxed">
+                <p className="text-[#3D3A35] text-xs sm:text-sm font-normal leading-relaxed">
                   {description}
                 </p>
               </div>
@@ -99,7 +99,7 @@ export default function ContactSplitForm({
                 <div className="py-8 text-center space-y-4 bg-[#FAF9F5] p-6 rounded-xl border border-[#E2DDD5]">
                   <CheckCircle2 className="w-12 h-12 text-accent mx-auto" />
                   <h3 className="font-serif text-2xl text-[#1C1B19]">Dossier Transmitted</h3>
-                  <p className="text-stone text-xs max-w-sm mx-auto font-light leading-relaxed">
+                  <p className="text-[#3D3A35] text-xs max-w-sm mx-auto font-normal leading-relaxed">
                     Thank you. Your consultation inquiry <strong className="text-[#1C1B19] font-mono">#{inquiryId}</strong> has been logged. Our design director will contact you within 24 business hours.
                   </p>
                   <button
@@ -129,7 +129,7 @@ export default function ContactSplitForm({
                       onChange={handleChange}
                       placeholder="Full Name *"
                       required
-                      className="w-full bg-[#FAF9F5] border border-[#E2DDD5] rounded-xl px-4 py-3 text-sm sm:text-xs text-[#1C1B19] placeholder:text-stone-light focus:outline-none focus:border-accent transition-colors"
+                      className="w-full bg-[#FAF9F5] border border-[#DCD6CC] rounded-xl px-4 py-3 text-sm sm:text-xs text-[#1C1B19] placeholder:text-[#7A756D] focus:outline-none focus:border-accent transition-colors font-normal"
                     />
 
                     <input
@@ -139,7 +139,7 @@ export default function ContactSplitForm({
                       onChange={handleChange}
                       placeholder="Email Address *"
                       required
-                      className="w-full bg-[#FAF9F5] border border-[#E2DDD5] rounded-xl px-4 py-3 text-sm sm:text-xs text-[#1C1B19] placeholder:text-stone-light focus:outline-none focus:border-accent transition-colors"
+                      className="w-full bg-[#FAF9F5] border border-[#DCD6CC] rounded-xl px-4 py-3 text-sm sm:text-xs text-[#1C1B19] placeholder:text-[#7A756D] focus:outline-none focus:border-accent transition-colors font-normal"
                     />
                   </div>
 
@@ -151,7 +151,7 @@ export default function ContactSplitForm({
                       onChange={handleChange}
                       placeholder="Phone Number *"
                       required
-                      className="w-full bg-[#FAF9F5] border border-[#E2DDD5] rounded-xl px-4 py-3 text-sm sm:text-xs text-[#1C1B19] placeholder:text-stone-light focus:outline-none focus:border-accent transition-colors"
+                      className="w-full bg-[#FAF9F5] border border-[#DCD6CC] rounded-xl px-4 py-3 text-sm sm:text-xs text-[#1C1B19] placeholder:text-[#7A756D] focus:outline-none focus:border-accent transition-colors font-normal"
                     />
 
                     <input
@@ -160,7 +160,7 @@ export default function ContactSplitForm({
                       value={formData.area}
                       onChange={handleChange}
                       placeholder="Carpet Area / Preferred Dates"
-                      className="w-full bg-[#FAF9F5] border border-[#E2DDD5] rounded-xl px-4 py-3 text-sm sm:text-xs text-[#1C1B19] placeholder:text-stone-light focus:outline-none focus:border-accent transition-colors"
+                      className="w-full bg-[#FAF9F5] border border-[#DCD6CC] rounded-xl px-4 py-3 text-sm sm:text-xs text-[#1C1B19] placeholder:text-[#7A756D] focus:outline-none focus:border-accent transition-colors font-normal"
                     />
                   </div>
 
@@ -170,7 +170,7 @@ export default function ContactSplitForm({
                     value={formData.message}
                     onChange={handleChange}
                     placeholder="Describe your architectural priorities, daylight aspirations, or project timeline..."
-                    className="w-full bg-[#FAF9F5] border border-[#E2DDD5] rounded-xl p-4 text-sm sm:text-xs text-[#1C1B19] placeholder:text-stone-light focus:outline-none focus:border-accent transition-colors leading-relaxed"
+                    className="w-full bg-[#FAF9F5] border border-[#DCD6CC] rounded-xl p-4 text-sm sm:text-xs text-[#1C1B19] placeholder:text-[#7A756D] focus:outline-none focus:border-accent transition-colors leading-relaxed font-normal"
                   />
 
                   <button
@@ -192,7 +192,7 @@ export default function ContactSplitForm({
             </div>
 
             {/* Direct WhatsApp Pill at Bottom of Card */}
-            <div className="relative z-10 pt-6 mt-6 border-t border-[#EAE6DF] flex items-center justify-between text-xs text-stone">
+            <div className="relative z-10 pt-6 mt-6 border-t border-[#EAE6DF] flex items-center justify-between text-xs text-[#5C5852] font-medium">
               <span>Prefer immediate discussion?</span>
               <a
                 href="https://wa.me/12125550198"
@@ -222,7 +222,7 @@ export default function ContactSplitForm({
               <p className="font-serif text-2xl leading-snug">
                 "We accept a limited number of turnkey residences each year to ensure personal, uncompromising architectural oversight."
               </p>
-              <span className="text-xs text-[#D8D3CA] block pt-1">
+              <span className="text-xs text-[#F2EEE9] block pt-1 font-medium">
                 Elena Vance &bull; Principal Architect & AIA Fellow
               </span>
             </div>

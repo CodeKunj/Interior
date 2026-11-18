@@ -42,7 +42,7 @@ export default function About() {
             About Atelier Vérité
           </h1>
 
-          <p className="text-stone text-xs sm:text-base md:text-lg font-light leading-relaxed pt-1 sm:pt-2">
+          <p className="text-[#3D3A35] text-xs sm:text-base md:text-lg font-normal leading-relaxed pt-1 sm:pt-2">
             Founded on the principle that the spaces we inhabit shape our internal clarity, we craft contemplative architectural environments across New York, Paris, and Kyoto.
           </p>
         </div>
@@ -70,7 +70,7 @@ export default function About() {
                   Principal & Founder
                 </span>
                 <p className="font-serif text-lg sm:text-xl text-[#1C1B19]">Elena Vance, AIA</p>
-                <p className="text-[11px] text-stone font-light">Architectural Director & Scenographer</p>
+                <p className="text-[11px] text-[#5C5852] font-medium">Architectural Director & Scenographer</p>
               </div>
             </div>
           </div>
@@ -84,7 +84,7 @@ export default function About() {
               "We do not design to impress the eye; we design to quiet the mind."
             </h2>
 
-            <div className="text-stone text-xs sm:text-sm md:text-base leading-relaxed font-light space-y-3 sm:space-y-4">
+            <div className="text-[#3D3A35] text-xs sm:text-sm md:text-base leading-relaxed font-normal space-y-3 sm:space-y-4">
               <p>
                 Trained in architectural preservation in Milan and classical carpentry in Kyoto, Elena Vance established Atelier Vérité in 2011 to bridge the divide between timeless historical craftsmanship and cutting-edge 3D spatial simulation.
               </p>
@@ -96,8 +96,8 @@ export default function About() {
               </p>
             </div>
 
-            <div className="pt-2 sm:pt-4 flex flex-wrap items-center gap-2 sm:gap-6 text-xs text-stone font-mono">
-              <span className="text-accent font-medium">AD100 Designer 2024–2026</span>
+            <div className="pt-2 sm:pt-4 flex flex-wrap items-center gap-2 sm:gap-6 text-xs text-[#5C5852] font-mono font-medium">
+              <span className="text-accent font-semibold">AD100 Designer 2024–2026</span>
               <span className="hidden sm:inline">&bull;</span>
               <span>RIBA International Fellow</span>
             </div>
@@ -111,19 +111,19 @@ export default function About() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12 text-center lg:text-left">
             <div className="space-y-1 sm:space-y-2 border-b lg:border-b-0 lg:border-r border-[#EAE6DF] pb-5 lg:pb-0 lg:pr-6">
               <span className="font-serif text-3xl sm:text-5xl md:text-6xl text-[#1C1B19] block">15+</span>
-              <span className="text-[10px] sm:text-xs uppercase tracking-wider text-stone">Years of Architectural Practice</span>
+              <span className="text-[10px] sm:text-xs uppercase tracking-wider text-[#5C5852] font-medium">Years of Architectural Practice</span>
             </div>
             <div className="space-y-1 sm:space-y-2 border-b lg:border-b-0 lg:border-r border-[#EAE6DF] pb-5 lg:pb-0 lg:pr-6">
               <span className="font-serif text-3xl sm:text-5xl md:text-6xl text-[#1C1B19] block">80+</span>
-              <span className="text-[10px] sm:text-xs uppercase tracking-wider text-stone">Bespoke Sanctuaries Completed</span>
+              <span className="text-[10px] sm:text-xs uppercase tracking-wider text-[#5C5852] font-medium">Bespoke Sanctuaries Completed</span>
             </div>
             <div className="space-y-1 sm:space-y-2 border-b sm:border-b-0 lg:border-r border-[#EAE6DF] pb-5 lg:pb-0 lg:pr-6">
               <span className="font-serif text-3xl sm:text-5xl md:text-6xl text-[#1C1B19] block">3</span>
-              <span className="text-[10px] sm:text-xs uppercase tracking-wider text-stone">Studios: NYC &bull; Paris &bull; Kyoto</span>
+              <span className="text-[10px] sm:text-xs uppercase tracking-wider text-[#5C5852] font-medium">Studios: NYC &bull; Paris &bull; Kyoto</span>
             </div>
             <div className="space-y-1 sm:space-y-2">
               <span className="font-serif text-3xl sm:text-5xl md:text-6xl text-[#1C1B19] block">12</span>
-              <span className="text-[10px] sm:text-xs uppercase tracking-wider text-stone">International Architectural Honors</span>
+              <span className="text-[10px] sm:text-xs uppercase tracking-wider text-[#5C5852] font-medium">International Architectural Honors</span>
             </div>
           </div>
         </div>

@@ -105,15 +105,15 @@ export default function FeaturesMediaGrid({
                 )}
 
                 {/* Ambient Dark Gradient for text readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#141312] via-[#141312]/60 to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-85" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/75 via-45% to-transparent opacity-95 transition-opacity duration-300 group-hover:opacity-100" />
 
                 {/* Text Details */}
                 <div className="relative z-10 space-y-2">
-                  <span className="font-mono text-xs text-accent">0{idx + 1}</span>
-                  <h3 className="font-serif text-2xl md:text-3xl text-white group-hover:text-accent transition-colors">
+                  <span className="font-mono text-xs text-[#E5C158] font-semibold tracking-wider">0{idx + 1}</span>
+                  <h3 className="font-serif text-2xl md:text-3xl text-white group-hover:text-[#E5C158] transition-colors drop-shadow-md">
                     {item.title}
                   </h3>
-                  <p className="text-[#E0DBD3] text-xs sm:text-sm font-light leading-relaxed max-w-md">
+                  <p className="text-[#F5F2EB] text-xs sm:text-sm font-normal leading-relaxed max-w-md drop-shadow-sm">
                     {item.description}
                   </p>
                 </div>

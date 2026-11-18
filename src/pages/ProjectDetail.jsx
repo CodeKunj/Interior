@@ -80,7 +80,7 @@ export default function ProjectDetail() {
             {project.title}
           </h1>
           {project.subtitle && (
-            <p className="text-stone text-sm sm:text-base md:text-xl font-light leading-relaxed">
+            <p className="text-[#3D3A35] text-sm sm:text-base md:text-xl font-normal leading-relaxed">
               {project.subtitle}
             </p>
           )}
@@ -89,28 +89,28 @@ export default function ProjectDetail() {
         {/* Project Key Metadata Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 py-4 sm:py-6 border-y border-[#EAE6DF] text-xs">
           <div>
-            <span className="text-[10px] uppercase tracking-wider text-stone flex items-center space-x-1.5 mb-1 font-medium">
+            <span className="text-[10px] uppercase tracking-wider text-[#5C5852] flex items-center space-x-1.5 mb-1 font-semibold">
               <MapPin className="w-3.5 h-3.5 text-accent" />
               <span>Location</span>
             </span>
             <strong className="text-[#1C1B19] block font-medium">{project.location}</strong>
           </div>
           <div>
-            <span className="text-[10px] uppercase tracking-wider text-stone flex items-center space-x-1.5 mb-1 font-medium">
+            <span className="text-[10px] uppercase tracking-wider text-[#5C5852] flex items-center space-x-1.5 mb-1 font-semibold">
               <Maximize className="w-3.5 h-3.5 text-accent" />
               <span>Carpet Area</span>
             </span>
             <strong className="text-[#1C1B19] block font-medium">{project.area_sqft_formatted || `${project.area_sqft} sq. ft.`}</strong>
           </div>
           <div>
-            <span className="text-[10px] uppercase tracking-wider text-stone flex items-center space-x-1.5 mb-1 font-medium">
+            <span className="text-[10px] uppercase tracking-wider text-[#5C5852] flex items-center space-x-1.5 mb-1 font-semibold">
               <Calendar className="w-3.5 h-3.5 text-accent" />
               <span>Completion</span>
             </span>
             <strong className="text-[#1C1B19] block font-medium">{project.year}</strong>
           </div>
           <div>
-            <span className="text-[10px] uppercase tracking-wider text-stone flex items-center space-x-1.5 mb-1 font-medium">
+            <span className="text-[10px] uppercase tracking-wider text-[#5C5852] flex items-center space-x-1.5 mb-1 font-semibold">
               <Compass className="w-3.5 h-3.5 text-accent" />
               <span>3D Virtual Twin</span>
             </span>
@@ -142,7 +142,7 @@ export default function ProjectDetail() {
             <h2 className="font-serif text-3xl sm:text-4xl text-[#1C1B19]">
               Spatial Ambition & Aspirations
             </h2>
-            <div className="text-stone text-sm leading-relaxed font-light space-y-4 pt-2">
+            <div className="text-[#3D3A35] text-sm leading-relaxed font-normal space-y-4 pt-2">
               <p>{project.client_brief}</p>
             </div>
           </div>
@@ -154,7 +154,7 @@ export default function ProjectDetail() {
             <h2 className="font-serif text-3xl sm:text-4xl text-[#1C1B19]">
               Materiality & Execution
             </h2>
-            <div className="text-stone text-sm leading-relaxed font-light space-y-4 pt-2">
+            <div className="text-[#3D3A35] text-sm leading-relaxed font-normal space-y-4 pt-2">
               <p>{project.design_solution}</p>
             </div>
           </div>
