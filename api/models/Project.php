@@ -48,12 +48,49 @@ class Project extends BaseModel {
     }
 
     /**
-     * Find single project by URL slug
+     * Find single project by URL slug with alias resilience
      */
     public function findBySlug(string $slug): ?array {
+        $slug = trim($slug);
         $sql = "SELECT * FROM projects WHERE slug = :slug LIMIT 1";
         $project = $this->fetchOne($sql, [':slug' => $slug]);
-        return $project ? $this->formatProject($project) : null;
+        if ($project) {
+            return $this->formatProject($project);
+        }
+
+        // Direct alias mappings for journeys & bento cards
+        $aliasMap = [
+            'villa-serenita-amalfi'       => 'villa-serenita',
+            'villa-serenita'              => 'villa-serenita-amalfi',
+            'kyoto-sanctuary-residence'   => 'kyoto-sanctuary',
+            'kyoto-sanctuary'             => 'kyoto-sanctuary-residence',
+            'the-mayfair-heritage-salon'  => 'mayfair-heritage-salon',
+            'mayfair-heritage-salon'      => 'the-mayfair-heritage-salon',
+            'lumina-flagship-ateliers'    => 'lumina-haute-parfumerie',
+            'lumina-haute-parfumerie'     => 'lumina-flagship-ateliers',
+            'bel-air-promontory-villa'    => 'bel-air-promontory',
+            'bel-air-promontory'          => 'bel-air-promontory-villa',
+            'interactive-3d-digital-twins'=> 'the-tribeca-loft'
+        ];
+
+        if (isset($aliasMap[$slug])) {
+            $fallback = $this->fetchOne($sql, [':slug' => $aliasMap[$slug]]);
+            if ($fallback) {
+                return $this->formatProject($fallback);
+            }
+        }
+
+        // Fuzzy fallback: match partial slug
+        $fuzzySql = "SELECT * FROM projects WHERE slug LIKE :fuzzy OR :raw LIKE CONCAT('%', slug, '%') LIMIT 1";
+        $fuzzy = $this->fetchOne($fuzzySql, [
+            ':fuzzy' => '%' . trim($slug, '-') . '%',
+            ':raw'   => $slug
+        ]);
+        if ($fuzzy) {
+            return $this->formatProject($fuzzy);
+        }
+
+        return null;
     }
 
     /**
