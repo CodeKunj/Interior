@@ -148,19 +148,6 @@ html.lenis, html.lenis body {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Split-text roll animation utility */
-.roll-text {
-  display: inline-flex;
-  overflow: hidden;
-}
-.roll-text span {
-  display: inline-block;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.group:hover .roll-text span {
-  transform: translateY(-100%);
-}
-
 /* Draggable slider cursor */
 .cursor-ew-resize {
   cursor: ew-resize;

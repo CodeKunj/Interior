@@ -3,39 +3,6 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowUpRight, Compass } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-function SplitTextRoll({ text }) {
-  if (!text) return null;
-  return (
-    <span className="roll-text">
-      <span className="inline-block transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-full">
-        {text.split('').map((char, index) => (
-          <span
-            key={index}
-            className="inline-block"
-            style={{ transitionDelay: `${index * 8}ms` }}
-          >
-            {char === ' ' ? '\u00A0' : char}
-          </span>
-        ))}
-      </span>
-      <span
-        aria-hidden="true"
-        className="absolute top-full left-0 inline-block transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-full"
-      >
-        {text.split('').map((char, index) => (
-          <span
-            key={index}
-            className="inline-block"
-            style={{ transitionDelay: `${index * 8}ms` }}
-          >
-            {char === ' ' ? '\u00A0' : char}
-          </span>
-        ))}
-      </span>
-    </span>
-  );
-}
-
 const FALLBACK_IMAGES = [
   'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2400&q=90',
   'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2400&q=90',
@@ -163,18 +130,18 @@ export default function HeroExpand({
         >
           <Link
             to={primaryButton.href}
-            className="group inline-flex items-center justify-center space-x-3 bg-white text-[#1C1B19] hover:bg-accent hover:text-white px-7 sm:px-9 py-3.5 sm:py-4 rounded-full text-xs uppercase tracking-[0.16em] sm:tracking-[0.2em] font-semibold transition-all duration-300 shadow-[0_12px_32px_rgba(0,0,0,0.4)] hover:shadow-2xl text-center"
+            className="group inline-flex items-center justify-center space-x-3 bg-white text-[#1C1B19] hover:bg-accent hover:text-white px-7 sm:px-9 py-3.5 sm:py-4 rounded-full text-xs uppercase tracking-[0.16em] sm:tracking-[0.2em] font-semibold transition-all duration-300 shadow-[0_12px_32px_rgba(0,0,0,0.4)] hover:shadow-2xl hover:scale-[1.02] active:scale-[0.98] text-center"
           >
-            <SplitTextRoll text={primaryButton.text} />
-            <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            <span>{primaryButton.text}</span>
+            <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
 
           <Link
             to={secondaryButton.href}
-            className="group inline-flex items-center justify-center space-x-3 bg-black/40 hover:bg-black/60 text-white border border-white/30 px-7 sm:px-9 py-3.5 sm:py-4 rounded-full text-xs uppercase tracking-[0.16em] sm:tracking-[0.2em] font-medium backdrop-blur-md transition-all duration-300 shadow-[0_8px_24px_rgba(0,0,0,0.3)] text-center"
+            className="group inline-flex items-center justify-center space-x-3 bg-black/40 hover:bg-black/60 text-white border border-white/30 hover:border-white/60 px-7 sm:px-9 py-3.5 sm:py-4 rounded-full text-xs uppercase tracking-[0.16em] sm:tracking-[0.2em] font-medium backdrop-blur-md transition-all duration-300 shadow-[0_8px_24px_rgba(0,0,0,0.3)] hover:scale-[1.02] active:scale-[0.98] text-center"
           >
-            <Compass className="w-4 h-4 text-[#E5C158]" />
-            <SplitTextRoll text={secondaryButton.text} />
+            <Compass className="w-4 h-4 text-[#E5C158] transition-transform duration-500 group-hover:rotate-45" />
+            <span>{secondaryButton.text}</span>
           </Link>
         </motion.div>
       </motion.div>
