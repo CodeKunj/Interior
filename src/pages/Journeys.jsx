@@ -1,97 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, Compass, SplitSquareVertical, MapPin, Calendar, Maximize2, Layers } from 'lucide-react';
 import BeforeAfterSlider from '../components/BeforeAfterSlider';
-
-const JOURNEYS_DATA = [
-  {
-    id: 'the-tribeca-loft',
-    title: 'The Tribeca Loft Revival',
-    tag: 'Industrial Heritage',
-    location: 'Tribeca, New York',
-    area: '4,200 sq. ft.',
-    duration: '14 Months Turnkey',
-    heroImage: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=85',
-    overview: 'A full-floor conversion within a protected 19th-century cast-iron warehouse. Stripping away decades of ad-hoc drywall to reveal historical timber pillars, softened with monolithic Roman travertine and micro-perforated acoustic linen walls.',
-    materials: ['Roman Travertine Islands', 'Smoked French Oak', 'Acoustic Linen Drapery', 'Aged Unlacquered Brass'],
-    has3DTour: true,
-    slug: 'the-tribeca-loft'
-  },
-  {
-    id: 'villa-serenita-amalfi',
-    title: 'Amalfi Clifftop Pergola & Infinity Sanctuary',
-    tag: 'Turnkey Coastal',
-    location: 'Amalfi Coast, Italy',
-    area: '6,800 sq. ft.',
-    duration: '18 Months Turnkey',
-    heroImage: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1600&q=85',
-    overview: 'Perched over the Mediterranean, this multi-tiered clifftop villa required structural stabilization and bespoke marine-grade bronze pivot apertures. Designed to maximize coastal breezes and golden afternoon reflection across honed limestone terraces.',
-    materials: ['Honed Vicenza Limestone', 'Naval Bronze Portals', 'Rough-Hewn Tufa Stone', 'Bleached Chestnut'],
-    has3DTour: true,
-    slug: 'villa-serenita-amalfi'
-  },
-  {
-    id: 'kyoto-sanctuary-residence',
-    title: 'Kyoto Hinoki & Moss Garden Sanctuary',
-    tag: 'Wabi-Sabi Minimalism',
-    location: 'Higashiyama, Kyoto',
-    area: '3,400 sq. ft.',
-    duration: '12 Months Turnkey',
-    heroImage: 'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=1600&q=85',
-    overview: 'Created in close collaboration with Kyoto master carpenters (Miyadaiku), balancing traditional Ma negative space with hidden geothermal environmental systems. Hand-carved hinoki timber joinery and raw washi acoustic screens.',
-    materials: ['Japanese Hinoki Cedar', 'Kurotani Washi Screens', 'Charred Yakisugi Oak', 'River-Honed Basalt'],
-    has3DTour: true,
-    slug: 'kyoto-sanctuary-residence'
-  },
-  {
-    id: 'the-mayfair-heritage-salon',
-    title: 'Mayfair Georgian Drawing Room Conservation',
-    tag: 'Historic Restoration',
-    location: 'Mayfair, London',
-    area: '5,100 sq. ft.',
-    duration: '16 Months Turnkey',
-    heroImage: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=85',
-    overview: 'Painstaking restoration of 18th-century plaster friezes and Calacatta Viola fireplaces, seamlessly paired with contemporary concealed kitchen joinery and custom bronze exhibition vitrines.',
-    materials: ['Calacatta Viola Marble', 'Cornice Plaster Reliefs', 'Burr Walnut Paneling', 'Smoked Mirror Glass'],
-    has3DTour: false,
-    slug: 'the-mayfair-heritage-salon'
-  },
-  {
-    id: 'lumina-flagship-ateliers',
-    title: 'Lumina Flagship Parfumerie, Paris',
-    tag: 'Sensory Commercial',
-    location: '1er Arrondissement, Paris',
-    area: '2,900 sq. ft.',
-    duration: '8 Months Turnkey',
-    heroImage: 'https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=1600&q=85',
-    overview: 'An experiential fragrance salon featuring a monumental curving counter carved from solid Navona travertine in central Paris. Tuned acoustics and concealed scent diffusion chambers create an ethereal oasis.',
-    materials: ['Solid Navona Travertine', 'Champagne Anodized Aluminum', 'Velvet Acoustic Plaster', 'Backlit Alabaster'],
-    has3DTour: false,
-    slug: 'lumina-flagship-ateliers'
-  },
-  {
-    id: 'bel-air-promontory-villa',
-    title: 'Bel Air Motorized Canyon Glass Pavilion',
-    tag: 'Modernist Turnkey',
-    location: 'Bel Air, California',
-    area: '8,200 sq. ft.',
-    duration: '22 Months Turnkey',
-    heroImage: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=85',
-    overview: 'Blurring the boundary between interior luxury and the dramatic California canyon landscape through 14-foot motorized glass pocket portals, cantilevered infinity reflections, and seamless micro-cement flooring.',
-    materials: ['Micro-Cement Seamless Floors', 'Thermally Broken Glass Portals', 'Smoked Eucalyptus Millwork', 'Honed Basalt'],
-    has3DTour: true,
-    slug: 'bel-air-promontory-villa'
-  }
-];
+import { getJourneys } from '../services/api';
 
 export default function Journeys() {
+  const [journeys, setJourneys] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [selectedTag, setSelectedTag] = useState('All');
 
-  const tags = ['All', 'Industrial Heritage', 'Turnkey Coastal', 'Wabi-Sabi Minimalism', 'Historic Restoration', 'Modernist Turnkey'];
+  useEffect(() => {
+    let isMounted = true;
+    async function loadJourneys() {
+      try {
+        const data = await getJourneys();
+        if (isMounted) {
+          setJourneys(data);
+        }
+      } catch (err) {
+        console.error('Failed to load journeys from API:', err);
+      } finally {
+        if (isMounted) setLoading(false);
+      }
+    }
+    loadJourneys();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const tags = ['All', ...Array.from(new Set(journeys.map(j => j.tag).filter(Boolean)))];
 
   const filteredJourneys = selectedTag === 'All'
-    ? JOURNEYS_DATA
-    : JOURNEYS_DATA.filter(j => j.tag === selectedTag);
+    ? journeys
+    : journeys.filter(j => j.tag === selectedTag);
 
   return (
     <div className="pt-28 sm:pt-36 pb-20 sm:pb-32 space-y-16 sm:space-y-24 md:space-y-32 bg-transparent min-h-screen text-[#1C1B19] relative">
@@ -112,22 +55,24 @@ export default function Journeys() {
         </div>
 
         {/* Tag Filters */}
-        <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-[#EAE6DF] flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none sm:flex-wrap">
-          <span className="text-[11px] sm:text-xs uppercase tracking-wider text-stone mr-2 whitespace-nowrap flex-shrink-0">Typology:</span>
-          {tags.map((tag) => (
-            <button
-              key={tag}
-              onClick={() => setSelectedTag(tag)}
-              className={`text-[11px] sm:text-xs uppercase tracking-[0.14em] sm:tracking-[0.16em] px-3.5 sm:px-5 py-1.5 sm:py-2.5 rounded-full border transition-all duration-300 font-medium whitespace-nowrap flex-shrink-0 ${
-                selectedTag === tag
-                  ? 'bg-[#1C1B19] text-[#FAF9F5] border-[#1C1B19] shadow-md'
-                  : 'bg-white text-stone border-[#E2DDD5] hover:border-accent hover:text-[#1C1B19]'
-              }`}
-            >
-              {tag}
-            </button>
-          ))}
-        </div>
+        {tags.length > 1 && (
+          <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-[#EAE6DF] flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none sm:flex-wrap">
+            <span className="text-[11px] sm:text-xs uppercase tracking-wider text-stone mr-2 whitespace-nowrap flex-shrink-0">Typology:</span>
+            {tags.map((tag) => (
+              <button
+                key={tag}
+                onClick={() => setSelectedTag(tag)}
+                className={`text-[11px] sm:text-xs uppercase tracking-[0.14em] sm:tracking-[0.16em] px-3.5 sm:px-5 py-1.5 sm:py-2.5 rounded-full border transition-all duration-300 font-medium whitespace-nowrap flex-shrink-0 ${
+                  selectedTag === tag
+                    ? 'bg-[#1C1B19] text-[#FAF9F5] border-[#1C1B19] shadow-md'
+                    : 'bg-white text-stone border-[#E2DDD5] hover:border-accent hover:text-[#1C1B19]'
+                }`}
+              >
+                {tag}
+              </button>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* 2. Interactive Transformation Spotlight (Before & After) */}
@@ -175,17 +120,19 @@ export default function Journeys() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
           {filteredJourneys.map((journey, idx) => (
             <article
-              key={journey.id}
+              key={journey.id || journey.slug || idx}
               className="group flex flex-col justify-between rounded-2xl border border-[#E5E0D8] bg-white overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 hover:border-accent/50"
             >
               {/* Journey Photography Frame */}
               <div className="relative aspect-[16/10] overflow-hidden bg-[#FAF9F5]">
-                <img
-                  src={journey.heroImage}
-                  alt={journey.title}
-                  loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                />
+                {journey.heroImage && (
+                  <img
+                    src={journey.heroImage}
+                    alt={journey.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60" />
 
                 {/* Top Badges */}
@@ -227,7 +174,7 @@ export default function Journeys() {
                   </div>
 
                   <h3 className="font-serif text-xl sm:text-2xl md:text-3xl text-[#1C1B19] group-hover:text-accent transition-colors">
-                    <Link to={`/work/${journey.slug}`}>{journey.title}</Link>
+                    <Link to={journey.href || `/work/${journey.slug}`}>{journey.title}</Link>
                   </h3>
 
                   <p className="text-stone text-xs md:text-sm font-light leading-relaxed">
@@ -236,27 +183,29 @@ export default function Journeys() {
                 </div>
 
                 {/* Materials Used Pills */}
-                <div className="pt-4 border-t border-[#EAE6DF] space-y-2 sm:space-y-3">
-                  <span className="text-[10px] uppercase tracking-wider text-[#1C1B19] font-semibold flex items-center space-x-1.5">
-                    <Layers className="w-3 h-3 text-accent" />
-                    <span>Selected Materiality:</span>
-                  </span>
-                  <div className="flex flex-wrap gap-1.5">
-                    {journey.materials.map((m, mIdx) => (
-                      <span
-                        key={mIdx}
-                        className="text-[10px] px-2.5 py-1 rounded-full bg-[#FAF9F5] text-stone border border-[#E2DDD5]"
-                      >
-                        {m}
-                      </span>
-                    ))}
+                {Array.isArray(journey.materials) && journey.materials.length > 0 && (
+                  <div className="pt-4 border-t border-[#EAE6DF] space-y-2 sm:space-y-3">
+                    <span className="text-[10px] uppercase tracking-wider text-[#1C1B19] font-semibold flex items-center space-x-1.5">
+                      <Layers className="w-3 h-3 text-accent" />
+                      <span>Selected Materiality:</span>
+                    </span>
+                    <div className="flex flex-wrap gap-1.5">
+                      {journey.materials.map((m, mIdx) => (
+                        <span
+                          key={mIdx}
+                          className="text-[10px] px-2.5 py-1 rounded-full bg-[#FAF9F5] text-stone border border-[#E2DDD5]"
+                        >
+                          {m}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
 
                 {/* Card Action Link */}
                 <div className="pt-2">
                   <Link
-                    to={`/work/${journey.slug}`}
+                    to={journey.href || `/work/${journey.slug}`}
                     className="inline-flex items-center space-x-2 text-xs uppercase tracking-[0.14em] sm:tracking-[0.18em] font-semibold text-[#1C1B19] hover:text-accent transition-colors"
                   >
                     <span>Inspect Full Case Study & 3D Tour</span>

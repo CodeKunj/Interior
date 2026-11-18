@@ -22,8 +22,10 @@ deployment:
       # 1. Ensure required directories exist
       /bin/mkdir -p "$TARGET/uploads/projects" "$TARGET/uploads/gallery" "$TARGET/uploads/before-after" "$TARGET/uploads/brand" "$TARGET/uploads/press"
 
-      # 2. Deploy React compiled production files directly to web root
-      if [ -d "dist" ]; then
+      # 2. Deploy React compiled production files (only copy if TARGET is a separate directory)
+      REPO_DIR=$(pwd -P)
+      TARGET_DIR=$(cd "$TARGET" 2>/dev/null && pwd -P || echo "$TARGET")
+      if [ "$REPO_DIR" != "$TARGET_DIR" ] && [ -d "dist" ]; then
         echo "Copying compiled production assets from dist/ to $TARGET/..."
         /bin/cp -Rf dist/* "$TARGET/"
       fi

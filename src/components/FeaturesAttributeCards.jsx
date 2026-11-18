@@ -28,7 +28,22 @@ export default function FeaturesAttributeCards({
 
         {/* 3-Column Attribute Card Grid (Crisp White on Soft Travertine) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {projects.map((project) => (
+          {projects.length === 0 ? (
+            [1, 2, 3].map((n) => (
+              <div
+                key={n}
+                className="rounded-2xl border border-[#E5E0D8] bg-white overflow-hidden shadow-sm animate-pulse min-h-[380px] flex flex-col justify-between"
+              >
+                <div className="aspect-[4/3] bg-[#EAE6DF]" />
+                <div className="p-6 space-y-4">
+                  <div className="h-6 bg-[#EAE6DF] rounded w-3/4" />
+                  <div className="h-4 bg-[#EAE6DF] rounded w-1/2" />
+                  <div className="pt-4 border-t border-[#EAE6DF] h-4 bg-[#EAE6DF] rounded w-full" />
+                </div>
+              </div>
+            ))
+          ) : (
+            projects.map((project) => (
             <article
               key={project.id || project.slug}
               className="group flex flex-col justify-between rounded-2xl border border-[#E5E0D8] bg-white hover:border-accent/50 transition-all duration-500 overflow-hidden shadow-[0_8px_25px_rgba(28,27,25,0.05)] hover:shadow-2xl"
@@ -105,7 +120,7 @@ export default function FeaturesAttributeCards({
                 </div>
               </div>
             </article>
-          ))}
+          )))}
         </div>
 
         {/* View All Works CTA */}

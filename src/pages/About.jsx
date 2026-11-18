@@ -1,16 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import marbleTexture from '../assets/textures/marble-calacatta.webp';
-
-const PRESS_MENTIONS = [
-  { outlet: 'Architectural Digest', quote: 'A masterclass in quiet luxury and architectural restraint.' },
-  { outlet: 'Wallpaper* Magazine', quote: 'The digital twin methodology that is redefining turnkey interior architecture.' },
-  { outlet: 'Elle Décor International', quote: 'Sanctuaries carved from stone, linen, and daylight.' },
-  { outlet: 'Dezeen Awards', quote: 'Best Residential Transformation — The Tribeca Loft.' }
-];
+import { getPressMentions } from '../services/api';
 
 export default function About() {
+  const [pressMentions, setPressMentions] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let isMounted = true;
+    async function loadPress() {
+      try {
+        const data = await getPressMentions();
+        if (isMounted) {
+          setPressMentions(data);
+        }
+      } catch (err) {
+        console.error('Failed to load press mentions from API:', err);
+      } finally {
+        if (isMounted) setLoading(false);
+      }
+    }
+    loadPress();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   return (
     <div className="pt-28 sm:pt-36 pb-20 sm:pb-32 space-y-16 sm:space-y-24 md:space-y-36 bg-transparent min-h-screen text-[#1C1B19] relative">
       {/* 1. Header Section */}
@@ -87,7 +105,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* 3. Studio Metrics Strip (Soft Travertine Strip) */}
+      {/* 3. Studio Metrics Strip */}
       <section className="py-14 sm:py-20 px-4 sm:px-6 md:px-12 bg-[#F5F3EE] border-y border-[#EAE6DF]">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12 text-center lg:text-left">
@@ -112,35 +130,37 @@ export default function About() {
       </section>
 
       {/* 4. Press & Architectural Publications */}
-      <section className="max-w-6xl mx-auto px-6 md:px-12 space-y-12">
-        <div className="text-center space-y-3 max-w-2xl mx-auto">
-          <div className="pill-tag bg-white shadow-sm">
-            <span>Critical Reception</span>
+      {pressMentions.length > 0 && (
+        <section className="max-w-6xl mx-auto px-6 md:px-12 space-y-12">
+          <div className="text-center space-y-3 max-w-2xl mx-auto">
+            <div className="pill-tag bg-white shadow-sm">
+              <span>Critical Reception</span>
+            </div>
+
+            <h2 className="font-serif text-4xl text-[#1C1B19]">
+              Press & Architectural Honors
+            </h2>
           </div>
 
-          <h2 className="font-serif text-4xl text-[#1C1B19]">
-            Press & Architectural Honors
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {PRESS_MENTIONS.map((item, idx) => (
-            <div
-              key={idx}
-              className="rounded-2xl border border-[#E5E0D8] bg-white p-8 flex flex-col justify-between space-y-6 hover:border-accent/60 transition-colors shadow-sm hover:shadow-xl"
-            >
-              <p className="font-serif text-lg text-[#1C1B19] italic leading-relaxed">
-                "{item.quote}"
-              </p>
-              <div className="border-t border-[#EAE6DF] pt-4">
-                <strong className="text-xs uppercase tracking-wider text-accent block font-medium">
-                  {item.outlet}
-                </strong>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {pressMentions.map((item, idx) => (
+              <div
+                key={item.id || idx}
+                className="rounded-2xl border border-[#E5E0D8] bg-white p-8 flex flex-col justify-between space-y-6 hover:border-accent/60 transition-colors shadow-sm hover:shadow-xl"
+              >
+                <p className="font-serif text-lg text-[#1C1B19] italic leading-relaxed">
+                  "{item.quote}"
+                </p>
+                <div className="border-t border-[#EAE6DF] pt-4">
+                  <strong className="text-xs uppercase tracking-wider text-accent block font-medium">
+                    {item.outlet} {item.year ? `(${item.year})` : ''}
+                  </strong>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-      </section>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* 5. Consultation CTA */}
       <section className="max-w-6xl mx-auto px-6 md:px-12">

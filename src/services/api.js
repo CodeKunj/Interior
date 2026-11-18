@@ -1,9 +1,8 @@
 /**
  * API Service for Studio Atelier Vérité
- * Connects to PHP 8+ REST API endpoints with seamless fallback to curated mock data for local Vite dev.
+ * Connects directly to PHP 8+ REST API endpoints.
+ * All project data, journeys, services, testimonials, and FAQs are loaded dynamically from MySQL.
  */
-
-import { MOCK_PROJECTS } from './mockData';
 
 const API_BASE = '/api';
 
@@ -25,19 +24,10 @@ export async function getProjects(filters = {}) {
     if (data && Array.isArray(data.data)) {
       return data.data;
     }
-    throw new Error('Invalid JSON format from API');
+    return [];
   } catch (err) {
-    // Graceful fallback to rich mock data
-    // console.info('[Atelier API Fallback] Using local mock dataset:', err.message);
-    let results = [...MOCK_PROJECTS];
-
-    if (featured) {
-      results = results.filter(p => p.featured);
-    }
-    if (category && category.toLowerCase() !== 'all') {
-      results = results.filter(p => p.category.toLowerCase() === category.toLowerCase());
-    }
-    return results;
+    console.error('[Atelier API] Error fetching projects:', err);
+    return [];
   }
 }
 
@@ -54,16 +44,70 @@ export async function getProjectBySlug(slug) {
     if (data && data.success && data.data) {
       return data.data;
     }
-    throw new Error('Project not found on server');
+    return null;
   } catch (err) {
-    // Graceful fallback to mock data
-    // console.info('[Atelier API Fallback] Fetching single project from mock dataset:', slug);
-    const found = MOCK_PROJECTS.find(p => p.slug === slug);
-    if (found) return found;
-
-    // Default to first project if slug not found
-    return MOCK_PROJECTS[0];
+    console.error('[Atelier API] Error fetching project detail:', err);
+    return null;
   }
+}
+
+/**
+ * Generic content fetcher for dynamic website sections from /api/content.php
+ * @param {string} section - 'journeys' | 'services' | 'process' | 'testimonials' | 'faqs' | 'disciplines' | 'press' | 'all'
+ */
+export async function getContent(section = 'all') {
+  const url = `${API_BASE}/content.php?section=${encodeURIComponent(section)}`;
+
+  try {
+    const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
+    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+    const data = await res.json();
+    if (data && data.success && data.data !== undefined) {
+      return data.data;
+    }
+    return section === 'all' ? {} : [];
+  } catch (err) {
+    console.error(`[Atelier API] Error fetching content section "${section}":`, err);
+    return section === 'all' ? {} : [];
+  }
+}
+
+/**
+ * Specialized Content Helpers
+ */
+export async function getJourneys() {
+  const data = await getContent('journeys');
+  return Array.isArray(data) ? data : [];
+}
+
+export async function getServices() {
+  const data = await getContent('services');
+  return Array.isArray(data) ? data : [];
+}
+
+export async function getProcessSteps() {
+  const data = await getContent('process');
+  return Array.isArray(data) ? data : [];
+}
+
+export async function getTestimonials() {
+  const data = await getContent('testimonials');
+  return Array.isArray(data) ? data : [];
+}
+
+export async function getFaqs() {
+  const data = await getContent('faqs');
+  return Array.isArray(data) ? data : [];
+}
+
+export async function getDisciplines() {
+  const data = await getContent('disciplines');
+  return Array.isArray(data) ? data : [];
+}
+
+export async function getPressMentions() {
+  const data = await getContent('press');
+  return Array.isArray(data) ? data : [];
 }
 
 /**
@@ -88,14 +132,6 @@ export async function submitInquiry(payload) {
     }
     return data;
   } catch (err) {
-    // If running in local Vite dev without PHP server active, simulate successful receipt
-    // console.info('[Atelier API Fallback] Simulating consultation submission:', payload);
-    await new Promise(resolve => setTimeout(resolve, 600)); // realistic feel
-
-    return {
-      success: true,
-      message: 'Thank you. Your consultation request has been received. Our senior design team will contact you within 24 business hours.',
-      inquiry_id: Math.floor(Math.random() * 9000) + 1000
-    };
+    throw err;
   }
 }

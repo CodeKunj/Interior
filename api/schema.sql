@@ -380,6 +380,319 @@ INSERT INTO `project_gallery` (`project_id`, `image_url`, `caption`, `display_or
 (6, 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1600&q=85', 'Cantilevered terrace dining overlooking the Los Angeles canyon skyline', 2);
 
 -- ------------------------------------------------------------------------------
+-- 4. Create Dynamic Content Tables (Journeys, Services, Process, Testimonials, FAQs, Disciplines, Press)
+-- ------------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `journeys` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `slug` VARCHAR(120) NOT NULL UNIQUE,
+    `title` VARCHAR(255) NOT NULL,
+    `tag` VARCHAR(100) NOT NULL,
+    `location` VARCHAR(150) NOT NULL,
+    `area` VARCHAR(50) NOT NULL,
+    `duration` VARCHAR(100) NOT NULL,
+    `hero_image` VARCHAR(512) NOT NULL,
+    `overview` TEXT NOT NULL,
+    `materials` TEXT NOT NULL,
+    `span` VARCHAR(50) DEFAULT 'md:col-span-4',
+    `has_3d_tour` TINYINT(1) DEFAULT 0,
+    `display_order` INT DEFAULT 0,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX `idx_journey_slug` (`slug`),
+    INDEX `idx_journey_order` (`display_order`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `services` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `service_key` VARCHAR(100) NOT NULL UNIQUE,
+    `title` VARCHAR(255) NOT NULL,
+    `subtitle` VARCHAR(255) NOT NULL,
+    `description` TEXT NOT NULL,
+    `deliverables` TEXT NOT NULL,
+    `image_url` VARCHAR(512) NOT NULL,
+    `display_order` INT DEFAULT 0,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX `idx_service_key` (`service_key`),
+    INDEX `idx_service_order` (`display_order`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `process_steps` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `step_number` VARCHAR(10) NOT NULL UNIQUE,
+    `title` VARCHAR(255) NOT NULL,
+    `phase` VARCHAR(100) NOT NULL,
+    `description` TEXT NOT NULL,
+    `display_order` INT DEFAULT 0,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX `idx_step_order` (`display_order`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `testimonials` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `quote` TEXT NOT NULL,
+    `author` VARCHAR(150) NOT NULL,
+    `role` VARCHAR(150) NOT NULL,
+    `project` VARCHAR(150) NOT NULL,
+    `avatar_url` VARCHAR(512) NULL,
+    `display_order` INT DEFAULT 0,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX `idx_testimonial_order` (`display_order`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `faqs` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `question` VARCHAR(500) NOT NULL,
+    `answer` TEXT NOT NULL,
+    `category` VARCHAR(100) DEFAULT 'General',
+    `display_order` INT DEFAULT 0,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX `idx_faq_order` (`display_order`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `disciplines` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `title` VARCHAR(255) NOT NULL,
+    `description` TEXT NOT NULL,
+    `image_url` VARCHAR(512) NOT NULL,
+    `grid_span` VARCHAR(50) DEFAULT 'lg:col-span-4',
+    `display_order` INT DEFAULT 0,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX `idx_discipline_order` (`display_order`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `press_mentions` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `outlet` VARCHAR(150) NOT NULL,
+    `quote` TEXT NOT NULL,
+    `year` VARCHAR(50) NULL,
+    `display_order` INT DEFAULT 0,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX `idx_press_order` (`display_order`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ------------------------------------------------------------------------------
+-- Seed Architectural Journeys
+-- ------------------------------------------------------------------------------
+INSERT INTO `journeys` 
+(`id`, `slug`, `title`, `tag`, `location`, `area`, `duration`, `hero_image`, `overview`, `materials`, `span`, `has_3d_tour`, `display_order`)
+VALUES
+(
+    1,
+    'the-tribeca-loft',
+    'The Tribeca Loft Revival',
+    'Industrial Heritage',
+    'Tribeca, New York',
+    '4,200 sq. ft.',
+    '14 Months Turnkey',
+    'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=85',
+    'A full-floor conversion within a protected 19th-century cast-iron warehouse. Stripping away decades of ad-hoc drywall to reveal historical timber pillars, softened with monolithic Roman travertine and micro-perforated acoustic linen walls.',
+    '["Roman Travertine Islands", "Smoked French Oak", "Acoustic Linen Drapery", "Aged Unlacquered Brass"]',
+    'md:col-span-4',
+    1,
+    1
+),
+(
+    2,
+    'villa-serenita-amalfi',
+    'Amalfi Clifftop Pergola & Infinity Sanctuary',
+    'Turnkey Coastal',
+    'Amalfi Coast, Italy',
+    '6,800 sq. ft.',
+    '18 Months Turnkey',
+    'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1600&q=85',
+    'Perched over the Mediterranean, this multi-tiered clifftop villa required structural stabilization and bespoke marine-grade bronze pivot apertures. Designed to maximize coastal breezes and golden afternoon reflection across honed limestone terraces.',
+    '["Honed Vicenza Limestone", "Naval Bronze Portals", "Rough-Hewn Tufa Stone", "Bleached Chestnut"]',
+    'md:col-span-8',
+    1,
+    2
+),
+(
+    3,
+    'kyoto-sanctuary-residence',
+    'Kyoto Hinoki & Moss Garden Sanctuary',
+    'Wabi-Sabi Minimalism',
+    'Higashiyama, Kyoto',
+    '3,400 sq. ft.',
+    '12 Months Turnkey',
+    'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=1600&q=85',
+    'Created in close collaboration with Kyoto master carpenters (Miyadaiku), balancing traditional Ma negative space with hidden geothermal environmental systems. Hand-carved hinoki timber joinery and raw washi acoustic screens.',
+    '["Japanese Hinoki Cedar", "Kurotani Washi Screens", "Charred Yakisugi Oak", "River-Honed Basalt"]',
+    'md:col-span-6',
+    1,
+    3
+),
+(
+    4,
+    'the-mayfair-heritage-salon',
+    'Mayfair Georgian Drawing Room Conservation',
+    'Historic Restoration',
+    'Mayfair, London',
+    '5,100 sq. ft.',
+    '16 Months Turnkey',
+    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=85',
+    'Painstaking restoration of 18th-century plaster friezes and Calacatta Viola fireplaces, seamlessly paired with contemporary concealed kitchen joinery and custom bronze exhibition vitrines.',
+    '["Calacatta Viola Marble", "Cornice Plaster Reliefs", "Burr Walnut Paneling", "Smoked Mirror Glass"]',
+    'md:col-span-6',
+    0,
+    4
+),
+(
+    5,
+    'lumina-flagship-ateliers',
+    'Lumina Flagship Parfumerie, Paris',
+    'Sensory Commercial',
+    '1er Arrondissement, Paris',
+    '2,900 sq. ft.',
+    '8 Months Turnkey',
+    'https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=1600&q=85',
+    'An experiential fragrance salon featuring a monumental curving counter carved from solid Navona travertine in central Paris. Tuned acoustics and concealed scent diffusion chambers create an ethereal oasis.',
+    '["Solid Navona Travertine", "Champagne Anodized Aluminum", "Velvet Acoustic Plaster", "Backlit Alabaster"]',
+    'md:col-span-4',
+    0,
+    5
+),
+(
+    6,
+    'bel-air-promontory-villa',
+    'Bel Air Motorized Canyon Glass Pavilion',
+    'Modernist Turnkey',
+    'Bel Air, California',
+    '8,200 sq. ft.',
+    '22 Months Turnkey',
+    'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=85',
+    'Blurring the boundary between interior luxury and the dramatic California canyon landscape through 14-foot motorized glass pocket portals, cantilevered infinity reflections, and seamless micro-cement flooring.',
+    '["Micro-Cement Seamless Floors", "Thermally Broken Glass Portals", "Smoked Eucalyptus Millwork", "Honed Basalt"]',
+    'md:col-span-4',
+    1,
+    6
+),
+(
+    7,
+    'interactive-3d-digital-twins',
+    'Interactive 3D Digital Twin Simulation',
+    'Virtual Twin Technology',
+    'Global / Virtual Studio',
+    'All Projects',
+    'Pre-construction',
+    'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=85',
+    'Every commission includes a fully navigable 3D digital twin so you can test sightlines, natural daylight trajectory, and acoustic isolation before physical build.',
+    '["Matterport Pro3 LiDAR", "High-Fidelity Photogrammetry", "Ray-Traced Light Engines", "VR Headset Compatible"]',
+    'md:col-span-4',
+    1,
+    7
+)
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `overview` = VALUES(`overview`);
+
+-- ------------------------------------------------------------------------------
+-- Seed Services & Methodology
+-- ------------------------------------------------------------------------------
+INSERT INTO `services`
+(`id`, `service_key`, `title`, `subtitle`, `description`, `deliverables`, `image_url`, `display_order`)
+VALUES
+(
+    1,
+    'turnkey-execution',
+    'Turnkey Interior Execution',
+    'From Bare Shell to Flawless Handover',
+    'A holistic, white-glove design-and-build experience. We take absolute stewardship of civil alterations, MEP coordination, acoustic engineering, artisan finishes, and bespoke furniture placement.',
+    '["Comprehensive structural & MEP architectural documentation", "Dedicated on-site senior project manager & master contractor team", "Artisan craft curation (custom stonework, millwork, fine metals)", "Turnkey styling, fine art acquisition & final staging"]',
+    'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85',
+    1
+),
+(
+    2,
+    'spatial-planning',
+    'Spatial Planning & Architecture',
+    'Proportion, Daylight, & Spatial Choreography',
+    'We curate human-centric layouts that prioritize intuitive movement, acoustic balance, and maximum daylight exposure, harmonizing volume and void.',
+    '["Micro-zoning & flow circulation studies", "Daylight trajectory & sightline mapping", "Acoustic insulation & spatial partition detailing", "Detailed joinery & architectural ceiling schematics"]',
+    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85',
+    2
+),
+(
+    3,
+    '3d-visualization',
+    '3D Visualization & Virtual Tours',
+    'Photorealistic Digital Twins Before Groundbreak',
+    'Immerse yourself inside your future sanctuary before a single brick is laid. We engineer cinema-grade CGI renders, interactive 3D digital twins, and walkthrough simulations.',
+    '["Ultra-high fidelity photorealistic interior renderings", "Matterport / Kuula 360° interactive digital twin models", "Lighting simulation under seasonal sun angles", "Material sample tactile mood boards"]',
+    'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=85',
+    3
+),
+(
+    4,
+    'bespoke-furniture',
+    'Bespoke Furniture & Curated Objects',
+    'Heirloom Furniture & Rare Tactile Finishes',
+    'Tailored solely to your home. We commission bespoke dining tables, sculptured seating, and custom lighting fixtures in collaboration with European and Japanese master craftsmen.',
+    '["Exclusive bespoke furniture sketches & 1:1 joinery details", "Direct sourcing of rare marbles, French oak, and tactile bouclés", "Commissioned gallery-grade sculptures and art pieces", "White-glove installation and archival care guidelines"]',
+    'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1200&q=85',
+    4
+)
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`);
+
+-- ------------------------------------------------------------------------------
+-- Seed 4-Step Process Steps
+-- ------------------------------------------------------------------------------
+INSERT INTO `process_steps`
+(`id`, `step_number`, `title`, `phase`, `description`, `display_order`)
+VALUES
+(1, '01', 'Discovery & Spatial Audit', 'Week 1 – 2', 'We explore your lifestyle, aesthetic sensitivities, functional requirements, and the unique architectural context of the property.', 1),
+(2, '02', 'Concept & 3D Digital Twin', 'Week 3 – 6', 'We translate the spatial vision into tactile mood boards, detailed floor plans, and interactive 3D virtual tour simulations.', 2),
+(3, '03', 'Material Sourcing & Joinery', 'Week 7 – 10', 'Quarry-direct marble selection, custom timber milling, hand-loomed textiles, and fabrication of custom architectural fixtures.', 3),
+(4, '04', 'Execution & White-Glove Handover', 'Week 11 – Completion', 'Rigorous on-site craftsmanship supervision, acoustic testing, deep detail cleaning, art placement, and the ceremonial key handover.', 4)
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`);
+
+-- ------------------------------------------------------------------------------
+-- Seed Testimonials
+-- ------------------------------------------------------------------------------
+INSERT INTO `testimonials`
+(`id`, `quote`, `author`, `role`, `project`, `display_order`)
+VALUES
+(1, 'Atelier Vérité transformed our Tribeca warehouse into a serene sanctuary that feels simultaneously like a private art gallery and an effortlessly comfortable home. Their restraint and mastery of natural materials is unmatched.', 'Julian & Elena Vance', 'Private Collectors', 'The Tribeca Loft', 1),
+(2, 'Being able to walk through our Amalfi villa via their 3D virtual twin before construction commenced saved us months of revisions and gave us absolute clarity. The final result exceeded our wildest aspirations.', 'Conte Marco Rossi', 'Estate Owner', 'Villa Serenità, Amalfi', 2),
+(3, 'The level of craftsmanship and architectural rigor they brought to our Paris flagship established our brand identity on an international stage. Every client notes the extraordinary tactile energy of the space.', 'Céline Laurent', 'Creative Director', 'Lumina Haute Parfumerie, Paris', 3)
+ON DUPLICATE KEY UPDATE `quote` = VALUES(`quote`);
+
+-- ------------------------------------------------------------------------------
+-- Seed FAQs
+-- ------------------------------------------------------------------------------
+INSERT INTO `faqs`
+(`id`, `question`, `answer`, `category`, `display_order`)
+VALUES
+(1, 'What is your typical project timeline for a full turnkey residence?', 'Turnkey residential projects typically range from 4 to 9 months, depending on carpet area and structural scope. Discovery and 3D digital twin design take 4–6 weeks, followed by concurrent procurement and on-site artisan execution.', 'Turnkey', 1),
+(2, 'How do you charge for interior architecture and design services?', 'We operate on a transparent design fee structured per square foot or as a percentage of the total construction cost, paired with direct pass-through wholesale trade pricing for material procurement and bespoke furniture fabrication.', 'Fees', 2),
+(3, 'Can you take on international commissions outside your primary studios?', 'Yes. Atelier Vérité frequently designs residences throughout North America, Europe, Japan, and the Middle East. Our remote 3D digital twin methodology and vetted regional contractor networks ensure seamless overseas execution.', 'Locations', 3),
+(4, 'How do the interactive 3D virtual tours work during the design phase?', 'Before physical demolition or construction begins, we construct an immersive 3D digital model (accessible via browser or VR headset). You can freely walk through hallways, test sightlines, view material reflections, and experience exact daylight conditions.', 'Technology', 4),
+(5, 'Do you manage site contractors and municipal permissions?', 'Yes. In our Turnkey Execution tier, our studio coordinates all municipal permits, heritage board approvals, structural engineer sign-offs, and daily site contractor craftsmanship.', 'Execution', 5)
+ON DUPLICATE KEY UPDATE `question` = VALUES(`question`);
+
+-- ------------------------------------------------------------------------------
+-- Seed Disciplines
+-- ------------------------------------------------------------------------------
+INSERT INTO `disciplines`
+(`id`, `title`, `description`, `image_url`, `grid_span`, `display_order`)
+VALUES
+(1, 'Turnkey Architectural Stewardship', 'White-glove design-and-build oversight from bare shell demolition to final linen drapery and art curation.', 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85', 'lg:col-span-7', 1),
+(2, 'Interactive 3D Virtual Twins', 'Explore your future residence via browser or VR before construction begins with photorealistic daylight simulations.', 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=85', 'lg:col-span-5', 2),
+(3, 'Quarry-Direct Roman Travertine', 'Hand-selected unlacquered stone blocks carved by generational Italian artisans for sculptural monolithic islands.', 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1200&q=85', 'lg:col-span-4', 3),
+(4, 'Acoustic Insulation & Belgian Linens', 'Micro-perforated acoustic paneling and heavyweight raw linen drapery that absorb reverberation for absolute serenity.', 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85', 'lg:col-span-4', 4),
+(5, 'Bespoke Heirloom Millwork', 'Smoked oak, Japanese hinoki joinery, and custom furniture pieces tailored to the exact proportions of your home.', 'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=1200&q=85', 'lg:col-span-4', 5)
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`);
+
+-- ------------------------------------------------------------------------------
+-- Seed Press Mentions
+-- ------------------------------------------------------------------------------
+INSERT INTO `press_mentions`
+(`id`, `outlet`, `quote`, `year`, `display_order`)
+VALUES
+(1, 'Architectural Digest', 'A masterclass in quiet luxury and architectural restraint.', '2025', 1),
+(2, 'Wallpaper* Magazine', 'The digital twin methodology that is redefining turnkey interior architecture.', '2025', 2),
+(3, 'Elle Décor International', 'Sanctuaries carved from stone, linen, and daylight.', '2024', 3),
+(4, 'Dezeen Awards', 'Best Residential Transformation — The Tribeca Loft.', '2024', 4)
+ON DUPLICATE KEY UPDATE `outlet` = VALUES(`outlet`);
+
+-- ------------------------------------------------------------------------------
 -- Seed Before & After Pairs (Transformation Photography)
 -- ------------------------------------------------------------------------------
 
@@ -405,5 +718,318 @@ INSERT INTO `before_after` (`project_id`, `title`, `before_image`, `after_image`
     'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=85',
     'Flaking paint and damaged cornice friezes were painstakingly restored using heritage lime plaster casts, integrating modern recessed ambient floor uplighting.'
 );
+
+-- ------------------------------------------------------------------------------
+-- 4. Create Dynamic Content Tables (Journeys, Services, Process, Testimonials, FAQs, Disciplines, Press)
+-- ------------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `journeys` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `slug` VARCHAR(120) NOT NULL UNIQUE,
+    `title` VARCHAR(255) NOT NULL,
+    `tag` VARCHAR(100) NOT NULL,
+    `location` VARCHAR(150) NOT NULL,
+    `area` VARCHAR(50) NOT NULL,
+    `duration` VARCHAR(100) NOT NULL,
+    `hero_image` VARCHAR(512) NOT NULL,
+    `overview` TEXT NOT NULL,
+    `materials` TEXT NOT NULL,
+    `span` VARCHAR(50) DEFAULT 'md:col-span-4',
+    `has_3d_tour` TINYINT(1) DEFAULT 0,
+    `display_order` INT DEFAULT 0,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX `idx_journey_slug` (`slug`),
+    INDEX `idx_journey_order` (`display_order`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `services` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `service_key` VARCHAR(100) NOT NULL UNIQUE,
+    `title` VARCHAR(255) NOT NULL,
+    `subtitle` VARCHAR(255) NOT NULL,
+    `description` TEXT NOT NULL,
+    `deliverables` TEXT NOT NULL,
+    `image_url` VARCHAR(512) NOT NULL,
+    `display_order` INT DEFAULT 0,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX `idx_service_key` (`service_key`),
+    INDEX `idx_service_order` (`display_order`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `process_steps` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `step_number` VARCHAR(10) NOT NULL UNIQUE,
+    `title` VARCHAR(255) NOT NULL,
+    `phase` VARCHAR(100) NOT NULL,
+    `description` TEXT NOT NULL,
+    `display_order` INT DEFAULT 0,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX `idx_step_order` (`display_order`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `testimonials` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `quote` TEXT NOT NULL,
+    `author` VARCHAR(150) NOT NULL,
+    `role` VARCHAR(150) NOT NULL,
+    `project` VARCHAR(150) NOT NULL,
+    `avatar_url` VARCHAR(512) NULL,
+    `display_order` INT DEFAULT 0,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX `idx_testimonial_order` (`display_order`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `faqs` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `question` VARCHAR(500) NOT NULL,
+    `answer` TEXT NOT NULL,
+    `category` VARCHAR(100) DEFAULT 'General',
+    `display_order` INT DEFAULT 0,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX `idx_faq_order` (`display_order`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `disciplines` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `title` VARCHAR(255) NOT NULL,
+    `description` TEXT NOT NULL,
+    `image_url` VARCHAR(512) NOT NULL,
+    `grid_span` VARCHAR(50) DEFAULT 'lg:col-span-4',
+    `display_order` INT DEFAULT 0,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX `idx_discipline_order` (`display_order`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `press_mentions` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `outlet` VARCHAR(150) NOT NULL,
+    `quote` TEXT NOT NULL,
+    `year` VARCHAR(50) NULL,
+    `display_order` INT DEFAULT 0,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX `idx_press_order` (`display_order`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ------------------------------------------------------------------------------
+-- Seed Architectural Journeys
+-- ------------------------------------------------------------------------------
+INSERT INTO `journeys` 
+(`id`, `slug`, `title`, `tag`, `location`, `area`, `duration`, `hero_image`, `overview`, `materials`, `span`, `has_3d_tour`, `display_order`)
+VALUES
+(
+    1,
+    'the-tribeca-loft',
+    'The Tribeca Loft Revival',
+    'Industrial Heritage',
+    'Tribeca, New York',
+    '4,200 sq. ft.',
+    '14 Months Turnkey',
+    'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=85',
+    'A full-floor conversion within a protected 19th-century cast-iron warehouse. Stripping away decades of ad-hoc drywall to reveal historical timber pillars, softened with monolithic Roman travertine and micro-perforated acoustic linen walls.',
+    '["Roman Travertine Islands", "Smoked French Oak", "Acoustic Linen Drapery", "Aged Unlacquered Brass"]',
+    'md:col-span-4',
+    1,
+    1
+),
+(
+    2,
+    'villa-serenita-amalfi',
+    'Amalfi Clifftop Pergola & Infinity Sanctuary',
+    'Turnkey Coastal',
+    'Amalfi Coast, Italy',
+    '6,800 sq. ft.',
+    '18 Months Turnkey',
+    'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1600&q=85',
+    'Perched over the Mediterranean, this multi-tiered clifftop villa required structural stabilization and bespoke marine-grade bronze pivot apertures. Designed to maximize coastal breezes and golden afternoon reflection across honed limestone terraces.',
+    '["Honed Vicenza Limestone", "Naval Bronze Portals", "Rough-Hewn Tufa Stone", "Bleached Chestnut"]',
+    'md:col-span-8',
+    1,
+    2
+),
+(
+    3,
+    'kyoto-sanctuary-residence',
+    'Kyoto Hinoki & Moss Garden Sanctuary',
+    'Wabi-Sabi Minimalism',
+    'Higashiyama, Kyoto',
+    '3,400 sq. ft.',
+    '12 Months Turnkey',
+    'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=1600&q=85',
+    'Created in close collaboration with Kyoto master carpenters (Miyadaiku), balancing traditional Ma negative space with hidden geothermal environmental systems. Hand-carved hinoki timber joinery and raw washi acoustic screens.',
+    '["Japanese Hinoki Cedar", "Kurotani Washi Screens", "Charred Yakisugi Oak", "River-Honed Basalt"]',
+    'md:col-span-6',
+    1,
+    3
+),
+(
+    4,
+    'the-mayfair-heritage-salon',
+    'Mayfair Georgian Drawing Room Conservation',
+    'Historic Restoration',
+    'Mayfair, London',
+    '5,100 sq. ft.',
+    '16 Months Turnkey',
+    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=85',
+    'Painstaking restoration of 18th-century plaster friezes and Calacatta Viola fireplaces, seamlessly paired with contemporary concealed kitchen joinery and custom bronze exhibition vitrines.',
+    '["Calacatta Viola Marble", "Cornice Plaster Reliefs", "Burr Walnut Paneling", "Smoked Mirror Glass"]',
+    'md:col-span-6',
+    0,
+    4
+),
+(
+    5,
+    'lumina-flagship-ateliers',
+    'Lumina Flagship Parfumerie, Paris',
+    'Sensory Commercial',
+    '1er Arrondissement, Paris',
+    '2,900 sq. ft.',
+    '8 Months Turnkey',
+    'https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=1600&q=85',
+    'An experiential fragrance salon featuring a monumental curving counter carved from solid Navona travertine in central Paris. Tuned acoustics and concealed scent diffusion chambers create an ethereal oasis.',
+    '["Solid Navona Travertine", "Champagne Anodized Aluminum", "Velvet Acoustic Plaster", "Backlit Alabaster"]',
+    'md:col-span-4',
+    0,
+    5
+),
+(
+    6,
+    'bel-air-promontory-villa',
+    'Bel Air Motorized Canyon Glass Pavilion',
+    'Modernist Turnkey',
+    'Bel Air, California',
+    '8,200 sq. ft.',
+    '22 Months Turnkey',
+    'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=85',
+    'Blurring the boundary between interior luxury and the dramatic California canyon landscape through 14-foot motorized glass pocket portals, cantilevered infinity reflections, and seamless micro-cement flooring.',
+    '["Micro-Cement Seamless Floors", "Thermally Broken Glass Portals", "Smoked Eucalyptus Millwork", "Honed Basalt"]',
+    'md:col-span-4',
+    1,
+    6
+),
+(
+    7,
+    'interactive-3d-digital-twins',
+    'Interactive 3D Digital Twin Simulation',
+    'Virtual Twin Technology',
+    'Global / Virtual Studio',
+    'All Projects',
+    'Pre-construction',
+    'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=85',
+    'Every commission includes a fully navigable 3D digital twin so you can test sightlines, natural daylight trajectory, and acoustic isolation before physical build.',
+    '["Matterport Pro3 LiDAR", "High-Fidelity Photogrammetry", "Ray-Traced Light Engines", "VR Headset Compatible"]',
+    'md:col-span-4',
+    1,
+    7
+)
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `overview` = VALUES(`overview`);
+
+-- ------------------------------------------------------------------------------
+-- Seed Services & Methodology
+-- ------------------------------------------------------------------------------
+INSERT INTO `services`
+(`id`, `service_key`, `title`, `subtitle`, `description`, `deliverables`, `image_url`, `display_order`)
+VALUES
+(
+    1,
+    'turnkey-execution',
+    'Turnkey Interior Execution',
+    'From Bare Shell to Flawless Handover',
+    'A holistic, white-glove design-and-build experience. We take absolute stewardship of civil alterations, MEP coordination, acoustic engineering, artisan finishes, and bespoke furniture placement.',
+    '["Comprehensive structural & MEP architectural documentation", "Dedicated on-site senior project manager & master contractor team", "Artisan craft curation (custom stonework, millwork, fine metals)", "Turnkey styling, fine art acquisition & final staging"]',
+    'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85',
+    1
+),
+(
+    2,
+    'spatial-planning',
+    'Spatial Planning & Architecture',
+    'Proportion, Daylight, & Spatial Choreography',
+    'We curate human-centric layouts that prioritize intuitive movement, acoustic balance, and maximum daylight exposure, harmonizing volume and void.',
+    '["Micro-zoning & flow circulation studies", "Daylight trajectory & sightline mapping", "Acoustic insulation & spatial partition detailing", "Detailed joinery & architectural ceiling schematics"]',
+    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85',
+    2
+),
+(
+    3,
+    '3d-visualization',
+    '3D Visualization & Virtual Tours',
+    'Photorealistic Digital Twins Before Groundbreak',
+    'Immerse yourself inside your future sanctuary before a single brick is laid. We engineer cinema-grade CGI renders, interactive 3D digital twins, and walkthrough simulations.',
+    '["Ultra-high fidelity photorealistic interior renderings", "Matterport / Kuula 360° interactive digital twin models", "Lighting simulation under seasonal sun angles", "Material sample tactile mood boards"]',
+    'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=85',
+    3
+),
+(
+    4,
+    'bespoke-furniture',
+    'Bespoke Furniture & Curated Objects',
+    'Heirloom Furniture & Rare Tactile Finishes',
+    'Tailored solely to your home. We commission bespoke dining tables, sculptured seating, and custom lighting fixtures in collaboration with European and Japanese master craftsmen.',
+    '["Exclusive bespoke furniture sketches & 1:1 joinery details", "Direct sourcing of rare marbles, French oak, and tactile bouclés", "Commissioned gallery-grade sculptures and art pieces", "White-glove installation and archival care guidelines"]',
+    'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1200&q=85',
+    4
+)
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`), `description` = VALUES(`description`);
+
+-- ------------------------------------------------------------------------------
+-- Seed 4-Step Process Steps
+-- ------------------------------------------------------------------------------
+INSERT INTO `process_steps`
+(`id`, `step_number`, `title`, `phase`, `description`, `display_order`)
+VALUES
+(1, '01', 'Discovery & Spatial Audit', 'Week 1 – 2', 'We explore your lifestyle, aesthetic sensitivities, functional requirements, and the unique architectural context of the property.', 1),
+(2, '02', 'Concept & 3D Digital Twin', 'Week 3 – 6', 'We translate the spatial vision into tactile mood boards, detailed floor plans, and interactive 3D virtual tour simulations.', 2),
+(3, '03', 'Material Sourcing & Joinery', 'Week 7 – 10', 'Quarry-direct marble selection, custom timber milling, hand-loomed textiles, and fabrication of custom architectural fixtures.', 3),
+(4, '04', 'Execution & White-Glove Handover', 'Week 11 – Completion', 'Rigorous on-site craftsmanship supervision, acoustic testing, deep detail cleaning, art placement, and the ceremonial key handover.', 4)
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`);
+
+-- ------------------------------------------------------------------------------
+-- Seed Testimonials
+-- ------------------------------------------------------------------------------
+INSERT INTO `testimonials`
+(`id`, `quote`, `author`, `role`, `project`, `display_order`)
+VALUES
+(1, 'Atelier Vérité transformed our Tribeca warehouse into a serene sanctuary that feels simultaneously like a private art gallery and an effortlessly comfortable home. Their restraint and mastery of natural materials is unmatched.', 'Julian & Elena Vance', 'Private Collectors', 'The Tribeca Loft', 1),
+(2, 'Being able to walk through our Amalfi villa via their 3D virtual twin before construction commenced saved us months of revisions and gave us absolute clarity. The final result exceeded our wildest aspirations.', 'Conte Marco Rossi', 'Estate Owner', 'Villa Serenità, Amalfi', 2),
+(3, 'The level of craftsmanship and architectural rigor they brought to our Paris flagship established our brand identity on an international stage. Every client notes the extraordinary tactile energy of the space.', 'Céline Laurent', 'Creative Director', 'Lumina Haute Parfumerie, Paris', 3)
+ON DUPLICATE KEY UPDATE `quote` = VALUES(`quote`);
+
+-- ------------------------------------------------------------------------------
+-- Seed FAQs
+-- ------------------------------------------------------------------------------
+INSERT INTO `faqs`
+(`id`, `question`, `answer`, `category`, `display_order`)
+VALUES
+(1, 'What is your typical project timeline for a full turnkey residence?', 'Turnkey residential projects typically range from 4 to 9 months, depending on carpet area and structural scope. Discovery and 3D digital twin design take 4–6 weeks, followed by concurrent procurement and on-site artisan execution.', 'Turnkey', 1),
+(2, 'How do you charge for interior architecture and design services?', 'We operate on a transparent design fee structured per square foot or as a percentage of the total construction cost, paired with direct pass-through wholesale trade pricing for material procurement and bespoke furniture fabrication.', 'Fees', 2),
+(3, 'Can you take on international commissions outside your primary studios?', 'Yes. Atelier Vérité frequently designs residences throughout North America, Europe, Japan, and the Middle East. Our remote 3D digital twin methodology and vetted regional contractor networks ensure seamless overseas execution.', 'Locations', 3),
+(4, 'How do the interactive 3D virtual tours work during the design phase?', 'Before physical demolition or construction begins, we construct an immersive 3D digital model (accessible via browser or VR headset). You can freely walk through hallways, test sightlines, view material reflections, and experience exact daylight conditions.', 'Technology', 4),
+(5, 'Do you manage site contractors and municipal permissions?', 'Yes. In our Turnkey Execution tier, our studio coordinates all municipal permits, heritage board approvals, structural engineer sign-offs, and daily site contractor craftsmanship.', 'Execution', 5)
+ON DUPLICATE KEY UPDATE `question` = VALUES(`question`);
+
+-- ------------------------------------------------------------------------------
+-- Seed Disciplines
+-- ------------------------------------------------------------------------------
+INSERT INTO `disciplines`
+(`id`, `title`, `description`, `image_url`, `grid_span`, `display_order`)
+VALUES
+(1, 'Turnkey Architectural Stewardship', 'White-glove design-and-build oversight from bare shell demolition to final linen drapery and art curation.', 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85', 'lg:col-span-7', 1),
+(2, 'Interactive 3D Virtual Twins', 'Explore your future residence via browser or VR before construction begins with photorealistic daylight simulations.', 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=85', 'lg:col-span-5', 2),
+(3, 'Quarry-Direct Roman Travertine', 'Hand-selected unlacquered stone blocks carved by generational Italian artisans for sculptural monolithic islands.', 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1200&q=85', 'lg:col-span-4', 3),
+(4, 'Acoustic Insulation & Belgian Linens', 'Micro-perforated acoustic paneling and heavyweight raw linen drapery that absorb reverberation for absolute serenity.', 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85', 'lg:col-span-4', 4),
+(5, 'Bespoke Heirloom Millwork', 'Smoked oak, Japanese hinoki joinery, and custom furniture pieces tailored to the exact proportions of your home.', 'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=1200&q=85', 'lg:col-span-4', 5)
+ON DUPLICATE KEY UPDATE `title` = VALUES(`title`);
+
+-- ------------------------------------------------------------------------------
+-- Seed Press Mentions
+-- ------------------------------------------------------------------------------
+INSERT INTO `press_mentions`
+(`id`, `outlet`, `quote`, `year`, `display_order`)
+VALUES
+(1, 'Architectural Digest', 'A masterclass in quiet luxury and architectural restraint.', '2025', 1),
+(2, 'Wallpaper* Magazine', 'The digital twin methodology that is redefining turnkey interior architecture.', '2025', 2),
+(3, 'Elle Décor International', 'Sanctuaries carved from stone, linen, and daylight.', '2024', 3),
+(4, 'Dezeen Awards', 'Best Residential Transformation — The Tribeca Loft.', '2024', 4)
+ON DUPLICATE KEY UPDATE `outlet` = VALUES(`outlet`);
 
 SET FOREIGN_KEY_CHECKS = 1;
