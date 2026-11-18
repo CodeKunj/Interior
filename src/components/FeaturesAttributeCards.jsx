@@ -9,7 +9,7 @@ export default function FeaturesAttributeCards({
   projects = []
 }) {
   return (
-    <section id="rooms" className="py-16 sm:py-24 md:py-36 px-4 sm:px-6 md:px-12 bg-[#F5F3EE]/70 backdrop-blur-[2px] border-y border-[#EAE6DF]/80 relative">
+    <section id="rooms" className="py-16 sm:py-24 md:py-36 px-4 sm:px-6 md:px-12 bg-[#F5F3EE]/80 border-y border-[#EAE6DF]/80 relative">
       <div className="max-w-6xl mx-auto space-y-12 sm:space-y-16">
         {/* Section Header */}
         <div className="flex flex-col items-center text-center space-y-3 sm:space-y-4 max-w-3xl mx-auto">

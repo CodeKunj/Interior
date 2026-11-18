@@ -92,7 +92,7 @@ export default function Services() {
       </section>
 
       {/* 3. Numbered 4-Step Design Process Timeline (Soft Travertine Strip) */}
-      <section className="py-16 sm:py-24 md:py-32 px-4 sm:px-6 md:px-12 bg-[#F5F3EE]/60 backdrop-blur-[2px] border-y border-[#EAE6DF]/70 relative">
+      <section className="py-16 sm:py-24 md:py-32 px-4 sm:px-6 md:px-12 bg-[#F5F3EE]/80 border-y border-[#EAE6DF]/70 relative">
         <div className="max-w-6xl mx-auto space-y-12 sm:space-y-16">
           <div className="max-w-2xl space-y-3 sm:space-y-4">
             <div className="pill-tag bg-white shadow-sm">

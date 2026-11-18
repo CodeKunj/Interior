@@ -59,7 +59,7 @@ export default function AboutParallax({
           {/* Back Image with Parallax Drift */}
           <motion.div
             style={{ y: backY, scale: backScale }}
-            className="absolute top-0 right-0 w-[80%] h-[82%] rounded-2xl overflow-hidden border border-[#E5E0D8] shadow-xl bg-white"
+            className="absolute top-0 right-0 w-[80%] h-[82%] rounded-2xl overflow-hidden border border-[#E5E0D8] shadow-xl bg-white transform-gpu will-change-transform"
           >
             <img
               src={backImageSrc}
@@ -71,7 +71,7 @@ export default function AboutParallax({
           {/* Front Elevated Card Image with Inverse Parallax Drift */}
           <motion.div
             style={{ y: frontY }}
-            className="absolute bottom-2 sm:bottom-4 left-0 w-[64%] h-[70%] rounded-2xl overflow-hidden border border-[#E5E0D8] shadow-[0_25px_50px_rgba(28,27,25,0.12)] bg-white z-10"
+            className="absolute bottom-2 sm:bottom-4 left-0 w-[64%] h-[70%] rounded-2xl overflow-hidden border border-[#E5E0D8] shadow-[0_25px_50px_rgba(28,27,25,0.12)] bg-white z-10 transform-gpu will-change-transform"
           >
             <img
               src={frontImageSrc}

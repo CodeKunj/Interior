@@ -54,7 +54,7 @@ export default function ArchitecturalCanvasBackground() {
       {/* 1.5 Authentic Italian Calacatta Marble Vein Substratum              */}
       {/* ------------------------------------------------------------------ */}
       <div
-        className="absolute inset-0 opacity-[0.11] mix-blend-multiply bg-cover bg-center pointer-events-none"
+        className="absolute inset-0 opacity-[0.08] md:opacity-[0.11] md:mix-blend-multiply bg-cover bg-center pointer-events-none"
         style={{
           backgroundImage: `url(${marbleTexture})`,
         }}
@@ -63,50 +63,58 @@ export default function ArchitecturalCanvasBackground() {
       {/* ------------------------------------------------------------------ */}
       {/* 2. Organic Shifting Daylight Orbs (Natural Sunlight Simulation)     */}
       {/* ------------------------------------------------------------------ */}
-      {/* Top Right: Warm Golden Hour Sunlit Glow */}
-      <motion.div
-        animate={{
-          x: [0, 40, -30, 0],
-          y: [0, -50, 20, 0],
-          scale: [1, 1.15, 0.95, 1],
-        }}
-        transition={{
-          duration: 22,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-        className="absolute -top-32 -right-32 w-[650px] sm:w-[850px] h-[650px] sm:h-[850px] rounded-full bg-gradient-to-br from-[#F5E8D3]/50 via-[#EDE0CA]/30 to-transparent blur-[110px]"
-      />
+      {/* Mobile-Optimized Lightweight Static Gradients (Zero CPU/RAF jank) */}
+      <div className="md:hidden absolute -top-16 -right-16 w-64 h-64 rounded-full bg-gradient-to-br from-[#F5E8D3]/40 to-transparent blur-[45px] pointer-events-none transform-gpu" />
+      <div className="md:hidden absolute top-[35%] -left-20 w-60 h-60 rounded-full bg-gradient-to-tr from-[#EBE1D0]/35 to-transparent blur-[45px] pointer-events-none transform-gpu" />
+      <div className="md:hidden absolute bottom-[15%] -right-16 w-56 h-56 rounded-full bg-gradient-to-tl from-[#D8C6B6]/30 to-transparent blur-[40px] pointer-events-none transform-gpu" />
 
-      {/* Center Left: Soft Italian Travertine & Linen Atmosphere */}
-      <motion.div
-        animate={{
-          x: [0, -50, 30, 0],
-          y: [0, 60, -40, 0],
-          scale: [1, 0.9, 1.12, 1],
-        }}
-        transition={{
-          duration: 28,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-        className="absolute top-[35%] -left-48 w-[600px] sm:w-[800px] h-[600px] sm:h-[800px] rounded-full bg-gradient-to-tr from-[#EBE1D0]/45 via-[#E6D9C2]/25 to-transparent blur-[120px]"
-      />
+      {/* Desktop Animated Daylight Orbs (Hardware-accelerated) */}
+      <div className="hidden md:block">
+        {/* Top Right: Warm Golden Hour Sunlit Glow */}
+        <motion.div
+          animate={{
+            x: [0, 40, -30, 0],
+            y: [0, -50, 20, 0],
+            scale: [1, 1.15, 0.95, 1],
+          }}
+          transition={{
+            duration: 22,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+          className="absolute -top-32 -right-32 w-[850px] h-[850px] rounded-full bg-gradient-to-br from-[#F5E8D3]/50 via-[#EDE0CA]/30 to-transparent blur-[110px] transform-gpu will-change-transform"
+        />
 
-      {/* Bottom Right: Bronze Sanctuary Warmth */}
-      <motion.div
-        animate={{
-          x: [0, 30, -40, 0],
-          y: [0, -40, 30, 0],
-          scale: [1, 1.1, 0.92, 1],
-        }}
-        transition={{
-          duration: 25,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-        className="absolute bottom-[10%] right-[-10%] w-[550px] sm:w-[750px] h-[550px] sm:h-[750px] rounded-full bg-gradient-to-tl from-[#D8C6B6]/35 via-[#F1E7DA]/30 to-transparent blur-[100px]"
-      />
+        {/* Center Left: Soft Italian Travertine & Linen Atmosphere */}
+        <motion.div
+          animate={{
+            x: [0, -50, 30, 0],
+            y: [0, 60, -40, 0],
+            scale: [1, 0.9, 1.12, 1],
+          }}
+          transition={{
+            duration: 28,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+          className="absolute top-[35%] -left-48 w-[800px] h-[800px] rounded-full bg-gradient-to-tr from-[#EBE1D0]/45 via-[#E6D9C2]/25 to-transparent blur-[120px] transform-gpu will-change-transform"
+        />
+
+        {/* Bottom Right: Bronze Sanctuary Warmth */}
+        <motion.div
+          animate={{
+            x: [0, 30, -40, 0],
+            y: [0, -40, 30, 0],
+            scale: [1, 1.1, 0.92, 1],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+          className="absolute bottom-[10%] right-[-10%] w-[750px] h-[750px] rounded-full bg-gradient-to-tl from-[#D8C6B6]/35 via-[#F1E7DA]/30 to-transparent blur-[100px] transform-gpu will-change-transform"
+        />
+      </div>
 
       {/* Interactive Cursor Daylight Follower (Desktop only) */}
       {isPointerDevice && (
@@ -181,11 +189,11 @@ export default function ArchitecturalCanvasBackground() {
       </div>
 
       {/* ------------------------------------------------------------------ */}
-      {/* 4. Sculptural Classical Arch & Geometric Line Watermarks           */}
+      {/* 4. Sculptural Classical Arch & Geometric Line Watermarks (Desktop) */}
       {/* ------------------------------------------------------------------ */}
       <motion.div
         style={{ y: parallaxY }}
-        className="absolute top-[480px] right-[-5%] sm:right-[3%] w-[420px] sm:w-[620px] h-[620px] sm:h-[820px] opacity-[0.035] text-[#8C6D53]"
+        className="hidden md:block absolute top-[480px] right-[3%] w-[620px] h-[820px] opacity-[0.035] text-[#8C6D53] pointer-events-none transform-gpu"
       >
         <svg
           viewBox="0 0 600 800"
@@ -220,11 +228,11 @@ export default function ArchitecturalCanvasBackground() {
       </motion.div>
 
       {/* ------------------------------------------------------------------ */}
-      {/* 5. Tactile Italian Lime Plaster / Honed Limestone Noise Film      */}
+      {/* 5. Tactile Italian Lime Plaster Noise Film (Desktop only)          */}
       {/* ------------------------------------------------------------------ */}
-      {/* High-frequency micro-texture rendered via inline SVG data-uri (zero network cost) */}
+      {/* High-frequency micro-texture rendered via inline SVG (disabled on mobile for 120Hz native fps) */}
       <div
-        className="absolute inset-0 opacity-[0.038] mix-blend-multiply bg-repeat pointer-events-none"
+        className="hidden md:block absolute inset-0 opacity-[0.038] mix-blend-multiply bg-repeat pointer-events-none"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
         }}

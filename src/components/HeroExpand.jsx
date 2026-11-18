@@ -82,7 +82,7 @@ export default function HeroExpand({
       {/* Background Architectural Media Frame with Cinematic Sharpness */}
       <motion.div
         style={{ scale: mediaScale }}
-        className="absolute inset-0 z-0 overflow-hidden bg-[#FAF9F5]"
+        className="absolute inset-0 z-0 overflow-hidden bg-[#FAF9F5] transform-gpu will-change-transform"
       >
         {/* 1. Signature High-Resolution Interior Photograph (Always visible & crisp) */}
         <img
@@ -125,7 +125,7 @@ export default function HeroExpand({
       {/* Hero Content Overlay */}
       <motion.div
         style={{ y: textTranslateY, opacity: contentOpacity }}
-        className="relative z-10 w-full max-w-5xl mx-auto flex flex-col items-center text-center space-y-4 sm:space-y-6 md:space-y-8"
+        className="relative z-10 w-full max-w-5xl mx-auto flex flex-col items-center text-center space-y-4 sm:space-y-6 md:space-y-8 transform-gpu will-change-transform"
       >
         {/* Pill Tag */}
         <motion.div

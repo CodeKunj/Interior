@@ -7,10 +7,15 @@ import Lenis from 'lenis';
  */
 export default function SmoothScroll({ children }) {
   useEffect(() => {
-    // On touch devices and mobile screens (< 1024px), use silky-smooth native 120Hz inertia scrolling
-    // to avoid scroll hijacking, jank, or interfering with touch gestures & sliders
-    const isTouch = typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0);
-    if (isTouch && window.innerWidth < 1024) {
+    // Completely disable Lenis on mobile/touch devices for silky-smooth 120Hz native touch scrolling
+    const isMobileDevice =
+      typeof window !== 'undefined' &&
+      ('ontouchstart' in window ||
+        navigator.maxTouchPoints > 0 ||
+        window.matchMedia('(pointer: coarse)').matches ||
+        window.innerWidth < 1024);
+
+    if (isMobileDevice) {
       return;
     }
 

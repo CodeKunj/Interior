@@ -68,7 +68,7 @@ export default function FeaturesRevealCardsBento({
   items = DEFAULT_JOURNEYS
 }) {
   return (
-    <section id="journeys" className="py-16 sm:py-24 md:py-36 px-4 sm:px-6 md:px-12 bg-[#F5F3EE]/60 backdrop-blur-[2px] border-t border-[#EAE6DF]/70 relative">
+    <section id="journeys" className="py-16 sm:py-24 md:py-36 px-4 sm:px-6 md:px-12 bg-[#F5F3EE]/80 border-t border-[#EAE6DF]/70 relative">
       <div className="max-w-6xl mx-auto space-y-12 sm:space-y-16">
         {/* Header */}
         <div className="flex flex-col items-center text-center space-y-3 sm:space-y-4 max-w-3xl mx-auto">
