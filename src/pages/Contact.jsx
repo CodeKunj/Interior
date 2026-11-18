@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowUpRight, CheckCircle2, AlertCircle, Sparkles, Send, MessageSquare } from 'lucide-react';
+import { ArrowUpRight, CheckCircle2, AlertCircle, Send, MessageSquare } from 'lucide-react';
 import { submitInquiry } from '../services/api';
 
 const PROPERTY_TYPES = [
@@ -92,7 +92,6 @@ export default function Contact() {
       <section className="max-w-6xl mx-auto px-4 sm:px-6 md:px-12">
         <div className="max-w-3xl space-y-3 sm:space-y-4">
           <div className="pill-tag bg-white shadow-sm">
-            <Sparkles className="w-3.5 h-3.5 text-accent" />
             <span>Client Inquiries & Private Commissions</span>
           </div>
 
@@ -304,7 +303,6 @@ export default function Contact() {
             {/* WhatsApp Direct Line Card */}
             <div className="rounded-2xl border border-[#E5E0D8] bg-white p-5 sm:p-8 space-y-3 sm:space-y-4 shadow-sm">
               <div className="pill-tag bg-[#FAF9F5]">
-                <Sparkles className="w-3.5 h-3.5 text-accent" />
                 <span>Instant Dialogue</span>
               </div>
 

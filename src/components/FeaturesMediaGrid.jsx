@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const DEFAULT_ITEMS = [
@@ -47,7 +47,6 @@ export default function FeaturesMediaGrid({
         {/* Header */}
         <div className="flex flex-col items-center text-center space-y-3 sm:space-y-4 max-w-3xl mx-auto">
           <div className="pill-tag bg-white shadow-sm">
-            <Sparkles className="w-3.5 h-3.5 text-accent" />
             <span>{tag}</span>
           </div>
 

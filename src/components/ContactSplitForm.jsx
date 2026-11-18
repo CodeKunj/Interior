@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Send, CheckCircle2, AlertCircle, Sparkles, MessageSquare } from 'lucide-react';
+import { Send, CheckCircle2, AlertCircle, MessageSquare } from 'lucide-react';
 import { submitInquiry } from '../services/api';
 import marbleTexture from '../assets/textures/marble-calacatta.webp';
 
@@ -83,7 +83,6 @@ export default function ContactSplitForm({
             />
             <div className="relative z-10 space-y-5 sm:space-y-6">
               <div className="pill-tag bg-[#FAF9F5] shadow-sm">
-                <Sparkles className="w-3.5 h-3.5 text-accent" />
                 <span>{tag}</span>
               </div>
 

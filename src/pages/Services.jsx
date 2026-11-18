@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight, Check, Plus, Minus, Sparkles } from 'lucide-react';
+import { ArrowUpRight, Check, Plus, Minus } from 'lucide-react';
 import { MOCK_SERVICES, MOCK_PROCESS_STEPS, MOCK_FAQS } from '../services/mockData';
 
 export default function Services() {
@@ -16,7 +16,6 @@ export default function Services() {
       <section className="max-w-6xl mx-auto px-4 sm:px-6 md:px-12">
         <div className="max-w-3xl space-y-3 sm:space-y-4">
           <div className="pill-tag bg-white shadow-sm">
-            <Sparkles className="w-3.5 h-3.5 text-accent" />
             <span>Studio Disciplines & Methodology</span>
           </div>
 
@@ -96,7 +95,6 @@ export default function Services() {
         <div className="max-w-6xl mx-auto space-y-12 sm:space-y-16">
           <div className="max-w-2xl space-y-3 sm:space-y-4">
             <div className="pill-tag bg-white shadow-sm">
-              <Sparkles className="w-3.5 h-3.5 text-accent" />
               <span>Architectural Roadmap</span>
             </div>
 
@@ -141,7 +139,6 @@ export default function Services() {
       <section className="max-w-5xl mx-auto px-6 md:px-12 space-y-12">
         <div className="text-center space-y-4 max-w-2xl mx-auto">
           <div className="pill-tag bg-white shadow-sm">
-            <Sparkles className="w-3.5 h-3.5 text-accent" />
             <span>Clarity & Transparency</span>
           </div>
 

@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowUpRight, Sparkles } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function AboutParallax({
@@ -27,7 +27,6 @@ export default function AboutParallax({
         {/* Narrative Column */}
         <div className="lg:col-span-5 space-y-4 sm:space-y-6">
           <div className="pill-tag">
-            <Sparkles className="w-3.5 h-3.5 text-accent" />
             <span>{tag}</span>
           </div>
 

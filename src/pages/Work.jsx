@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Compass, ArrowUpRight, Filter, Sparkles, Bed, Bath, Maximize2 } from 'lucide-react';
+import { Compass, ArrowUpRight, Filter, Bed, Bath, Maximize2 } from 'lucide-react';
 import { getProjects } from '../services/api';
 
 const CATEGORIES = ['All', 'Residential', 'Commercial', 'Turnkey', 'Renovation'];
@@ -31,7 +31,6 @@ export default function Work() {
       <section className="max-w-6xl mx-auto px-4 sm:px-6 md:px-12">
         <div className="max-w-3xl space-y-3 sm:space-y-4">
           <div className="pill-tag bg-white shadow-sm">
-            <Sparkles className="w-3.5 h-3.5 text-accent" />
             <span>Curated Sanctuaries & Archives</span>
           </div>
 

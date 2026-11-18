@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Bed, Bath, Maximize2, Compass, ArrowUpRight, Sparkles } from 'lucide-react';
+import { Bed, Bath, Maximize2, Compass, ArrowUpRight } from 'lucide-react';
 
 export default function FeaturesAttributeCards({
   tag = 'Selected Works',
@@ -14,7 +14,6 @@ export default function FeaturesAttributeCards({
         {/* Section Header */}
         <div className="flex flex-col items-center text-center space-y-3 sm:space-y-4 max-w-3xl mx-auto">
           <div className="pill-tag bg-white shadow-sm">
-            <Sparkles className="w-3.5 h-3.5 text-accent" />
             <span>{tag}</span>
           </div>
 

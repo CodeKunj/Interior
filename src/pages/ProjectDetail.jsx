@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, Camera, SplitSquareVertical, Compass, Calendar, MapPin, Maximize, Sparkles } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Camera, SplitSquareVertical, Compass, Calendar, MapPin, Maximize } from 'lucide-react';
 import { getProjectBySlug } from '../services/api';
 import ProjectGallery from '../components/ProjectGallery';
 import BeforeAfterSlider from '../components/BeforeAfterSlider';
@@ -71,7 +71,6 @@ export default function ProjectDetail() {
             <span>Back to Portfolio</span>
           </Link>
           <div className="pill-tag bg-white shadow-sm text-[10px] sm:text-xs">
-            <Sparkles className="w-3 h-3 text-accent" />
             <span>{project.category}</span>
           </div>
         </div>

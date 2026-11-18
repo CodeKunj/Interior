@@ -6,7 +6,7 @@ import FeaturesAttributeCards from '../components/FeaturesAttributeCards';
 import FeaturesMediaGrid from '../components/FeaturesMediaGrid';
 import FeaturesRevealCardsBento from '../components/FeaturesRevealCardsBento';
 import ContactSplitForm from '../components/ContactSplitForm';
-import { Quote, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
+import { Quote, ChevronLeft, ChevronRight } from 'lucide-react';
 import { MOCK_TESTIMONIALS } from '../services/mockData';
 import marbleTexture from '../assets/textures/marble-calacatta.webp';
 
@@ -137,7 +137,6 @@ export default function Home() {
 
           <div className="relative z-10 space-y-4 sm:space-y-6">
             <div className="pill-tag bg-[#FAF9F5] shadow-sm">
-              <Sparkles className="w-3.5 h-3.5 text-accent" />
               <span>Guest & Client Perspectives</span>
             </div>
 
